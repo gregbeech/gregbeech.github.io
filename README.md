@@ -1,1 +1,0 @@
-# gregbeech.github.io
