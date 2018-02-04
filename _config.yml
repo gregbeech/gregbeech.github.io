@@ -4,7 +4,7 @@ description: Principal Engineer @ Deliveroo
 cover: assets/images/london.jpg
 logo: assets/images/logo.png
 favicon: assets/images/favicon.png
-baseurl: "/" # the subpath of your site, e.g. /blog/ or / for root
+baseurl: "" # the subpath of your site, e.g. /blog/ or / for root
 url: "http://www.gregbeech.com" # the base hostname & protocol for your site
 paginate:	5 # The number of posts to show per page on your homepage
 
@@ -16,7 +16,6 @@ github:  gregbeech
 #Additional Pages
 cv: cv
 contact: contact
-
 
 permalink: /:title
 
@@ -36,13 +35,13 @@ plugins:
 # Settings for rake task
 safe: False
 lsi: False
-username: samanyougarg #github username
-repo: hanuman #github repository
+username: gregbeech #github username
+repo: gregbeech.github.io #github repository
 branch: master #branch
-relative_source: ../hanuman/ #source directory
-destination: ../hanuman-pages/ #destination directory
-production_url:  https://samanyougarg.com/
-source_url:  https://github.com/samanyougarg/hanuman #source repository url
+relative_source: ../gregbeech/ #source directory
+destination: ../gregbeech-pages/ #destination directory
+production_url:  http://www.gregbeech.com/
+source_url:  https://github.com/gregbeech/gregbeech.github.io #source repository url
 
 exclude:
   - README.md
