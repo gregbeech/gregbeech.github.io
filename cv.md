@@ -1,7 +1,10 @@
 ---
 layout: page
 title: CV
-permalink: /cv/
+description: >
+  CV of Greg Beech, Principal Engineer at Deliveroo
+hide_description: true
+menu: true
 ---
 
 My job history is in reverse-chronological order as is conventional, but I’ve tried to write it as a story so you can see how I’ve got to where I am and the kind of things that interest me. If you were a fan of Memento and want the thrill of recreating it in CV format then read from the top, otherwise I’d suggest reading from the bottom.
@@ -40,7 +43,7 @@ Some achievements in this role were successfully transitioning the team to Scala
 
 Sadly it turned out that Amazon was rather better at selling books than we were so the company folded. On the plus side, I learned I’m reasonable at managing teams but prefer not to.
 
-### Principal Development Engineer Lead, blinkbox Movies
+## Principal Development Engineer Lead, blinkbox Movies
 
 ***May 2011 - Dec 2012 (1 year 8 months)***
 
@@ -48,7 +51,7 @@ I built the Xbox 360 application with one other engineer based on the Xbox’s c
 
 I’d been at the company about five years by this point and was feeling a bit stale and in need of a new challenge. Management is the next step, right?
 
-### Senior Development Engineer Lead, blinkbox Movies
+## Senior Development Engineer Lead, blinkbox Movies
 
 ***Aug 2007 - Apr 2011 (3 years 9 months)***
 
@@ -56,7 +59,7 @@ I worked with a small team to design and build a scalable platform using a servi
 
 This was all pretty interesting and apparently I was decent enough to get promoted so I stuck around.
 
-### Principal Consultant, Netstore
+## Principal Consultant, Netstore
 
 ***Aug 2006 - Aug 2007 (1 year 1 month)***
 
@@ -64,7 +67,7 @@ My role involved working across a number of projects simultaneously, including a
 
 Although this job was varied and interesting, I spent a lot more time talking about technology than implementing it. Not really my cup of tea, unfortunately.
 
-### Senior Developer, Charteris
+## Senior Developer, Charteris
 
 ***Feb 2005 - Aug 2006 (1 year 7 months)***
 
@@ -72,7 +75,7 @@ I worked as a developer on three integration projects. One was based around Micr
 
 With hindsight this all seems like a catastrophically bad idea, but I was young and naïve so try not to hold it against me.
 
-### Software Development Engineer in Test, Microsoft
+## Software Development Engineer in Test, Microsoft
 
 ***Sep 2001 - Jan 2005 (3 years 5 months)***
 
@@ -80,7 +83,7 @@ Joining Microsoft after university I spent the first couple of years working in 
 
 Testing was a good way into the tech sector but it was never really what I wanted to do. It was time to get a dev job.
 
-### Chemical Engineering, University of Nottingham
+## Chemical Engineering, University of Nottingham
 
 ***1997 - 2001, MEng (Hons) First Class***
 

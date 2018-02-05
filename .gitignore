@@ -9,6 +9,10 @@
 /test/version_tmp/
 /tmp/
 
+.sass-cache/
+_sass/
+_site/
+
 ## Specific to RubyMotion:
 .dat*
 .repl_history
