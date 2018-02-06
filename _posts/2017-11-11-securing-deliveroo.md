@@ -10,3 +10,8 @@ Deliveroo is just over four years old and has grown incredibly quickly; we deliv
 
 [Watch the talk on YouTube](https://www.youtube.com/watch?v=cXkEJEMcKLU)
 {:.lead}
+
+[Browse the slides on SlideShare](https://www.slideshare.net/Codemotion/greg-beech-securing-deliveroo-codemotion-milan-2017)
+{:.lead}
+
+Around 100 people attended the talk and 75 voted, of which 86% rated it good, 14% neutral and 0% bad. Better results than last time, although it was in front of a much smaller audience so I was somewhat less nervous which probably helped.

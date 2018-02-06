@@ -10,3 +10,5 @@ In just two years Deliveroo has expanded from central London to hundreds of citi
 
 [Watch the talk on InfoQ](https://www.infoq.com/presentations/deliveroo-ddd)
 {:.lead}
+
+439 people attended the talk and 356 voted, of which 73% rated it good, 25% neutral and 2% bad. For my first public talk in front of that many people I was pretty happy with the outcome.
