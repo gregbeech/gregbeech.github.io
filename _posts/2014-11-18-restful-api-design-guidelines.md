@@ -4,6 +4,7 @@ title: RESTful API design guidelines
 date: 2015-01-28
 tags: rest http guidelines
 author: gregbeech
+comments: true
 ---
 
 We spend a lot of time designing RESTful APIs and discussing different patterns and paradigms. Contrary to popular opinion designing RESTful APIs is actually pretty difficult, so I thought I'd share some of the decisions we've made. You might not agree with everything, but I've included some discussion around the points so you can at least see why we think it's the right thing to do.

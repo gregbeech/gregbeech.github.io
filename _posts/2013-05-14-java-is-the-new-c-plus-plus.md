@@ -4,6 +4,7 @@ title: Java is the new C++
 date: 2013-05-14
 tags: java languages rants scala
 author: gregbeech
+comments: true
 ---
 
 Back in the early 1990s Java was conceived as an alternative to C++ which would be portable, garbage collected, and easier to learn, but still retaining a C-like syntax to make programmers feel more comfortable migrating to it. There are a variety of reasons why Java became so popular on launch, marketing not being the least of them, and now it's one of the most popular languages in the world. Perhaps _the_ most popular, depending on which statistics you believe.

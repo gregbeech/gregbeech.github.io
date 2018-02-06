@@ -4,6 +4,7 @@ title: An incomplete and probably incorrect guide to HTTP caching
 date: 2013-02-28
 tags: caching http rest
 author: gregbeech
+comments: true
 ---
 
 This post is an attempt to provide an easier to follow version of the rules laid out in [RFC 2616](http://tools.ietf.org/html/rfc2616) §§ 13-14 around HTTP caching and the impact of various HTTP headers on them. Some detail has been simplified and/or omitted to cover only the subset of HTTP typically used by RESTful APIs, as it was research into the blinkbox Web API that led me to write this.

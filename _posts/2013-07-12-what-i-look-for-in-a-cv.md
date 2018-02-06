@@ -4,6 +4,7 @@ title: What I look for in a CV
 date: 2013-07-12
 tags: cv hiring resume
 author: gregbeech
+comments: true
 ---
 
 In my day job I see lots of CVs and most of them are, frankly, terrible. Some of them are probably OK for applying to companies you don't want to work at, like banks or large consultancies, but if you want to work in a small startup-like company with really smart people then you need to rethink a lot of what you've got on there. Not that I'm necessarily including myself in the really smart category, but I'm doing my best to make sure everybody who works for me is; managing people is easy (or easier, at least) if they're better than you!

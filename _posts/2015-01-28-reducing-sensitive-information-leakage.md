@@ -4,6 +4,7 @@ title: Reducing sensitive information leakage
 date: 2015-01-28
 tags: security scala pii
 author: gregbeech
+comments: true
 ---
 
 Most good developers take measures to protect sensitive information, and in particular personally identifiable information (PII), when building software. Some typical basic measures are putting user information in separate databases and restricting access to them, or storing credit card details with a specialist provider rather than in your own infrastructure.

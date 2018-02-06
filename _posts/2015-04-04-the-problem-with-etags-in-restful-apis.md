@@ -4,6 +4,7 @@ title: The problem with ETags in RESTful APIs
 date: 2015-04-04
 tags: http caching concurrency
 author: gregbeech
+comments: true
 ---
 
 Consider a collection of two addresses. #1 was updated at 11:20 and #2 was updated at 11:45. The last modified date of the collection can be the latest time that any individual address was modified. To make notation simpler I'll just include the time for the last modified date, and the etag will be the time as they're often derived from timestamps (you could hash the state or any other mechanism too; it won't alter this discussion).
