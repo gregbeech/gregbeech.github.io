@@ -32,7 +32,11 @@ repo.get(id).recover {
 
 But do we really want to treat these two failure modes in the same manner? The `IOException` is _truly_ exceptional in that we expect the data store to be there and if it isn't then alerts and corrective action are likely to be needed, whereas a key not being found is an expected scenario that the application should handle, especially if you have an API where people can provide arbitrary identifiers.
 
-Most functions that can fail have two different failure modes, expected failures and exceptional failures. You should only use exceptions for the exceptional failures. Expected failures should be part of the type signature. Let's improve things by putting that fact into the signature of the method with an `Option[A]` type indicating that the function can succeed but may not return a user.
+Most functions that can fail have two different failure modes, expected failures and exceptional failures. You should only use exceptions for the exceptional failures because these are things you typically want to bubble and handle at a higher level. Expected failures should be part of the type signature because they _aren't_ exceptional and you typically want to handle them more locally.
+
+This distinction between expected failures and exceptional failures is what Java's checked exceptions was trying to achieve. In practice it doesn't work very well because library authors (including those authoring the JDK itself) didn't understand the rationale and so it ended up with very general exceptions like `SQLException` being checked when only certain logical exceptions like `SQLIntegrityConstraintViolationException` should have been.
+
+So while checked exceptions aren't an entirely terrible idea, in Scala there are better and clearer ways to model expected failures. We can use the `Option[A]` type to indicate that the function can succeed but may not return a user.
 
 ```scala
 def get(id: UserId): Future[Option[User]]
