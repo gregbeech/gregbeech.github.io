@@ -116,7 +116,7 @@ The solution to this is monad transformers. Scary name, but not a scary concept,
 - `Either[A, B]` can be either `Right[B]` (success) or `Left[A]` (failure)
 - `Option[A]` can be either `Some[A]` (success) or `None` (failure)
 
-All monad transformers do is unwrap multiple layers on the success branch; [`EitherT`](https://typelevel.org/cats/datatypes/eithert.html) unwraps eithers, and [`OptionT`](https://typelevel.org/cats/datatypes/optiont.html) unwraps options. You can stack transformers so an `OptionT(EitherT)` would unwrap an option and then an either; the innermost value is unwrapped by the outermost transformer.
+All monad transformers do is unwrap multiple layers on the success branch; [`EitherT`](https://typelevel.org/cats/datatypes/eithert.html) unwraps eithers, and [`OptionT`](https://typelevel.org/cats/datatypes/optiont.html) unwraps options. You can stack transformers so an `OptionT(EitherT)` would unwrap an either and then an option; the innermost value is unwrapped by the outermost transformer.
 
 Wrapping the function calls in these transformers automatically unwraps the layers so code similar to the above will work. Sadly with our option nested inside the either the code ends up looking pretty ugly and we've lost the logic of what we're trying to achieve in a mess of wrappers and type coercions. Great for the compiler, not so great for humans.
 
@@ -129,7 +129,23 @@ for {
 } yield (user, addresses)
 ```
 
-This is because `OptionT` requires an argument with a single type parameter, but `EitherT` has three type parameters. As such we need to define a type alias (here `MyEitherT`) which fixes two of the type parameters leaving only one unbound. There are ways to make this code cleaner such as by implementing `apply` and `right` for `MyEitherT`, but the fact is you can't just directly stack `OptionT` and `EitherT` to unwrap both levels.
+This is because `OptionT` requires an argument with a single type parameter, but `EitherT` has three type parameters. As such we need to define a type alias (here `MyEitherT`) which fixes two of the type parameters leaving only one unbound. The logic can be cleaned up significantly by implementing `apply` and `right` for `MyEitherT`, at the expense of more boilerplate:
+
+```scala
+type MyEitherT[B] = EitherT[Future, ErrorCode, B]
+
+object MyEitherT {
+  def apply[B](f: Future[Either[ErrorCode, B]]): MyEitherT[B] = EitherT(f)
+  def right[B](f: Future[B]): MyEitherT[B] = EitherT.right(f)
+}
+
+for {
+  user      <- OptionT(MyEitherT(userRepo.get(id)))
+  addresses <- OptionT.liftF(MyEitherT.right(addressRepo.findByUser(user)))
+} yield (user, addresses)
+```
+
+You could even take it further by defining a custom transformer that combines `OptionT` and `EitherT` but the fact is you can't just directly stack the transformers without some additional glue code.
 
 What if we change the signature of the `get` method to treat the user not being found as an error code rather than encoding it in an option?
 
