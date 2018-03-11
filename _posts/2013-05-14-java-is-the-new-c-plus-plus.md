@@ -9,15 +9,7 @@ comments: true
 
 Back in the early 1990s Java was conceived as an alternative to C++ which would be portable, garbage collected, and easier to learn, but still retaining a C-like syntax to make programmers feel more comfortable migrating to it. There are a variety of reasons why Java became so popular on launch, marketing not being the least of them, and now it's one of the most popular languages in the world. Perhaps _the_ most popular, depending on which statistics you believe.
 
-When Java was released in 1996, I wasn't a developer. In fact, I think at that point the most code I had written was:
-
-```vb
-10 PRINT "HELLO WORLD"
-20 GOTO 10
-30 END
-```
-
-As such, I'm going to have to take the word of the older and more grizzled developers I know that yes, for building many types of software, Java was a much better language than C++. Presumably it still is. The trouble is, the game has moved on, and C++ isn't the main competition any more.
+When Java was released in 1996 it was primarily competing against C++ as the language to build things in and, yes, for building many types of software, Java was a much better language than C++. It still is. The trouble is, the game has moved on, and C++ isn't the main competition any more.
 
 It's the best part of 20 years since Java was launched, and time has left the language behind. For example, can you think of another modern language that doesn't have lambda expressions and proper closures? And yeah, I know they're supposed to be coming in Java 8, but they've been supposed to be coming for years. And even then Java 8's release data has slipped back to 2014 (at least), which just encourages derogatory comparison with C++0x... er, I mean C++11.
 
@@ -187,9 +179,8 @@ using (new BufferedReader(new FileReader(path))) { reader =>
 Plus the really cool thing with this version is that say you want to return something from within the `using` block, because this is an an expression rather than a statement, you can just assign the result directly. This is something I've _often_ wanted to do when writing C# over the past decade or so:
 
 ```scala
-
 val firstLine = using (new BufferedReader(new FileReader(path))) { reader =>
-  reader.readLine();
+  reader.readLine()
 }
 ```
 
