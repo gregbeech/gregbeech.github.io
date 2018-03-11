@@ -34,7 +34,7 @@ continue_reading:      >
   Continue reading <!--post_title-->
 
 not_found:
-  title:               '404: Page Not Found'
+  title:               'Page Not Found'
   message:             |
     Sorry, we've misplaced that URL or it's pointing to something that doesn't exist.
     <!--home_link--> to try finding it again.
