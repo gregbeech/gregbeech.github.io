@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Akka HTTP client pooling and parallism
+title: Akka HTTP client pooling and parallelism
 date: 2018-04-08
 tags: akka http parallelism
 author: gregbeech
