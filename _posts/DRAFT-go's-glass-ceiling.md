@@ -37,9 +37,7 @@ Even if you're prepared to believe that there is no implementation of generics t
 
 Error handling also receives a lot of criticism for the repetitive nature of checking whether an error object is returned. I also [prefer not to use exceptions](/2018/02/09/modelling-errors-in-scala/), but arguing about return codes vs exceptions rather misses the point. There are much better options that could be implemented without significant changes to the language.
 
-For example, rather than the convention of returning a 2-tuple of `(result, error)` the standard library could include a `result[success]error` generic type with success/error cases. However, this would arguably necessitate sum types (aka enumerations) and exhaustiveness checking on switch statements. The various discussions around enumerations in Go seem to take the stance that they would add unnecessary complication to the language and constants are "good enough".
-
-Even without introducing a generic result type the compiler could include syntactic sugar based on some very simple heuristics given Go's only has three return patterns by convention (`result`, `result, error` or `error`). You could take inspiration from Rust and introduce an early return operator `?` so a statement like `result := Foo().?` would expand to:
+Go only has three return patterns by convention (`result`, `result, error` or `error`) so the compiler could easily implement some syntactic sugar. You could take inspiration from Rust and introduce an early return operator `?` so a statement like `result := Foo().?` would expand to:
 
 ```go
 result, err := Foo()
@@ -65,7 +63,7 @@ There's a theme here.
 
 We could go on to look at other omitted features, but they all follow the same pattern. Any feature that allows meaningful abstraction is omitted so that the _mechanics_ of how the code works must be spelled out in full. This means that even the most inexperienced of programmers can follow how the code works, but at the cost of much repetition.
 
-> 1. (The C approach.) Leave them out. This slows programmers. But it adds no complexity to the language. --- [Russ Cox](https://research.swtch.com/generic)
+> (The C approach.) Leave them out. This slows programmers. But it adds no complexity to the language. --- [Russ Cox](https://research.swtch.com/generic)
 
 The evidence appears to support the hypothesis that Go is deliberately constrained to ensure software can only be written in a basic manner with the mechanics firmly on display.
 
@@ -73,9 +71,9 @@ The evidence appears to support the hypothesis that Go is deliberately constrain
 
 Does it matter if we have to build software in a more basic way though? Isn't it a good thing if anybody can just pick software up, read it, understand it, and work on it? Well, yes and no.
 
-It matters because the complex features in more powerful languages allow you to build _abstractions_. Why do abstractions matter? I'll demonstrate with something that Go ought to be good at given its positioning as a language for building microservices: A parallel scatter/gather. This isn't a contrived example; this is the kind of thing that's extremely common in distributed architectures.
+It matters because the complex features in more powerful languages allow you to build _abstractions_. Why do abstractions matter? I'll demonstrate with something that Go ought to be good at given its positioning as a language for building microservices: A parallel scatter/gather. This isn't a contrived example; it's the kind of thing that's extremely common in distributed architectures.
 
-Imagine we have three functions `fnA`, `fnB` and `fnC` that return types `A`, `B` and `C` respectively. `fnA` and `fnB` perform IO (e.g. a HTTP GET) and thus may be slow and may fail (e.g. network error) but are independent and so can be called in parallel. `fnC` is fast but needs the results from `fnA` and `fnB`.
+Imagine we have three functions `fA`, `fB` and `fC` that return types `A`, `B` and `C` respectively. `fA` and `fB` perform IO (e.g. a HTTP GET) and thus may be slow and may fail (e.g. network error) but are independent and so can be called in parallel. `fC` is fast but needs the results from `fA` and `fB`.
 
 In Go, assuming we want to keep type safety, and handle errors properly by passing them up the call stack rather than just logging and ignoring them, modelling this is going to look something like:
 
@@ -89,7 +87,7 @@ errors := make(chan error, 1)
 finished := make(chan bool, 1)
 
 go func() {
-        if res, err := fnA(); err == nil {
+        if res, err := fA(); err == nil {
             c1<- res
         } else {
             errors<- err
@@ -98,7 +96,7 @@ go func() {
 }()
 
 go func() {
-        if res, err := fnB(); err == nil {
+        if res, err := fB(); err == nil {
             c2<- res
         } else {
             errors<- err
@@ -120,7 +118,7 @@ for {
         case bv := <-c2:
                 b = bv
         case <-finished:
-                return fnC(a, b)
+                return fC(a, b)
         case err := <-errors:
                 return _, err
         }
@@ -132,7 +130,7 @@ There's a lot of code here, but there's nothing complex. Once you know that `cha
 Now let's see the same thing modelled in a higher level language, Scala:
 
 ```scala
-Apply[Future].map2(fnA, fnB) { case (a, b) => fnC(a, b) }
+Apply[Future].map2(fA, fB) { case (a, b) => fC(a, b) }
 ```
 
 You might not be able to understand this code just by looking at it. This code uses higher-kinded generic types, immutable types, sum types, typeclasses, implicits, higher-order functions, and pattern matching. The code is much shorter, but conceptually there's much more going on here.
@@ -149,21 +147,17 @@ I'll tell you my story.
 
 Twenty years ago I'd done a load of programming in Visual Basic 6 and was fairly happy with it as a language. The lack of true object-orientation bothered me a bit (you couldn't inherit from other classes, only interfaces) but it was fine; I just dealt with it. The lack of generics and concurrency? I'd never heard of either of them.
 
-Then in 2001 I discovered C# and it was mindblowing! There weren't any generics yet but there was true object orientation and threading. With actual threads and mutexes and volatiles and mutable collections (this was still the old days). I read and I experimented, and I started to understand all these concepts I'd never even heard of before.
+Then I discovered C# and it was mindblowing! There weren't any generics yet but there was true object orientation and threading. With actual threads and mutexes and volatiles and mutable collections (this was still the old days). I read and I experimented, and I started to understand all these concepts I'd never even heard of before.
 
-Generics came along and---wow---we didn't need to copy/paste collection templates for type-safe code any more. They were just built into the language. The next year came generic variance, iterators and a whole bunch of other features that introduced me to yet another tranche of new concepts.
-
-Then came the big one. Language Integrated Query, or Linq for short. I didn't know where this stuff came from, but suddenly it was possible to filter or change collections without needing to write for loops, and chain all the methods together. Incredible!
+Generics came along and---wow---we didn't need to copy/paste collection templates for type-safe code any more. They were just built into the language. The next year came generic variance, iterators and then Linq which let you filter or change collections without needing to write for loops, and chain all the methods together. Incredible!
 
 Eventually I got to the point where I found C#'s type system frustrating because it just couldn't express many of the things I wanted to. Later, when I started using Scala on a daily basis I'd finally understand higher-kinded types and typeclasses and unlock a new set of abstractions I could use to solve problems.
 
-I've spent a lot of time recently working in Ruby and it's been enlightening. Metaprogramming, macros and DSLs come so naturally that you're able write extremely powerful abstractions without the constraints of having to convince a static type system you're correct.
+As my interest in languages increased I spent my spare time learning others. Scheme, Haskell and Rust are among some of the more interesting, but I've studied just about every popular language and other far more esoteric ones. I've never got good at any of them, because like many developers I'm pragmatic and struggle to get too invested in something I can't use in my day job.
 
-As my interest in languages increased over the years, I spent time learning others in my spare time. Scheme, Haskell and Rust are among some of the more interesting, but I've studied pretty much every popular language and other far more esoteric ones. I've never got good at any of them, because like many developers I'm pragmatic and struggle to get too invested in something I can't use in my day job.
+Of course, that's just my story. But most developers will tell you a similar one about how they learned programming. There are very few people that understand programming concepts well unless they've used them repeatedly in their day job. That's because programming is difficult. It takes a lot of work to be able to understand these concepts, and a lot of practice to be able to apply them.
 
-Of course, that's just my story. But most developers will tell you a similar one. There are very few people that understand programming concepts well unless they've used them repeatedly in their day job. That's because programming is hard, and it takes a lot of work to be able to understand these concepts, and a lot of practice to be able to apply them.
-
-Let me repeat that: Programming is hard.
+Let me repeat that: Programming is difficult.
 
 ## Go's comfort blanket
 
@@ -177,26 +171,26 @@ But it wouldn't have had any of the things I didn't know I needed. It wouldn't h
 
 And here's the rub. Go's documentation, in its justification of why the language omits so many features, does its best to explain that [they are too difficult or complex for you](https://golang.org/doc/faq). In fact, the FAQ includes the words "difficult" or "complex" sixteen times and "simple" or "simplifies" twenty:
 
-> Your favorite feature may be missing because [...] it would make the fundamental system model too difficult.
+> Programming had become too difficult and the choice of languages was partly to blame.
 
 
 > Generics are convenient but they come at a cost in complexity in the type system.
 
 
-
 > Concurrency and multi-threaded programming have a reputation for difficulty.
 
 
+> Your favorite feature may be missing because [...] it would make the fundamental system model too difficult.
 
-> When a coroutine blocks, such as by calling a blocking system call, the run-time automatically moves other coroutines [...] so they won't be blocked. The programmer sees none of this, which is the point.
+It's comforting to believe it.
 
-You're getting along perfectly fine in your day job. You can do everything you need to do with Go. Sure, it may be a bit clunky and repetitive at times but as the documentation says, that's better than having to learn anything _difficult_. And all these concepts you came across, you can't express them in Go anyway so there's no practical point to learning them. Plus words like "monad" and "applicative" are scary. Best just to leave all that difficult stuff to those silly type astronauts who want to make life hard for themselves.
+You're getting along perfectly fine in your day job. You can do everything you need to do with Go. Sure, it may be a bit clunky and repetitive at times but as the documentation says, that's better than having to learn anything _difficult_. And concepts like "monads" and "applicatives" can't be expressed in Go anyway so there's no practical point to learning them. Plus they have scary names. Best just to leave all that difficult stuff to those silly type astronauts who want to make life hard for themselves with their category theory nonsense.
 
 It's pretty easy for most programmers to convince themselves of this. Paul Graham [wrote about the phenomenon](http://www.paulgraham.com/avg.html) all the way back in 2001.
 
-So here's the thing. Those of us who have invested huge amounts of time and effort into learning higher level languages that have these complicated features generally prefer to use them over languages like Go. We have the capability to work in pretty much any language we want, and we choose higher level ones like Scala or (if you want a systems language) Rust instead of basic ones like Go.
+But here's the thing. Those of us who have invested huge amounts of time and effort into learning higher level languages that have these complicated features generally prefer to use them over languages like Go. We have the capability to work in pretty much any language we want, and we choose higher level ones like Scala or (if you want a systems language) Rust instead of basic ones like Go.
 
-Do you really think it's just because we want to make life hard for ourselves, or could there be something deeper than that? Could it be that learning these languages makes you a better programmer, and allows you to use better tools to write better software in a better way?
+Do you really think it's just because we want to make life hard for ourselves, or could there be something deeper than that? Could it be that learning these languages and concepts makes you a better programmer, and lets you build software in a way that's _ultimately_ simpler by creating high level abstractions and composing them?
 
 If you're happy with Go, you'll probably never know the answer. And, more tragically, you'll probably never want to.
 
