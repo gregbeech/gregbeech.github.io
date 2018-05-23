@@ -139,7 +139,9 @@ You might not be able to understand this code just by looking at it. This code u
 
 However, once you _do_ understand some of the underlying concepts, it's much more obvious what's going on because you only have to scan one line, and it's much more obviously _correct_ because there aren't any mechanics to get wrong.
 
-How can you learn to write something like this?
+This is the power of abstraction. This just shows a single example in isolation, but when you start building larger programs it starts to matter more. By building abstractions and composing them the program stays manageable _overall_ because you can keep the number of concepts you have to reason about at any point relatively small, which [matters to humans](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two). The fewer or worse your abstractions, the more state you have to maintain to understand the overall flow of the code.
+
+How can you learn to write code at a higher level of abstraction?
 
 ## How programmers learn
 
@@ -192,7 +194,7 @@ It's pretty easy for most programmers to convince themselves of this. Paul Graha
 
 > As long as our hypothetical Blub programmer is looking down the power continuum, he knows he's looking down. Languages less powerful than Blub are obviously less powerful, because they're missing some feature he's used to. But when our hypothetical Blub programmer looks in the other direction, up the power continuum, he doesn't realize he's looking up. What he sees are merely weird languages. He probably considers them about equivalent in power to Blub, but with all this other hairy stuff thrown in as well. Blub is good enough for him, because he thinks in Blub.
 
-But here's the thing. Those of us who have invested huge amounts of time and effort into learning higher level languages that have these complicated features generally prefer to use them over languages like Go. We have the capability to work in pretty much any language we want, and we choose higher level ones like Scala or (if you want a systems language) Rust instead of basic ones like Go.
+But here's the thing. Those of us who have invested huge amounts of time and effort into learning higher level languages that have these complicated features generally prefer to use them over languages like Go. We have the capability to work in pretty much any language we want, and we choose higher level ones like Scala or Rust instead of basic ones like Go.
 
 Do you really think it's just because we want to make life hard for ourselves, or could there be something deeper than that? Could it be that learning these languages and concepts makes you a better programmer, and lets you build software in a way that's _ultimately_ simpler by creating high level abstractions and composing them?
 
