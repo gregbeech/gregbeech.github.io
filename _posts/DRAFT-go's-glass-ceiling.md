@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Go's Glass Ceiling
-date: 2018-05-22
-tags: languages go
+date: 2018-05-24
+tags: career languages go
 author: gregbeech
 comments: true
 ---
@@ -15,11 +15,11 @@ To discuss Go we need to understand the environment that it was designed for. In
 
 > The key point here is our programmers are Googlers, they’re not researchers. They’re typically, fairly young, fresh out of school, probably learned Java, maybe learned C or C++, probably learned Python. They’re not capable of understanding a brilliant language but we want to use them to build good software. So, the language that we give them has to be easy for them to understand and easy to adopt. --- [_Rob Pike_](https://channel9.msdn.com/Events/Lang-NEXT/Lang-NEXT-2014/From-Parallel-to-Concurrent)
 
-This shows us the target audience for the language, but it's not the whole story. The other thing we need to consider is the average tenure of engineers at Google. I haven't been able to find a tenure specifically for engineers, and I don't want to quote exact figures because it tends to lead to bikeshedding about how they were calculated, but if you search the net you'll see that it is typically only a couple of years.
+This shows us the target audience for the language, but although young and inexperienced engineers is the obvious point it's not the whole story. Google hires thousands of engineers straight out of college every year and, as is common in this industry, they don't tend to stay around for long before moving to another company.
 
-Why does tenure matter? Well, if the average tenure of employees is long then you can assume they'll be around help future hires work on and understand existing software and any complex concepts that it uses, which levels them up. That means it's worth investing in people for the long term, training them, and ensuring that their skills are continuously improving so they can use them to write better software and pass the skills on. It's a virtuous cycle.
+Short tenure combined with the necessity to hire thousands of engineers means that software needs to be written in a basic way that people can understand and change without having to spend time improving their skills or knowledge. You can't assume that the people who originally wrote the software will be around to help the next intake work on it, or pass on the skills they learned while doing so.
 
-However, if tenure is short, then the opposite is true. You can't assume they'll be around to help people understand existing software or pass on their skills. Software needs to be written in a more basic way that people can understand without needing to level up, and it isn't really worth investing in people because not only will they not be around, but they'll quite possibly be at a competitor. Instead you want to get the most out of them _now_ without worrying about their future development.
+It isn't really worth investing in people because you know they won't be around for a long time, and they'll quite possibly be going to a competitor when they leave. Instead you want to get the most out of them _now_ without worrying about their future development.
 
 Given this context, it seems reasonable to hypothesise that the key design goal of Go is not only to make it easy for inexperienced programmers to get to grips with it, but also to constrain what they can do with the language in order to ensure that software stays written in a basic manner. Can we find evidence to support this?
 
@@ -29,7 +29,7 @@ Go is often criticised for lacking many features of modern languages such as dat
 
 Although Go doesn't have user-definable generics, it does have some built-in ones: map, slice (list), array and channel (thread-safe queue). The question I find most interesting is why they don't have any of the higher-order functions you'd normally expect to find such as `Filter` or `Map` or `Fold`. Although syntax doesn't exist to define these functions, they could have been provided and special-cased just like the built-in generic types.
 
-You can't write them yourself either, as without user-definable generics they would have to operate on the `interface {}` type and thus sacrifice type safety, which isn't something you tend to want in a statically typed languages. Rob Pike has actually got [an example library of this](https://github.com/robpike/filter) but dismisses it with the following comment:
+You can't write them yourself either, as without user-definable generics they would have to operate on the `interface {}` type and thus sacrifice type safety, which isn't something you tend to want in statically typed languages. Rob Pike has actually got [an example library of this](https://github.com/robpike/filter) but dismisses it with the following comment:
 
 > I haven't had occasion to use it once. Instead, I just use "for" loops. You shouldn't use it either.
 
@@ -63,7 +63,7 @@ There's a theme here.
 
 We could go on to look at other omitted features, but they all follow the same pattern. Any feature that allows meaningful abstraction is omitted so that the _mechanics_ of how the code works must be spelled out in full. This means that even the most inexperienced of programmers can follow how the code works, but at the cost of much repetition.
 
-> (The C approach.) Leave them out. This slows programmers. But it adds no complexity to the language. --- [_Russ Cox_](https://research.swtch.com/generic)
+> (The C approach.) Leave them [generics] out. This slows programmers. But it adds no complexity to the language. --- [_Russ Cox_](https://research.swtch.com/generic)
 
 The evidence appears to support the hypothesis that Go is deliberately constrained to ensure software can only be written in a basic manner with the mechanics firmly on display.
 
@@ -141,7 +141,7 @@ However, once you _do_ understand some of the underlying concepts, it's much mor
 
 This is the power of abstraction. This just shows a single example in isolation, but when you start building larger programs it starts to matter more. By building abstractions and composing them the program stays manageable _overall_ because you can keep the number of concepts you have to reason about at any point relatively small, which [matters to humans](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two). The fewer or worse your abstractions, the more state you have to maintain to understand the overall flow of the code.
 
-How can you learn to write code at a higher level of abstraction?
+So how can you learn to write code at a higher level of abstraction?
 
 ## How programmers learn
 
@@ -159,7 +159,7 @@ Eventually I got to the point where I found C#'s type system frustrating because
 
 As my interest in languages increased I spent my spare time learning others. Scheme, Haskell and Rust are among some of the more interesting, but I've studied just about every popular language and other far more esoteric ones. I've never got good at any of them, because like many developers I'm pragmatic and struggle to get too invested in something I can't use in my day job.
 
-Of course, that's just my story. But most developers will tell you a similar one about how they learned programming. There are very few people that understand programming concepts well unless they've used them repeatedly in their day job. That's because programming is difficult. It takes a lot of work to be able to understand these concepts, and a lot of practice to be able to apply them to build nontrivial abstractions.
+Of course, that's just my story, and it differs for everybody [depending on your philosophy](https://josephg.com/blog/3-tribes/). However, the important point is that everybody learns by doing and there are very few people who understand programming concepts well unless they've used them repeatedly in their day job. That's because programming is difficult. It takes a lot of work to be able to understand these concepts, and a lot of practice to be able to apply them to build nontrivial abstractions.
 
 Let me repeat that: Programming is difficult.
 
