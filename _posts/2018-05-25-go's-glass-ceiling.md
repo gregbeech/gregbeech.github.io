@@ -1,13 +1,13 @@
 ---
 layout: post
 title: Go's Glass Ceiling
-date: 2018-05-24
+date: 2018-05-25
 tags: career languages go
 author: gregbeech
 comments: true
 ---
 
-Go is becoming increasingly popular, including within Deliveroo, and I find it troubling. It's taken me quite a while to work out why that is, and quite a few drafts to try and express it in a way that gets my point across in what I hope is a fair and balanced way. This is not a "Go is bad" post. That's been done to death and I don't want to rehash it. I also have no intention of denigrating people who like Go; doing so would be self-defeating given it's them this post is really aimed at. This is a post about reaching your potential.
+Go is becoming increasingly popular and I find it troubling. It's taken me quite a while to work out why that is, and quite a few drafts to try and express it in a way that gets my point across in what I hope is a fair and balanced way. This is not a "Go is bad" post. That's been done to death and I don't want to rehash it. I also have no intention of denigrating people who like Go; doing so would be self-defeating given it's them this post is really aimed at. This is a post about reaching your potential.
 
 ## Go's design goals
 
@@ -132,10 +132,10 @@ There's a lot of code here, but there's nothing complex. Once you know that `cha
 Now let's see the same thing modelled in a higher level language, Scala:
 
 ```scala
-Apply[Future].map2(fetchUser, fetchOrders) { case (u, o) => renderPage(u, o) }
+Apply[Future].map2(fetchUser, fetchOrders)(renderPage)
 ```
 
-You might not be able to understand this code just by looking at it. This code uses many abstractions including higher-kinded generic types, immutable types, sum types, typeclasses, implicits, higher-order functions, and pattern matching. The code is much shorter, but conceptually there's much more going on here.
+You might not be able to understand this code just by looking at it. This code uses many abstractions including higher-kinded generic types, immutable types, sum types, implicits, typeclasses, higher-order functions, currying and method values. The code is much shorter, but conceptually there's much more going on here.
 
 However, once you _do_ understand some of the underlying concepts, it's much more obvious what's going on because you only have to scan one line, and it's much more obviously _correct_ because there aren't any mechanics to get wrong.
 
@@ -153,11 +153,11 @@ Twenty years ago I'd done a lot of programming in Visual Basic 6 and was fairly 
 
 Then I discovered C# and it was mindblowing! There weren't any generics yet but there was true object orientation and threading. With actual threads and mutexes and volatiles and mutable collections (this was still the old days). I read and I experimented, and I started to understand all these concepts I'd never even heard of before.
 
-Generics came along and---wow---we didn't need to copy/paste collection templates for type-safe code any more. They were just built into the language. The next year came generic variance, iterators and then Linq which let you filter or change collections without needing to write for loops, and chain all the methods together to express your _intent_ more clearly.
+Generics came along and---wow---we didn't need to copy/paste collection templates for type-safe code any more. They were just built into the language. The next year came generic variance, iterators and then Linq which let you filter or transform collections without needing to write for loops, and chain all the methods together to express your _intent_ more clearly.
 
 Eventually I got to the point where I found C#'s type system frustrating because it just couldn't express many of the things I wanted to. Later, when I started using Scala on a daily basis I'd finally understand higher-kinded types and typeclasses and unlock a new set of abstractions I could use to solve problems.
 
-As my interest in languages increased I spent my spare time learning others. Scheme, Haskell and Rust are among some of the more interesting, but I've studied just about every popular language and other far more esoteric ones. I've never got good at any of them, because like many developers I'm pragmatic and struggle to get too invested in something I can't use in my day job.
+As my interest in languages increased I spent my spare time learning others. Scheme, Haskell and Rust are among some of the more interesting, but I've studied just about every popular language and other far more esoteric ones. I've never got good at any of them though, because like many developers I'm pragmatic and struggle to get too invested in something I can't use in my day job.
 
 Of course, that's just my story, and it differs for everybody [depending on your philosophy](https://josephg.com/blog/3-tribes/). However, the important point is that everybody learns by doing and there are very few people who understand programming concepts well unless they've used them repeatedly in their day job. That's because programming is difficult. It takes a lot of work to be able to understand these concepts, and a lot of practice to be able to apply them to build nontrivial abstractions.
 
@@ -167,7 +167,7 @@ Let me repeat that: Programming is difficult.
 
 Rewind back to 2001 and imagine that instead of C#, Go was the hot new language on the block.
 
-It would have been similarly mindblowing to my younger self. Better object-orientation than Visual Basic 6. Concurrency! Generic arrays and maps! What more could I have wanted? It would have taken everything I knew and then added a whole bunch of things I didn't.
+It would have been similarly mindblowing to my younger self. Better object-orientation than Visual Basic 6. Concurrency! Generic lists and maps! What more could I have wanted? It would have taken everything I knew and then added a whole bunch of things I didn't.
 
 It would have had everything I needed.
 
@@ -194,7 +194,7 @@ It's pretty easy for most programmers to convince themselves of this. Paul Graha
 
 > As long as our hypothetical Blub programmer is looking down the power continuum, he knows he's looking down. Languages less powerful than Blub are obviously less powerful, because they're missing some feature he's used to. But when our hypothetical Blub programmer looks in the other direction, up the power continuum, he doesn't realize he's looking up. What he sees are merely weird languages. He probably considers them about equivalent in power to Blub, but with all this other hairy stuff thrown in as well. Blub is good enough for him, because he thinks in Blub.
 
-But here's the thing. Those of us who have invested huge amounts of time and effort into learning higher level languages that have these complicated features generally prefer to use them over languages like Go. We have the capability to work in pretty much any language we want, and we choose higher level ones like Scala or Rust instead of basic ones like Go.
+But here's the thing. Those of us who have invested huge amounts of time and effort into learning higher level languages that have these complicated features generally prefer to use them over languages like Go. We have the capability to work in pretty much any language we want, and we choose higher level ones like Scala or Ruby or Rust instead of basic ones like Go.
 
 Do you really think it's just because we want to make life hard for ourselves, or could there be something deeper than that? Could it be that learning these languages and concepts makes you a better programmer, and lets you build software in a way that's _ultimately_ simpler by creating high level abstractions and composing them?
 
