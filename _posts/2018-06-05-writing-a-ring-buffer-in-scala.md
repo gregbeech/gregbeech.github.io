@@ -1,17 +1,19 @@
 ---
 layout: post
-title: 'Thinking in Scala: Ring Buffer'
-date: 2018-05-31
+title: Writing a ring buffer in Scala
+date: 2018-06-05
 tags: learning scala types
 author: gregbeech
 comments: true
 ---
 
-Some people in the office are learning Scala and one of them asked for a code review of a ring buffer they wrote as an exercise. As their background was primarily dynamic languages like Ruby the solution they had come up with was mutable, and used arrays and head/tail pointers to track the current buffer. It worked, but it wasn't very idiomatic Scala so I thought I'd have a go at writing something that is.
+People coming from dynamic languages like Ruby or primitive languages like Go tend to miss the point of Scala. They tend to think in terms of mutability and often aren't familiar with data structures beyond lists and hashes, with types and side effects being seen as fairly unimportant considerations. To try and illustrate the different way you need to think when writing Scala I'm going to write a ring buffer, as I've seen a few people around the office implementing them as a learning exercise.
 
-As a rule, Scala developers prefer immutable types to mutable ones because knowing they can't change makes them much easier to reason about, particularly once concurrency gets involved. People new to Scala tend to worry unduly about the performance of immutable data structures; you can actually write very efficient immutable collections if you make them [persistent](https://en.wikipedia.org/wiki/Persistent_data_structure) so that's the approach we'll take.
+It'll be quite different to what you'd write in most mainstream languages.
 
-To further illustrate how to write idiomatic Scala I'm going to structure this article the way I tend to write code, which is types first. This is an alien concept to people used to dynamic languages or less strongly typed languages, but it makes sense in very strongly typed languages. You encode your knowledge of how the program should work as types as far as possible, and then you fill in the blanks.
+Scala developers prefer immutable types to mutable ones because knowing they can't change makes them much easier to reason about, particularly once concurrency gets involved. People new to Scala tend to worry unduly about the performance of immutable data structures; you can actually write very efficient immutable collections if you make them [persistent](https://en.wikipedia.org/wiki/Persistent_data_structure) so that's the approach we'll take.
+
+To further illustrate how to write idiomatic Scala I'm going to structure this article the way I tend to write code, which is types first. This is an alien concept to people used to dynamic languages or languages with only basic type systems, but in languages with powerful type systems it makes sense: You encode your knowledge of how the program should work as types as far as possible, and then you fill in the blanks.
 
 ## Specification
 
@@ -20,7 +22,7 @@ Before we write any code at all, we should write a specification. It's much quic
 You could write these requirements out as tests, and I would if this was for a real project, but it takes up quite a bit of space and it's not really the point of this post so I won't here.
 
 1. The ring can hold elements of any type.
-2. The capacity must be greated than zero, and is fixed when the ring is created.
+2. The capacity must be greater than zero, and is fixed when the ring is created.
 3. The size may vary between zero (empty) and the capacity (full).
 4. When an element is pushed to a non-full ring the new element is added to the end and the size is increased by one.
 5. When an element is pushed to a full ring the oldest element is discarded, the new element is added to the end, and the size is unchanged.
@@ -33,13 +35,13 @@ Although these requirements are short and easy to read, they're also comprehensi
 
 The first requirement can be implemented with a type parameter. Because we know the ring buffer is going to be immutable, values will only come out of it and therefore we should be able to make the parameter covariant with an `+` annotation. As a first-order approximation, if values only come out (e.g. return values) then the type parameter can be covariant, and if they only go in (e.g. method parameters) it can be contravariant[^1].
 
-Making the ring covariant with regards to `A` means that if we have a `Ring[Giraffe]` then we can assign it to a variable of type `Ring[Animal]`, or pass it to a method where a `Ring[Animal]` is required. Variance makes generic types more flexible for users, so is worth thinking about.
+Making the ring covariant with regards to `A` means that if we have a `Ring[Giraffe]` then we can assign it to a variable of type `Ring[Animal]`, or pass it to a method where a `Ring[Animal]` is required. Variance makes generic types more convenient and flexible for users, so is worth thinking about.
 
 ```scala
 class Ring[+A]
 ```
 
-As soon as we start modelling `capacity` and `size` we run into trouble. Scala doesn't have refinement types built-in (we can't say that capacity is an integer greater than zero) and there's no way to model the relationship between the two numbers  in the type system (that `capacity` must always be `<= size`) so we'll have to settle for modelling them as plain old integers.
+As soon as we start modelling `capacity` and `size` we run into a bit of trouble. Scala doesn't have refinement types built-in (we can't say that capacity is an integer greater than zero) and there's no way to model the relationship between the two numbers  in the type system (that `capacity` must always be `<= size`) so we'll have to settle for modelling them as plain old integers.
 
 Although we may end up making these `val`, we'll start with `def` because it gives us more flexibility in the implementation. It doesn't affect the interface because Scala implements the [uniform access principle](https://en.wikipedia.org/wiki/Uniform_access_principle) so a parameterless `def` is the same as a `val` from the caller's point of view.
 
@@ -60,7 +62,7 @@ Unfortunately that leads to a compiler error because we declared the type parame
 >
 >   def push(a: A): Ring[A] = ???
 
-To resolve this we could remove the variance annotation, but there is a better way. Because we're returning a new ring, we could change the type of it from the push method! Think about it this way: If you have a `Ring[Giraffe]` and you try to push an `Animal` then because all giraffes are animals it would be safe to return a `Ring[Animal]`.
+To resolve this we could remove the variance annotation, but there is a better way. Because we're returning a new ring, we can change the type of it from the push method! Think about it this way: If you have a `Ring[Giraffe]` and you try to push an `Animal` then because all giraffes are animals it would be safe to return a `Ring[Animal]`.
 
 As such, we can use a new type parameter `B` constrained to be a supertype[^2] of `A`, which makes the push method more flexible and allows the type parameter to stay covariant:
 
@@ -80,7 +82,7 @@ Next the pop method, which needs to return a 2-tuple of the popped element and t
 def pop: (A, Ring[A]) = ???
 ```
 
-Finally, a more convenient pop method which only pops if the collection is non-empty so users don't need to check the size of the collection before calling it. Here we could just wrap the result in an option, but as there's no new ring either if the pop doesn't happen it's more accurate to encode the whole thing as an option.
+Finally, a more convenient pop method which only pops if the collection is non-empty so users don't need to check the size of the collection before calling it. Here we could wrap just the value in an option, but as there's no need to change the ring if the pop doesn't happen it's more accurate to encode the whole thing as an option.
 
 ```scala
 def popOption: Option[(A, Ring[A])] = ???
@@ -178,7 +180,7 @@ The trick to an efficient immutable queue is using a pair of singly-linked lists
     in:   []
     out:  []
 
-As elements are enqueued a new node is prepended to the input buffer which is an O(1) operation because it just requires a couple of pointer changes. Enqueuing `1`, `2`, `3` and `4` would cause the buffers to look like this:
+As elements are enqueued a new node is prepended to the input buffer which is an O(1) operation because it just requires a couple of pointer changes. Enqueuing `1`, `2`, `3` then `4` would cause the buffers to look like this:
 
     in:   [4]->[3]->[2]->[1]->[]
     out:  []
@@ -202,10 +204,10 @@ This post walks through the process of building a ring buffer in Scala, but the 
 2. Model your requirements as types
 3. Fill in the implementation
 
-Even though Scala is strongly typed, as we've seen the type system usually can't encode all the information in your requirements, and it doesn't encode information about runtime performance. This means you still need tests to make sure the class obeys the specification, and you still need to analyse and measure the performance to ensure it's sufficient. Where exactly in the process you do these things doesn't matter too much (to me, anyway) as long as you do them.
+Even though Scala is statically typed, as we've seen the type system usually can't encode all the information in your requirements, and it doesn't encode information about runtime performance. This means you still need tests to make sure the class obeys the specification, and you still need to analyse and measure the performance to ensure it's sufficient. Where exactly in the process you do these things doesn't matter too much (to me, anyway) as long as you do them.
 
 
 
-[^1]: For a much more thorough treatment of covariance and contravariance, read [Eric Lippert's eleven-part series](https://blogs.msdn.microsoft.com/ericlippert/2007/10/16/covariance-and-contravariance-in-c-part-one/) on the subject. It's written with C# in mind but everything is applicable to Scala too. It's much more complicated than you might think. Even than, that's only dealing with the _natural_ variance of the parameter; in certain advanced cases you may want to override the compiler's checks by using the `@uncheckedVariance` annotation.
+[^1]: For a much more thorough treatment of covariance and contravariance, read [Eric Lippert's eleven-part series](https://blogs.msdn.microsoft.com/ericlippert/2007/10/16/covariance-and-contravariance-in-c-part-one/) on the subject. It's written with C# in mind but everything is applicable to Scala too. It's much more complicated than you might think. Even then, that's only dealing with the _natural_ variance of the parameter; in certain advanced cases you may want to override the compiler's checks by using the `@uncheckedVariance` annotation.
 
 [^2]: It's not strictly correct to say supertype here, as the `>:` constraint actually imposes that the type is 'bigger' without necessarily implying an inheritance relationship. For example, `Animal` is a bigger type than `Giraffe` because there are more types that fit within it and there is an obvious subtyping relationship, but `List[Animal]` is a bigger type than `List[Giraffe]` because they are assignment-compatible even though there is no subtyping relationship. Most of the time this distinction isn't important.
