@@ -159,7 +159,11 @@ case class Ring[+A](capacity: Int, size: Int, queue: Queue[A]) {
 
 object Ring {
   def empty[A](capacity: Int): Ring[A] = Ring(capacity, 0, Queue.empty)
-  def apply[A](capacity: Int)(xs: A*): Ring[A] = Ring(capacity, xs.size, Queue(xs: _*))
+
+  def apply[A](capacity: Int)(xs: A*): Ring[A] = {
+    val elems = if (xs.size <= capacity) xs else xs.takeRight(capacity)
+    Ring(capacity, elems.size, Queue(elems: _*))
+  }
 }
 ```
 
