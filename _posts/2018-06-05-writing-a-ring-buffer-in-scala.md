@@ -138,12 +138,12 @@ def popOption: Option[(A, Ring[A])] = queue.dequeueOption.map {
 }
 ```
 
-Here's the final code listing, with a couple of factory methods in the companion object to make it easier to construct empty rings or rings with initial elements.
+Here's the final code listing, with the constructor made private as it's easy to make mistakes using it which violate the invariants of the class, and instead a couple of factory methods in the companion object to construct empty rings or rings with initial elements.
 
 ```scala
 import scala.collection.immutable.Queue
 
-case class Ring[+A](capacity: Int, size: Int, queue: Queue[A]) {
+case class Ring[+A] private (capacity: Int, size: Int, queue: Queue[A]) {
   def push[B >: A](b: B): (Option[A], Ring[B]) =
     if (size < capacity) (None, Ring(capacity, size + 1, queue.enqueue(b)))
     else queue.dequeue match {
