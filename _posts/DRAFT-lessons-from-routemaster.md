@@ -1,15 +1,15 @@
 ---
 layout: post
 title: Lessons from Routemaster
-date: 2018-05-30
+date: 2018-06-06
 tags: events kafka rest routemaster
 author: gregbeech
 comments: true
 ---
 
-One of the more controversial aspects of Deliveroo's distributed system architecture over the last couple of years has been [Routemaster](https://github.com/deliveroo/routemaster), a homegrown event bus that allows CRUD notifications, encourages HATEOAS, and discourages payloads. There are a lot of people at Deliveroo who subscribe to the philosophy "Routemaster is bad" and are happy to end their train of thought there. I find this attitude strange because very few things are truly bad, and even when they are you can (and should) learn from them.
+One of the more controversial aspects of Deliveroo's distributed system architecture over the last couple of years has been [Routemaster](https://github.com/deliveroo/routemaster), a homegrown event bus that allows CRUD notifications, encourages HATEOAS, and discourages payloads. There are people at Deliveroo who subscribe to the philosophy "Routemaster is bad" and are happy to end their train of thought there; I find this attitude strange because very few things are truly bad, and even when they are you can---and should---learn from them.
 
-This post covers both Routemaster and the way we use it. I don't think there's much point in making a distinction because it's such a niche product that the way we use it _is_ effectively canonical.
+We're in the process of replacing Routemaster with Kafka, so it's a good time for a retrospective on the good, the bad, and the ugly of Routemaster. This post covers both Routemaster and the way we use it. I don't think there's much point in making a distinction because it's such a niche product that the way we use it _is_ effectively canonical.
 
 ## What is Routemaster?
 
@@ -22,13 +22,17 @@ You're probably not familiar with Routemaster unless you work at Deliveroo, and 
 
 Consumers receive events by registering a callback URL and the topics they're interested in, and then events will be posted to that URL in batches as JSON. The service returns 2xx to indicate the events have been handled, or any other status to have them retried with backoff.
 
+The format of the entity data should be [HAL](http://stateless.co/hal_specification.html). If the `data` element is provided it should be the same format the URL would have returned; its use is discouraged except for [value objects](https://en.wikipedia.org/wiki/Value_object) (our use case was rider locations).
+
 That's pretty much all there is to it. There's Basic authentication on the endpoints and a bunch of counters so you can monitor latency, failing subscribers, and so on. The whole thing clocks in at only 2500 lines of code; it's tiny.
 
 ## The Good
 
 ### Custom frontend
 
-Authn, authz, validation
+Routemaster has a small HTTP/JSON API that allows publishers to manage topics and subscribe to events, as well as to publish events. The API handles authentication and authorisation, as well as basic validation of things like events being valid. One of the most important validations it performs is that a topic is owned by a single publisher and no other publishers can write to it which prevents inadvertent crossing of streams.
+
+This basic API has worked well as it's very easy to understand and trivial to implement a client in any language. We're actually doing much the same thing for publishing to Kafka, to provide additional access control and ensure that only schema-valid messages are published.
 
 ### No lost deletes
 
@@ -44,11 +48,15 @@ A common pattern with traditional message buses is to use partial updates, e.g. 
 
 Message buses need care to mitigate this kind of thing. You might think of using versioning on the entity so that the closed message would be discarded as it has a higher version number, but it's not that simple as versioning only works within causal timelines; you wouldn't want a phone number changed message preventing an opened or closed message from being processed.
 
-With Routemaster you just get a "restaurant 123 was updated" notification and then get the latest state so you can decide what to do based on that. There's no need to worry about ordering or causality.
+With Routemaster you just get a "restaurant 123 was updated" notification and then get the latest state so you can decide what to do based on that, and the last state you knew about. There's no need to worry about ordering or causality.
 
 ### Content type negotiation for versioning
 
-Gradual upgrade to subsequent versions
+It's a fact of life that requirements change with time, and message formats will need to change too as fields get added and removed. You can make a message bus more resilient to this by using something like protobuf instead of JSON which helps guarantee both forwards and backwards compatibility from a schema point of view, but it can't ensure logical compatibility.
+
+If an app needs the value of a particular field and it got removed then protobuf will still see the message as schema-valid as all fields are optional, but the app will cease to function correctly. As such, removing fields from messages can be a slow and error-prone process with lots of manual checking with teams that they no longer need it, and actually removing it is a 'big bang' change which will break any app that was missed.
+
+With Routemaster as the data is retrieved via a callback you can use content-type negotiation for versioning, so apps can switch over gradually to the new version. You can monitor who is still using the old version easily, and send warnings to the clients using the `Warning` HTTP header to tell them they need to upgrade. Much safer.
 
 ### Easy to fetch related data
 
@@ -58,7 +66,7 @@ Good in a monolith, but also a bad thing
 
 all eggs in one basket, only the sending API controls access
 
-### Selective sending (kind of)
+### Selective sending (partially)
 
 only those authorised can see it
 
@@ -82,11 +90,21 @@ Where it gets even more silly is that in non-Ruby services which don't have Side
 
 ### Poor entity design
 
-e.g. order/items
+When we started implementing the callback APIs for Routemaster we tried to implement a façade over the somewhat suboptimal domain model that had emerged through years of fast-paced development. For example, using synthetic entities to try and keep fields with similar lifetimes and change frequencies grouped, and only adding fields when there was a genuine need for them on the basis that it's easier to add fields than remove them.
+
+Unfortunately in a growing company with fast-paced development you can't effectively police everything so the callback API model ended up just about as bad as the underlying one. For example, orders ended up with a status field which changed frequently and so meant the order call had to be cheap. Unfortunately people who needed the order often needed the items and that meant multiple calls as adding the items to the order would have made the call expensive.
+
+Many people blame Routemaster for the chatty callback APIs and that it often needs many calls to reconstitute an entity's state. However, they're blaming the wrong thing: The real culprit here is people's lack of skill in domain modelling. I wish more people would read Eric Evans' [Domain-Driven Design](https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215) and/or Vaughn Verne's [Implementing Domain-Driven Design](https://www.amazon.co.uk/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577).
+
+However, message buses are more forgiving of poor entity design because you only generate the message once rather than having to handle callbacks, so it doesn't matter as much if producing the message is more expensive.
 
 ### Producers must model state changes
 
-What if only the consumer cares? Not everyone can work on every codebase. Purism versus practicality.
+One of the obvious implications of Routemaster's callback design only giving you the latest state is that you don't see any of the intermediate states, and if they change quickly then you may miss them. For an example, an order might go from placed to paid to accepted quickly and consumers may miss the paid status.
+
+For most consumers that isn't a problem, but for some it is. Now, if you follow pure DDD principles then the right thing to do is model the state changes themselves as entities and so each state change is individually addressable. However, if the producer doesn't care about transient states then it pushes a consumer requirement into a producer application, and if they're maintained by different teams this creates a conflict of interest.
+
+Message buses are far superior here because each individual state change is pushed onto the bus and therefore consumers can produce a synthetic model of those state changes without the consumer having to worry about it.
 
 ## The Ugly
 
