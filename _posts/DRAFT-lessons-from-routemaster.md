@@ -1,15 +1,15 @@
 ---
 layout: post
 title: Lessons from Routemaster
-date: 2018-06-06
-tags: events kafka rest routemaster
+date: 2018-06-13
+tags: eventbus messagebus routemaster
 author: gregbeech
 comments: true
 ---
 
-One of the more controversial aspects of Deliveroo's distributed system architecture over the last couple of years has been [Routemaster](https://github.com/deliveroo/routemaster), a homegrown event bus that allows CRUD notifications, encourages HATEOAS, and discourages payloads. There are people at Deliveroo who subscribe to the philosophy "Routemaster is bad" and are happy to end their train of thought there; I find this attitude strange because very few things are truly bad, and even when they are you can---and should---learn from them.
+One of the more controversial aspects of Deliveroo's distributed system architecture over the last couple of years has been [Routemaster](https://github.com/deliveroo/routemaster), a homegrown event bus that allows CRUD notifications, encourages HATEOAS, and discourages payloads. We're in the process of replacing Routemaster with Kafka, so it's a good time for a retrospective in the timeless good/bad/ugly format.
 
-We're in the process of replacing Routemaster with Kafka, so it's a good time for a retrospective on the good, the bad, and the ugly of Routemaster. This post covers both Routemaster and the way we use it. I don't think there's much point in making a distinction because it's such a niche product that the way we use it _is_ effectively canonical.
+This post covers Routemaster, the way we use it, and a whole bunch of history. I don't think there's much point in trying to make a distinction between the product itself and its usage at Deliveroo because as far as I'm aware we're the only people who actually use it, so it's much of a muchness.
 
 ## What is Routemaster?
 
@@ -30,25 +30,25 @@ That's pretty much all there is to it. There's Basic authentication on the endpo
 
 ### Custom frontend
 
-Routemaster has a small HTTP/JSON API that allows publishers to manage topics and subscribe to events, as well as to publish events. The API handles authentication and authorisation, as well as basic validation of things like events being valid. One of the most important validations it performs is that a topic is owned by a single publisher and no other publishers can write to it which prevents inadvertent crossing of streams.
+Routemaster has a small HTTP/JSON API that allows publishers to manage topics and subscribe to events, as well as publish events. The API handles authentication and authorisation, as well as basic validation of things like events being valid. One of the most important validations it performs is that a topic is owned by a single publisher and no other publishers can write to it which prevents inadvertent topic pollution.
 
 This basic API has worked well as it's very easy to understand and trivial to implement a client in any language. We're actually doing much the same thing for publishing to Kafka, to provide additional access control and ensure that only schema-valid messages are published.
 
 ### No lost deletes
 
-One of the main benefits of sending an event with just a type and a callback URL is that message ordering becomes largely a non-issue. It's essentially impossible to have a high-performance low-latency bus that guarantees in-order delivery, even if you can define what in-order means, which means that delete messages can overtake create messages.
+One of the main benefits of sending an event with just a type and a callback URL is that message ordering becomes a non-issue. Total ordering in a distributed system is essentially impossible to define, and even partial ordering is unreliable unless you use things like [vector](https://en.wikipedia.org/wiki/Vector_clock) or [atomic](https://www.wired.com/2012/11/google-spanner-time/) clocks. You can use database timestamps in a single-master relational system, but as we increasingly use storage like Aurora and DynamoDB this isn't something you can rely on. This means you can end up in the situation where delete messages overtake create messages.
 
-With a traditional message bus this can lead to phantom entities. If the client sees the delete message and discards it because it doesn't have an entity with that identifier, then it may receive the create message and act on it. When using a message bus you need to be much more careful with deletes to ensure this doesn't happen, e.g. using soft deletion to mark entities that you haven't yet seen as already deleted.
+With a message bus this can lead to phantom entities. If the client sees the delete message and discards it because it doesn't have an entity with that identifier, it may subsequently receive the create message and act on it. When using a message bus you need to be much more careful with deletes to ensure this doesn't happen, e.g. using soft deletion to mark entities that you haven't yet seen as already deleted, or holding back the delete message until you've either seen a corresponding create.
 
-With Routemaster however, even if the create message is received long after the delete, when the call is made to the URL it'll return `404 Not Found` or `410 Gone` so the client is at no risk of creating a phantom entity and can just ensure the entity is deleted.
+With Routemaster's event-based approach, even if the create message is received long after the delete, when the call is made to the URL it'll return `404 Not Found` or `410 Gone` so the client is at no risk of creating a phantom entity and can just ensure the entity is deleted. Routemaster's `type` field is arguably unnecessary; you could treat every event as "something happened" and then base your action purely on the response from the API and whether you already have the data.
 
 ### No partial updates
 
-A common pattern with traditional message buses is to use partial updates, e.g. "restaurant 123 opened" which updates just a part of the state of that restaurant. However, when you combine this with out-or-order delivery it's possible to lose updates, e.g. if a restaurant closes by accident and then reopens immediately, the opened message might overtake the closed one and parts of the system think it's closed.
+A common pattern with message buses is to use partial updates, e.g. "restaurant 123 opened" which updates just a part of the state of that restaurant. However, when you combine this with out-of-order delivery it's possible to lose updates, e.g. if a restaurant closes by accident and then reopens immediately, the opened message might overtake the closed one and parts of the system think it's closed.
 
-Message buses need care to mitigate this kind of thing. You might think of using versioning on the entity so that the closed message would be discarded as it has a higher version number, but it's not that simple as versioning only works within causal timelines; you wouldn't want a phone number changed message preventing an opened or closed message from being processed.
+Message buses need care to mitigate this kind of thing. You might think of using versioning on the entity so that the closed message would be discarded as the opened one has a higher version number, but it's not that simple as versioning only works within causal timelines; you wouldn't want a menu changed message preventing an opened or closed message from being processed just because it happened to insert itself in the middle of the sequence.
 
-With Routemaster you just get a "restaurant 123 was updated" notification and then get the latest state so you can decide what to do based on that, and the last state you knew about. There's no need to worry about ordering or causality.
+With Routemaster you can only model notifications on complete entities, so you would get a "restaurant 123 was updated" notification and then get the latest state so you can decide what to do based on that and the last state you knew about. There's no need to worry about ordering or causality.
 
 ### Content type negotiation for versioning
 
@@ -56,29 +56,17 @@ It's a fact of life that requirements change with time, and message formats will
 
 If an app needs the value of a particular field and it got removed then protobuf will still see the message as schema-valid as all fields are optional, but the app will cease to function correctly. As such, removing fields from messages can be a slow and error-prone process with lots of manual checking with teams that they no longer need it, and actually removing it is a 'big bang' change which will break any app that was missed.
 
-With Routemaster as the data is retrieved via a callback you can use content-type negotiation for versioning, so apps can switch over gradually to the new version. You can monitor who is still using the old version easily, and send warnings to the clients using the `Warning` HTTP header to tell them they need to upgrade. Much safer.
-
-### Easy to fetch related data
-
-Good in a monolith, but also a bad thing
-
-### Nonrepudiation
-
-all eggs in one basket, only the sending API controls access
-
-### Selective sending (partially)
-
-only those authorised can see it
+With Routemaster as the data is retrieved via a callback rather than sent in a payload, you can use content-type negotiation for versioning so apps can switch over gradually to the new version. You can monitor who is still using the old version easily, and even send warnings to the clients using the `Warning` HTTP header to tell them they need to upgrade (we never actually added logging of warning headers to the client library, but it was in the backlog).
 
 ## The Bad
 
 ### Custom backend
 
-The custom backend kind of made sense a couple of years ago because we weren't using Docker locally and all our infrastructure was provisioned manually, so if we'd used custom queuing infrastructure like SQS/SMS then it would have been a huge pain to run locally and deploy to multiple environments.
+The custom backend kind of made sense a couple of years ago because we had fairly low message volumes, weren't using Docker locally, were running in Heroku, and all our infrastructure was provisioned manually. If we'd used off-the-shelf queuing infrastructure like SNS/SQS then it would have been a huge pain to run locally and difficult to deploy reliably to multiple environments.
 
-Unfortunately as we've grown the custom backend has become more painful to manage. The original developer is no long around, and although it's small it uses manual threading and complex Redis structures which make it tricky to work on. Then there's the fact that, really, nobody wants to.
+The backend has been extremely reliable; I'm not sure of the exact figure but it's had something like 99.995% uptime since it was launched and only very occasional alerts which were normally related to misbehaving subscribers.
 
-It would make much more sense nowadays to use an off-the-shelf backend like SQS/SMS and let somebody else worry about running/scaling it.
+However, once we moved to infrastructure-as-code there just wasn't a good reason to keep using a custom messaging backend given there are so many off-the-shelf options. We should probably have moved to an SNS/SQS backend and let somebody else worry about running/scaling it.
 
 ### HTTP push for consumers
 
@@ -97,6 +85,10 @@ Unfortunately in a growing company with fast-paced development you can't effecti
 Many people blame Routemaster for the chatty callback APIs and that it often needs many calls to reconstitute an entity's state. However, they're blaming the wrong thing: The real culprit here is people's lack of skill in domain modelling. I wish more people would read Eric Evans' [Domain-Driven Design](https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215) and/or Vaughn Verne's [Implementing Domain-Driven Design](https://www.amazon.co.uk/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577).
 
 However, message buses are more forgiving of poor entity design because you only generate the message once rather than having to handle callbacks, so it doesn't matter as much if producing the message is more expensive.
+
+### Fetch model in synchronous languages
+
+Ruby cannot handle lots of requests at once so you end up spending a lot of time blocking.
 
 ### Producers must model state changes
 
@@ -122,7 +114,7 @@ Adds load to database, API calls slow, also Ruby isn't good at handling concurre
 
 terrible idea; compounded by URL as identifier
 
-## Other Things
+## The Unknown
 
 ### No replay
 
@@ -134,6 +126,9 @@ Not clear whether this is a con. Replay is hard because the data needs to be old
 - Needed better entity design and caching
 - Should have used SQS/SMS as backend (automation?)
 - Should not have had URL=ID and cache=datastore
+- Kafka will solve some problems and create others; no silver bullet
+
+
 
 
 

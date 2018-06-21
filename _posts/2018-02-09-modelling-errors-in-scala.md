@@ -2,7 +2,7 @@
 layout: post
 title: Modelling errors in Scala
 date: 2018-02-09
-tags: guidelines scala
+tags: guidelines scala scala-101
 author: gregbeech
 comments: true
 ---

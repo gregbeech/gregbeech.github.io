@@ -7,8 +7,9 @@ author: gregbeech
 comments: true
 ---
 
+A while back I wrote a post that walked through the development of a [ring buffer in Scala](/2018/06/05/writing-a-ring-buffer-in-scala/). I think the solution was fairly clean and idiomatic, but as noted in the post there were a number of problems such as not being able to model the constraints on size and capacity in the type system, and popping elements from an empty ring causing runtime exceptions. In that post I stuck to fairly mainstream Scala, but if we remove that restriction then we can do some more interesting things.
 
-## Stronger interface definition
+
 
 All of the problems in the ring's interface occur because we need to cater for the differing behaviour based on size or capacity. If we could assert that operations such as `pop` are only possible when the ring is non-empty then we could make a much stronger interface that would fail at compile time if you attempted to perform illegal operations.
 
@@ -48,7 +49,7 @@ import shapeless.ops.nat.{LT, Pred}
 
 import scala.collection.immutable.Queue
 
-class Ring[+A, C <: Nat, S <: Nat] private(queue: Queue[A]) {
+class Ring[+A, C <: Nat, S <: Nat] private (queue: Queue[A]) {
   def push[B >: A](b: B)(implicit ev: LT[S, C]): Ring[B, C, Succ[S]] =
     new Ring(queue.enqueue(b))
 
@@ -60,7 +61,7 @@ class Ring[+A, C <: Nat, S <: Nat] private(queue: Queue[A]) {
 }
 
 object Ring {
-  def empty[A, C <: Nat](implicit c: LT[_0, C]) = new Ring[A, C, _0](Queue.empty)
+  def empty[A, C <: Nat](implicit cap: LT[_0, C]) = new Ring[A, C, _0](Queue.empty)
 }
 ```
 
