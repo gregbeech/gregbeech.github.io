@@ -7,7 +7,7 @@ author: gregbeech
 comments: true
 ---
 
-When I looked through some of Deliveroo's non-Ruby applications, I saw that a number of them were trying to copy the ActiveRecord approach and defining data access methods on the models themselves. This is not a good approach in statically typed languages. I'll explain why, and demonstrate the approach you should be using. It's no secret that I think [Go is a dangerously bad language](/2018/05/25/go's-glass-ceiling), but I'll use it here to demonstrate as the majority of the applications I've seen with this problem are written in it.
+When I looked through some of Deliveroo's non-Ruby applications, I saw that a number of them were trying to copy the ActiveRecord approach and defining data access methods on the models themselves. This is not a good approach in statically typed languages. I'll explain why, and demonstrate the approach you should be using. It's no secret that I think [Go is a dangerously bad language](/2018/05/25/gos-glass-ceiling), but I'll use it here to demonstrate as the majority of the applications I've seen with this problem are written in it.
 
 ## Pure vs impure methods
 
@@ -81,10 +81,7 @@ This is only for a really simple entity with one relation. Imagine something as 
 
 When using a real database you also cannot easily test how your handler behaves under specific error conditions. For example, if the error is that you've exceeded your provisioned throughput on the database then you should return `503 Service Unavailable` rather than `500 Internal Server Error`, but how are you going to set up that test condition? You can't, so it's probably just left untested or, worse, not even thought about.
 
-The problem here all stems from depending on a specific version of the `Create` method which is hardcoded to talk to the database. As a rule:
-
-**Never depend on a concrete implementation of an impure method**
-{:.message}
+The problem here all stems from depending on a specific version of the `Create` method which is hardcoded to talk to the database. As a rule, **never depend on a concrete implementation of an impure method**.
 
 ## What should I do instead?
 
