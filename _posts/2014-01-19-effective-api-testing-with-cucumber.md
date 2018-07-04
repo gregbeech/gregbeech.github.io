@@ -7,7 +7,7 @@ author: gregbeech
 comments: true
 ---
 
-At [blinkbox books](http://www.blinkboxbooks.com) we're making extensive use of Cucumber to capture business requirements and ensure that the code fulfils them. If you're getting started with Cucumber, a lot of the good practices for writing Gherkin specifications and effectively automating them is captured by [The Cucumber Book](http://pragprog.com/book/hwcuc/the-cucumber-book) which is, like most of the Pragmatic Bookshelf, a very good book indeed.
+At [blinkbox books](http://www.blinkboxbooks.com) we're making extensive use of Cucumber to capture business requirements and ensure that the code fulfils them. If you're getting started with Cucumber, a lot of the good practices for writing Gherkin specifications and effectively automating them is captured by [The Cucumber Book](https://pragprog.com/book/hwcuc/the-cucumber-book) which is, like most of the Pragmatic Bookshelf, a very good book indeed.
 
 However, in the chapter where they discuss testing REST APIs they completely dropped the ball. It's at odds with the rest of the book, and frankly most of the recommendations make no sense at all; you should not be testing your APIs in the way they describe.
 

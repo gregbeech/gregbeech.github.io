@@ -7,7 +7,7 @@ author: gregbeech
 comments: true
 ---
 
-This post is an attempt to provide an easier to follow version of the rules laid out in [RFC 2616](http://tools.ietf.org/html/rfc2616) §§ 13-14 around HTTP caching and the impact of various HTTP headers on them. Some detail has been simplified and/or omitted to cover only the subset of HTTP typically used by RESTful APIs, as it was research into the blinkbox Web API that led me to write this.
+This post is an attempt to provide an easier to follow version of the rules laid out in [RFC 2616](https://tools.ietf.org/html/rfc2616) §§ 13-14 around HTTP caching and the impact of various HTTP headers on them. Some detail has been simplified and/or omitted to cover only the subset of HTTP typically used by RESTful APIs, as it was research into the blinkbox Web API that led me to write this.
 
 Due to the nature of the content, this post is fairly long and dry. If you're not particularly interested in the details then feel free to skip to the [examples](#examples) at the end which illustrate the main caching use-cases for APIs.
 
@@ -244,7 +244,7 @@ Private (i.e. user-specific) data is indicated in HTTP/1.1 by using the `Cache-C
 
 ### `PUT` Response Ambiguity
 
-[RFC 2616 issue 26](http://trac.tools.ietf.org/wg/httpbis/trac/ticket/22) indicates it is not clear whether the metadata in response to a `PUT` request applies to that response, or to the response that would be returned upon a subsequent `GET`. This issue would also apply to a `POST` request that returns a response body. As such, it is highly recommended origin servers ensure that either:
+[RFC 2616 issue 26](https://trac.tools.ietf.org/wg/httpbis/trac/ticket/22) indicates it is not clear whether the metadata in response to a `PUT` request applies to that response, or to the response that would be returned upon a subsequent `GET`. This issue would also apply to a `POST` request that returns a response body. As such, it is highly recommended origin servers ensure that either:
 
 * They return a `200 OK` status code (typical for synchronous updates to existing entities) and ensure that the response is equivalent to that which would be retrieved by a subsequent `GET` thus rendering the ambiguity inconsequential.
 * They return a `201 Created` status code (typical for creation of new entities) which means the response is not permitted to be cached.

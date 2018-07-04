@@ -33,7 +33,7 @@ You can't write them yourself either, as without user-definable generics they wo
 
 > I haven't had occasion to use it once. Instead, I just use "for" loops. You shouldn't use it either.
 
-Even if you're prepared to believe that there is no implementation of generics that's suitable for Go because they're either [too complex, too bloated, or too slow](http://research.swtch.com/generic), the omission of higher-order functions on generics looks to be a decision rather than something that just wasn't thought of.
+Even if you're prepared to believe that there is no implementation of generics that's suitable for Go because they're either [too complex, too bloated, or too slow](https://research.swtch.com/generic), the omission of higher-order functions on generics looks to be a decision rather than something that just wasn't thought of.
 
 Error handling also receives a lot of criticism for the repetitive nature of checking whether an error object is returned. I also [prefer not to use exceptions](/2018/02/09/modelling-errors-in-scala/), but arguing about return codes vs exceptions rather misses the point. There are much better options that could be implemented without significant changes to the language.
 

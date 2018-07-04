@@ -27,7 +27,7 @@ And, whoops, you've accidentally dumped their email address and full name into y
 
 It's pretty hard to prevent this even with careful developers and good code reviews because it's just so easy to leak sensitive information, and while it's obvious that a `User` class is going to contain that kind of thing, other classes may be rather less obvious.
 
-A good way to solve this, inspired by [information flow theory](http://en.wikipedia.org/wiki/Information_flow_%28information_theory%29), is to mark the fields as being sensitive and then give them safe-by-default behaviour when dumped, e.g.
+A good way to solve this, inspired by [information flow theory](https://en.wikipedia.org/wiki/Information_flow_%28information_theory%29), is to mark the fields as being sensitive and then give them safe-by-default behaviour when dumped, e.g.
 
 ```scala
 final case class Sensitive[A](value: A) {

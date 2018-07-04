@@ -147,7 +147,7 @@ With a response like:
 
 ```
 HTTP/1.1 201 Created
-Location: http://api.blinkboxbooks.com/users/123/bookmarks/37462
+Location: https://api.blinkboxbooks.com/users/123/bookmarks/37462
 // other headers elided for clarity
 
 {

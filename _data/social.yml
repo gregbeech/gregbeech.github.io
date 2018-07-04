@@ -95,7 +95,7 @@
   steam:
     name: Steam
     icon: icon-steam
-    pretend: "http://steamcommunity.com/profiles/"
+    pretend: "https://steamcommunity.com/profiles/"
   dropbox:
     name: Dropbox
     icon: icon-dropbox
@@ -164,19 +164,19 @@
   lastfm:
     name: Last.fm
     icon: icon-lastfm
-    prepend: "http://www.last.fm/user/"
+    prepend: "https://www.last.fm/user/"
   delicious:
     name: Delicious
     icon: icon-delicious
-    prepend: "http://del.icio.us/"
+    prepend: "https://del.icio.us/"
   stumbleupon:
     name: StumbleUpon
     icon: icon-stumbleupon
-    prepend: "http://www.stumbleupon.com/stumbler/"
+    prepend: "https://www.stumbleupon.com/stumbler/"
   stackoverflow:
     name: Stack Overflow
     icon: icon-stackoverflow
-    prepend: "http://stackoverflow.com/users/"
+    prepend: "https://stackoverflow.com/users/"
   pinterest:
     name: Pinterest
     icon: icon-pinterest2

@@ -42,7 +42,7 @@ Animal[] animals = new Giraffe[10];
 animals[0] = new Turtle(); // BOOM!
 ```
 
-This is broken because [it should always be legal to put a Turtle into an array of animals](http://blogs.msdn.com/b/ericlippert/archive/2007/10/17/covariance-and-contravariance-in-c-part-two-array-covariance.aspx).
+This is broken because [it should always be legal to put a Turtle into an array of animals](https://blogs.msdn.com/b/ericlippert/archive/2007/10/17/covariance-and-contravariance-in-c-part-two-array-covariance.aspx).
 
 Not much more to say on that one.
 
@@ -224,7 +224,7 @@ The problem was that not much from C++ was salvageable when they moved to Java. 
 
 The thing is, you don't have to be.
 
-Virtually everything I've picked on in this article has been problems with Java the _language_, not Java the _platform_. Java as a platform has a lot going for it. The virtual machine is stable, fast and widely supported. The packaging and deployment system makes a fair amount of sense. The frameworks and class libraries are extensive. What if you could retain _all_ your knowledge of _all_ of these things, and just switch to a [language](http://clojure.org/) [that](http://groovy.codehaus.org/) [made](http://www.scala-lang.org/) [them](http://jruby.org/) [more](http://www.jython.org/) [pleasant](https://developer.mozilla.org/en/docs/Rhino) to use?
+Virtually everything I've picked on in this article has been problems with Java the _language_, not Java the _platform_. Java as a platform has a lot going for it. The virtual machine is stable, fast and widely supported. The packaging and deployment system makes a fair amount of sense. The frameworks and class libraries are extensive. What if you could retain _all_ your knowledge of _all_ of these things, and just switch to a [language](https://clojure.org/) [that](http://groovy-lang.org/) [made](https://www.scala-lang.org/) [them](http://jruby.org/) [more](http://www.jython.org/) [pleasant](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino) to use?
 
 That'd be pretty cool.
 
@@ -238,7 +238,7 @@ You're still stuck with generic type erasure and some of the weird side effects 
 
 However, there are a few things standing in its way.
 
-The first, and probably the most significant, is you've got to read [a book](http://www.amazon.co.uk/Programming-In-Scala-2nd-Edition/dp/0981531644) to learn it because some of the syntax and idioms are fairly non-obvious until you know them. And as Steve Yegge frequently points out, most developers are happy to read about frameworks until the cows come home, but ask them to read a book about a new language and they'll look at you with the same kind of horror as if you'd just asked them to cut off their own arm.
+The first, and probably the most significant, is you've got to read [a book](https://www.amazon.co.uk/Programming-In-Scala-2nd-Edition/dp/0981531644) to learn it because some of the syntax and idioms are fairly non-obvious until you know them. And as Steve Yegge frequently points out, most developers are happy to read about frameworks until the cows come home, but ask them to read a book about a new language and they'll look at you with the same kind of horror as if you'd just asked them to cut off their own arm.
 
 I've always found this an odd stance to take. When you're working in an industry where there are so many languages used, how can you _not_ be curious about what they have to offer and why other people might be using them? Even with languages I wouldn't claim to have any knowledge of, I've still probably read a book about them and/or played around with them for a couple of days just to get a bit of a flavour.
 

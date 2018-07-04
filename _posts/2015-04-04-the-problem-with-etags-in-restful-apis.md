@@ -68,7 +68,7 @@ You could most likely do some trickery with etags on the client-side too, by shu
 
 If you really want to be sure that modification dates will work, here's a fairly exhaustive set of scenarios using them. The starting point for each scenario is that you got a list of addresses. Each scenario is independent -- i.e. they all start from this starting point -- but multiple calls in each scenario are considered to be in sequence.
 
-The one case you may notice where things aren't quite right is in the case where another client has deleted and address and then you get `412 Precondition Failed` when trying to add an address because the collection has changed, even though there can't possibly be a conflict between those two actions. It's not the end of the world. If it really bothers you, go and play with [CRDTs](http://en.wikipedia.org/wiki/Conflict-free_replicated_data_type).
+The one case you may notice where things aren't quite right is in the case where another client has deleted and address and then you get `412 Precondition Failed` when trying to add an address because the collection has changed, even though there can't possibly be a conflict between those two actions. It's not the end of the world. If it really bothers you, go and play with [CRDTs](https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type).
 
 ### If nothing has changed
 
