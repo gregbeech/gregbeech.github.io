@@ -9,3 +9,17 @@ h3, h4 {
 blockquote ul {
   margin-bottom: 0;
 }
+
+code, pre {
+  font-family: Monaco, Menlo, Consolas, monospace;
+}
+
+.highlight {
+  .k {
+    color: rgb(202, 132, 95);
+    font-weight: normal;
+  }
+  .s {
+    color: rgb(106, 135, 89);
+  }
+}
