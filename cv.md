@@ -11,6 +11,8 @@ My job history is in reverse-chronological order as is conventional, but I’ve 
 
 I don’t mention technologies much because I don’t think it matters greatly when hiring engineers. It’s like the seventh or eighth most important thing. Things change frequently and technology details are easy to copy/paste from... er, I mean research on... the Internet. I’m most familiar with Scala, Ruby and AWS at the moment but I’ve used lots of other things in the past.
 
+One thing about technology I will mention is that I have no interest in working with Go. Yeah, I’m aware that a bunch of well-known companies think it’s the coolest language since Algol 68, but honestly I’d rather work with PHP[^1].
+
 ## Principal Engineer, Deliveroo
 
 ***April 2017 - Present***
@@ -88,3 +90,5 @@ Testing was a good way into the tech sector but it was never really what I wante
 ***1997 - 2001, MEng (Hons) First Class***
 
 My degree covered a wide range of subjects such as maths, physics, thermodynamics and programming. The final year project was designing a chemical plant as part of a small group; part of my contribution was a genetic algorithm for resolving mass/mole balances across equipment, and a stepwise reaction kinetics simulator. I was awarded a BP Book Prize for excellent first year results and the J.C. Mecklenburgh prize for the most outstanding fourth year design project, which received the highest mark ever awarded.
+
+[^1]: I’m not interested in working with PHP
