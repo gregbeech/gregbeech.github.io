@@ -17,11 +17,11 @@ One thing about technology I will mention is that I have no interest in working 
 
 ***April 2017 - Present***
 
-Security has long been one of my interests, and approaching my fortieth birthday I figured it's one of the areas you want your old crusty engineers, so I set up an infrastructure security team alongside Alec Muffett.
+Security has long been one of my interests, and approaching my fortieth birthday I figured it's one of the areas you want your old crusty engineers, so I set up an infrastructure security team.
 
 We started and now run a successful big bounty programme. We also implemented and maintain Cloudflare as a WAF which is much more impressive than it sounds.
 
-Once we had the basics in place we rebuilt the service managing identity to be robust and multi-region capable with OAuth 2.0 & JWT, which are both awful but ubiquitous. We're also building a service to handle trust and non-binary permission checks for other services and generate audit trails which is pretty interesting and quite different to anything I've worked on before.
+Once we had the basics in place we rebuilt the service managing identity to be robust and multi-region capable with OAuth 2.0 & JWT, which are both awful but ubiquitous, and launched social login. We're also building a service to handle trust and non-binary permission checks for other services and generate audit trails which is pretty interesting and quite different to anything I've worked on before.
 
 I've also done a lot of GDPR compliance work. I'll tell you about it if you're having trouble sleeping.
 
