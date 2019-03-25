@@ -7,7 +7,7 @@ hide_description: true
 menu: true
 ---
 
-I'm an experienced engineer and software architect. The last twelve years have been working in startups, building/running code and teams in high growth environments from Series A through F.
+I'm an experienced engineer and software architect. My last twelve years have been working in startups, building/running code and teams in high growth environments from Series A through F.
 
 I'm interested in full-time, hands-on, challenging software engineering roles. This could either be in a funded startup (preferably Series B or later) or in a more mature tech company with complex problems to solve.
 
@@ -19,11 +19,11 @@ I don't mention technologies much as I don't think it's that important when hiri
 
 Security and compliance tend to be somewhat undervalued in high growth startups. Believing there was a need to change this, I set up and led a security engineering team.
 
-We worked on a variety of infrastructure-level projects including starting a bug bounty programme to provide ongoing security testing, and migrating traffic to Cloudflare to give DDoS protection. These are rarely as trivial as they sound.
+We worked on a variety of infrastructure-level projects including starting a bug bounty program to provide ongoing security testing, and migrating traffic to Cloudflare to give DDoS protection. These are rarely as trivial as they sound.
 
-The major software project was rebuilding the service managing identity for all domains (customers, riders, employees, etc.) to be capable of 5N uptime in multiple regions, and supporting OpenID Connect as well as role-based access backed by Google & AD. We also spent a lot of time with teams, building libraries and helping them to migrate their client applications.
+A major software project was rebuilding the service managing identity for all domains (customers, riders, employees, etc.) to be capable of 5N availability in multiple regions, and supporting OpenID Connect as well as role-based access backed by Google & AD. We also spent a lot of time with teams, building libraries and helping them to migrate their client applications.
 
-I've also spent quite a lot of time working with our legal, ISO and engineering teams on GDPR compliance, including secure-by-design guidelines, storage and deletion of personal data, and auditing of actions happening in applications.
+I've also worked extensively with our legal, ISO and engineering teams on GDPR compliance, including secure-by-design guidelines, storage and deletion of personal data, and auditing of actions happening in applications.
 
 ## Staff Engineer, Deliveroo
 
@@ -41,13 +41,11 @@ I was responsible for the architecture and delivery of the books platform. My ma
 
 Some achievements in this role were successfully transitioning the team to Scala (primarily to give us a hiring edge in a competitive market), moving to an event and command driven architecture, and reducing the six-weekly develop/deploy cycle to almost continuous deployment.
 
-Sadly Amazon was rather better at selling books than we were, so the company folded.
-
 ## Principal Development Engineer Lead, blinkbox Movies
 
 ***May 2011 -- Dec 2012 (1 year 8 months)***
 
-I built the Xbox 360 native application with one other engineer. Subsequently we took many of the approaches we had developed for that app, and improved the foundations of the company's iOS, Android and web apps.
+I built the Xbox 360 native application with one other engineer. Subsequently we took many of the approaches we had developed for that app and improved the foundations of the company's iOS, Android and web apps.
 
 ## Senior Development Engineer Lead, blinkbox Movies
 
