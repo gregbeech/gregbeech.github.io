@@ -48,7 +48,7 @@ author:
   twitter:             gregbeech
 
 # This text will appear in a `<small>` tag in the footer of every page.
-copyright:             © 2013-2018 Greg Beech. All rights reserved.
+copyright:             © 2013-2019 Greg Beech. All rights reserved.
 
 # Format of the permalinks
 permalink:             pretty
@@ -182,7 +182,7 @@ plugins:
 # ---------------------------------------------------------------------------------------
 
 # theme: jekyll-theme-hydejack
-remote_theme: qwtel/hydejack@gem-7.5.0
+remote_theme: qwtel/hydejack@v8.4.0
 
 
 # SEO Tag
