@@ -20,6 +20,6 @@ menu: true
 
 <!--author-->
 
-This site is a rarely-updated collection of things I've written or spoken about over the years. All views are my own and do not reflect those of my employers. They may not even reflect my own any more, as they do tend to change over time.
+This site is a rarely-updated collection of things I've written or spoken about over the years. All views are my own and do not reflect those of my employers. They may not even reflect my own views any more, as they do tend to change over time.
 
-Please note that I'm not looking for a job, and won't give out any information about either my compensation or the people I work with. I don't accept invitations on any form of social media, including LinkedIn, unless I already know you in real life.
+I'm not on LinkedIn because it's a source of far too much untargeted spam. You can get in touch with me using email, but please note that I rarely change jobs and am usually not looking. I have no interest in unethical industries such as payday loans or gambling.

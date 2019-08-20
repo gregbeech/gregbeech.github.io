@@ -9,11 +9,10 @@ gregbeech:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    I'm a Principal Engineer at Deliveroo on the Infrastructure Security team. My
-    main areas of interest are startups, programming languages and building secure,
-    scalable systems. For more information about my career have a look at [my CV](/cv/).
-    When I'm not working I'll either be found out and about on one of my ever-growing
-    collection of motorbikes, or keeping my fiancé and young son entertained.
+    I'm a Principal Engineer at Deliveroo in the platform group. My main areas of interest are startups,
+    programming languages and building secure, scalable systems. For more information about my career
+    have a look at [my CV](/cv/). When I'm not working I'll either be found out and about on one of my ]
+    ever-growing collection of motorbikes, or keeping my fiancé and young son entertained.
 
   # This photo will be used in the about section.
   picture:
@@ -29,10 +28,10 @@ gregbeech:
     github:          gregbeech
     stackoverflow:   13552/greg-beech
     twitter:         gregbeech
-    linkedin:        gregbeech
     email:           mailto:greg@gregbeech.com
     # rss:             /feed.xml
     # download:        https://github.com/qwtel/hydejack-starter-kit/archive/master.zip
+    # linkedin:        <username>
     # facebook:        <username>
     # google:          <number>
     # vk:              <username>

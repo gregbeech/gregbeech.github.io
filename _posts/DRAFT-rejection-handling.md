@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Rejection handling
+title: Akka HTTP rejection handling
 date: 2018-08-12
 tags: scala akka http
 author: gregbeech
@@ -15,16 +15,14 @@ When we started building our OAuth server, completing with errors looked somethi
 ```scala
 parameter('response_type) {
   case "authorization_code" => // ...
+  case "refresh_token" => // ...
   case _ =>
-    val params = Uri.Query(
+    val location = redirectUri.withQuery(Uri.Query(
       "error" -> "unsupported_response_type",
-      "error_description" -> "The query parameter 'response_type' was invalid")
-    val location = redirectUri.withQuery(params)
-    redirect(location, StatusCodes.TemporaryRedirect)
+      "error_description" -> "The query parameter 'response_type' was invalid"
+    ))
+    redirect(location, StatusCodes.SeeOther)
 }
 ```
 
 Now it looks more like this:
-
-
-
