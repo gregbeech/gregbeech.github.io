@@ -7,23 +7,23 @@ hide_description: true
 menu: true
 ---
 
-I'm an experienced engineer and software architect. My last twelve years have been working in startups, building/running code and teams in high growth environments from Series A through F.
+I’m an experienced engineer, capable of designing and building reliable and scalable software, and leading projects with company-wide impact. My last twelve years have been spent working in startups, building/running code and teams in high growth environments from Series A through G.
 
-I'm interested in full-time, hands-on, challenging software engineering roles. This could either be in a funded startup (preferably Series B or later) or in a more mature tech company with complex problems to solve.
+If I were looking for a job, then I would be interested in full-time, hands-on, challenging software engineering roles. This could either be in a funded startup around the Series A/B stage or in a more mature tech company with complex problems to solve, though my preference is for the former.
 
-I don't mention technologies much as I don't think it's that important when hiring generalist software engineers. I'm currently most familiar with Scala, Ruby, Dynamo, Postgres, Redis, and AWS in general. However, I've used many other technologies over the years.
+I don’t mention technologies much as I don’t think it’s that important when hiring generalist software engineers. I’m currently most familiar with Scala, Ruby, Dynamo, Postgres, Redis, and AWS in general. However, I’ve used many other languages and technologies over the years.
 
 ## Principal Engineer, Deliveroo
 
-***April 2017 -- Present***
+***Apr 2017 -- Present***
 
-Security and compliance tend to be somewhat undervalued in high growth startups. Believing there was a need to change this, I set up and led a security engineering team.
-
-We worked on a variety of infrastructure-level projects including starting a bug bounty program to provide ongoing security testing, and migrating traffic to Cloudflare to give DDoS protection. These are rarely as trivial as they sound.
+Security and compliance tend to be somewhat undervalued in high growth startups; believing there was a need to change this, I set up and led a security engineering team. We worked on a variety of projects including a bug bounty program to provide ongoing security testing, and migrating traffic to Cloudflare to give DDoS and bot protection. These are rarely as trivial as they sound.
 
 A major software project was rebuilding the service managing identity for all domains (customers, riders, employees, etc.) to be capable of 5N availability in multiple regions, and supporting OpenID Connect as well as role-based access backed by Google & AD. We also spent a lot of time with teams, building libraries and helping them to migrate their client applications.
 
-I've also worked extensively with our legal, ISO and engineering teams on GDPR compliance, including secure-by-design guidelines, storage and deletion of personal data, and auditing of actions happening in applications.
+I’ve also worked extensively with our legal, ISO and engineering teams on GDPR compliance, including secure-by-design guidelines, storage and deletion of personal data, and auditing of actions.
+
+I am currently leading the geosharding of Deliveroo, a project with many work streams requiring changes organisation-wide to everything from infrastructure to web and mobile apps.
 
 ## Staff Engineer, Deliveroo
 
@@ -31,7 +31,7 @@ I've also worked extensively with our legal, ISO and engineering teams on GDPR c
 
 I joined Deliveroo early on when it was around forty people delivering food in London. For much of the first year, three of us (one PM, two engineers) focused on launching eleven new countries in Europe and APAC, handling all aspects of i18n and l10n as well as other concerns like tax and invoicing.
 
-Subsequently I spent a few months building a new team and launching the corporate product, Deliveroo for Business. After becoming concerned that this wasn't the most valuable thing for us to be working on, I pivoted the team to focus on fixing our live ops tooling, monitoring billions of events to detect and resolve issues in real-time.
+Subsequently I spent a few months building a new team and launching the corporate product, Deliveroo for Business. After becoming concerned that this wasn’t the most valuable thing for us to be working on, I pivoted the team to focus on fixing our live ops tooling, monitoring billions of events to detect and resolve issues in real-time.
 
 ## Head of Platform Development, blinkbox Books
 
@@ -45,7 +45,7 @@ Some achievements in this role were successfully transitioning the team to Scala
 
 ***May 2011 -- Dec 2012 (1 year 8 months)***
 
-I built the Xbox 360 native application with one other engineer. Subsequently we took many of the approaches we had developed for that app and improved the foundations of the company's iOS, Android and web apps.
+I built the Xbox 360 native application with one other engineer. Subsequently we took many of the approaches we had developed for that app and improved the foundations of the company’s iOS, Android and web apps.
 
 ## Senior Development Engineer Lead, blinkbox Movies
 
