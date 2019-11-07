@@ -36,4 +36,8 @@ build/
 
 /.sass-cache/
 /_site/
+
 .DS_Store
+
+.idea/
+.metals/
