@@ -1,4 +1,11 @@
-
+---
+layout: post
+title: Fitter, happier, more productive
+date: 2019-11-07
+tags: [team health, software quality, deliberate engineering]
+author: gregbeech
+comments: true
+---
 
 ## Fitter, happier, more productive
 
@@ -7,6 +14,8 @@
 The way I've seen many teams work where the PM dictates requirements, designers dictate UX, developers decide on technical requirements, and EMs just talk about career paths and reviews are low performing and unhappy. These are the teams that tend to use the "feels fast" approach.
 
 Starting a new project gives them a brief natural high while it seems to be working for the first month or two, because code is getting shipped and they're are seeing the first glimpse of new features. When it starts to break down and the schedules start to slip, and it raises alerts every day, it needs two engineers assigned to it for the next six months to support it... people don't worry. They think that's just how software projects are.
+
+They don't know what good looks like. The norm is software projects that slip and extend deadlines and aren't what people want and aren't performant or reliable. They've never worked in high functioning teams so when they see good they don't recognise it. They see people who must be going slow because they aren't panicking or slipping deadlines or having incidents.
 
 They see teams doing deliberate engineering and justify it as over-engineering.
 
