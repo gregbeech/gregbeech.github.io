@@ -15,7 +15,7 @@ The thing many people don't seem to realise is that you don't have a free choice
 
 Some companies have such a poor hiring policy that they are unable to choose either good or fast because there simply is not the skill and experience available. Companies like this tend to have a lot of engineers who have been at the company less than two years; most of the rest have been at the company for over a decade and are just waiting for retirement. Their interviews are _ad hoc_ with no rubric and no hiring bar. This is, sadly, a large number of companies.
 
-At the other end of the scale there are the companies who have relatively small but highly skilled teams who can choose both fast and good. These companies have a high proportion of senior engineers, including some that are well known in the community, and low staff turnover rates. They have multi-stage interviews with standardised rubrics and a very high hiring bar. If you don’t know whether you work at one of these companies, then you probably don’t.
+At the other end of the scale there are the companies who have relatively small but highly skilled teams who can choose both fast and good. These companies have a high proportion of senior engineers, including some that are well known in the industry, and low staff turnover rates. They have multi-stage interviews with standardised rubrics and a very high hiring bar. If you don’t know whether you work at one of these companies, then you probably don’t.
 
 The remainder are somewhere in between. They have a relatively bottom-heavy pyramid of seniority with lots of junior/mid-level engineers and a much smaller number of seniors. They have structured interviews, but the rubrics may be absent or lacking and interviewers may not be calibrated, so the hiring bar is inconsistent. This group includes most startups and young companies.
 
@@ -25,7 +25,7 @@ The trouble is, they often can’t do either fast or good.
 
 ## Why fast fails
 
-In most companies the objective is to deliver new features fast, because features are thought to be what drives sales, conversion, etc. and so getting them out in front of customers is the most important thing. When the pressure is on to go fast, people want to look and feel like they're going fast.
+Every company wants to deliver new features fast, because features are thought to be what drives sales, conversion, etc. and so getting them out in front of customers is the most important thing. When the pressure is on to go fast, people want to look and feel like they're going fast.
 
 The majority of engineers appear to believe the fallacy that any activity other than writing code isn’t “real work” and is just ceremony that slows them down. This means when they want to feel like they're going fast they'll forgo--or merely pay lip service to--gathering requirements, writing design documents, doing research, and building proof-of-concepts to test and measure. Instead they jump straight into the code and start building.
 
