@@ -1,3 +1,13 @@
+---
+layout: post
+title: Anatomy of a design doc
+date: 2019-11-08
+tags: [team health, software quality, deliberate engineering]
+author: gregbeech
+comments: true
+published: false
+---
+
 - is this core domain? supporting? throwaway?
 - do we know if this is going to be useful?
 - what are the mvp requirements? future requirements?

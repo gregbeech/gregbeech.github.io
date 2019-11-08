@@ -35,7 +35,7 @@ You can't write them yourself either, as without user-definable generics they wo
 
 Even if you're prepared to believe that there is no implementation of generics that's suitable for Go because they're either [too complex, too bloated, or too slow](https://research.swtch.com/generic), the omission of higher-order functions on generics looks to be a decision rather than something that just wasn't thought of.
 
-Error handling also receives a lot of criticism for the repetitive nature of checking whether an error object is returned. I also [prefer not to use exceptions](/2018/02/09/modelling-errors-in-scala/), but arguing about return codes vs exceptions rather misses the point. There are much better options that could be implemented without significant changes to the language.
+Error handling also receives a lot of criticism for the repetitive nature of checking whether an error object is returned. I also [prefer not to use exceptions]({% post_url 2018-02-09-modelling-errors-in-scala %}), but arguing about return codes vs exceptions rather misses the point. There are much better options that could be implemented without significant changes to the language.
 
 Go only has three return patterns by convention (`result`, `result, error` or `error`) so the compiler could easily implement some syntactic sugar. You could take inspiration from Rust and introduce an early return operator `?` so a statement like `result := Foo().?` would expand to:
 

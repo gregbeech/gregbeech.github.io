@@ -1,15 +1,13 @@
 ---
 layout: post
 title: Fitter, happier, more productive
-date: 2019-11-07
+date: 2019-11-08
 tags: [team health, software quality, deliberate engineering]
 author: gregbeech
 comments: true
 ---
 
-## Fitter, happier, more productive
-
-<< WIP >>
+In the [first post in this series]({% post_url 2019-11-07-deliberate-engineering %}) we looked at why the "feels fast" approach to engineering fails, and the deliberate approach is more likely to succeed. This time we'll see why many teams continue to use the "feels fast" approach, and why deliberate engineering is often mistaken for over-engineering.
 
 The way I've seen many teams work where the PM dictates requirements, designers dictate UX, developers decide on technical requirements, and EMs just talk about career paths and reviews are low performing and unhappy. These are the teams that tend to use the "feels fast" approach.
 

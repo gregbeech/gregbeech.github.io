@@ -9,7 +9,7 @@ comments: true
 
 When building a software project with a given scope there are three main constraints you can trade off: good, fast, and cheap. This is commonly known as the project management triangle. Focusing on one will have an effect on the others. For example, trying to do things cheap will adversely affect good and fast.
 
-Cheap in this context uses salary as a proxy for the skill and experience levels of engineers. Don’t take it too literally as you may be paying high salaries for sub-par engineers, so cheap really means projects that are staffed by engineers lacking in skill and/or experience. It could also mean projects that are under-resourced, but that problem is much more obvious so we won't talk about it here.
+Cheap in this context uses salary as a proxy for the skill and experience levels of engineers. Don’t take it too literally as you may be paying over the odds for engineers, so cheap really means projects that are staffed by engineers lacking in skill and/or experience. It could also mean projects that are under-resourced, but that problem is much more obvious so we won't talk about it here.
 
 The thing many people don't seem to realise is that you don't have a free choice with these constraints. Much like the CAP theorem only allows you to trade off between consistency and availability because network partitions are beyond your control, with software projects you can only really trade off between good and fast because cheap is largely defined by your company's hiring policy.
 

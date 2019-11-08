@@ -7,7 +7,7 @@ author: gregbeech
 comments: true
 ---
 
-When I looked through some of Deliveroo's non-Ruby applications, I saw that a number of them were trying to copy the ActiveRecord approach and defining data access methods on the models themselves. This is not a good approach in statically typed languages. I'll explain why, and demonstrate the approach you should be using. It's no secret that [I'm not a fan of Go](/2018/05/25/gos-glass-ceiling), but I'll use it here to demonstrate as the majority of the applications I've seen with this problem are written in it.
+When I looked through some of Deliveroo's non-Ruby applications, I saw that a number of them were trying to copy the ActiveRecord approach and defining data access methods on the models themselves. This is not a good approach in statically typed languages. I'll explain why, and demonstrate the approach you should be using. It's no secret that [I'm not a fan of Go]({% post_url 2018-05-25-gos-glass-ceiling %}), but I'll use it here to demonstrate as the majority of the applications I've seen with this problem are written in it.
 
 ## Pure vs impure methods
 
