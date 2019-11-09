@@ -57,7 +57,7 @@ Once you’ve done the preparation, you can deliver deliberately and fast. On an
 
 This doesn't necessarily mean you'll end up with good software. If fast is the main priority, as it might be for features of uncertain long-term value, then you will make some design decisions that are not objectively good. For example using a data store with a high hosting cost to reduce implementation time, or omitting reliability features like retries or circuit breakers because downtime is an acceptable risk. What's important is that you considered these decisions, made them deliberately, and you know the future cost of making the software good, should that prove necessary.
 
-On the flip side if your priority leans towards good, as it might be for features that form the core of the business and which you know will need to be evolved over years, then deliberate engineering helps you to ensure that you meet your goals, and also gives you the best chance of delivering it fast.
+On the flip side if your priority leans towards good, as it might for features that form the core of the business and which you know will need to be evolved over years, then deliberate engineering helps you to ensure that you meet your goals, and also gives you the best chance of delivering it fast.
 
 ---
 
