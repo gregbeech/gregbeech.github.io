@@ -17,3 +17,7 @@ group :jekyll_plugins do
   gem 'jekyll-sitemap'
   gem 'jekyll-titles-from-headings'
 end
+
+group :development do
+  gem 'foreman'
+end
