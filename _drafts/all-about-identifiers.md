@@ -37,17 +37,44 @@ However, it is common practice particularly with relational databases to impleme
 
 As such, for people you typically need at least _two_ identifiers: One that is used only for internal purposes, and one that is exposed to the person. The internal key should be used as the key for all internal storage but never exposed in any UI, URL, JWT, etc. which is where the external key should be used. 
 
-The reason for at least two rather than exactly two is that if you deal with any third parties (e.g. integrations) then you should provide a different identifier to each of those third parties, or even to different accounts with the same third party if applicable. This is part of defence in depth as it means the third party cannot identify people they don't have access to. It also makes it harder for them to correlate people's information. In fact, translating identifiers for _any_ resource for third parties is generally good practice.
-
-## Labelling 
-
-It’s a good idea to label the identifiers so that you can tell what they are. ARNs as example, Stripe as another. A good idea to include a market or region etc. if the data can be geographically distributed (helps with sharding and privacy law compliance). 
+The reason for at least two rather than exactly two is that if you deal with any third parties (e.g. integrations) then you should provide a different identifier to each of those third parties, or even to different accounts with the same third party if applicable. This is part of defence in depth as it means the third party cannot identify people they don't have access to. It also makes it harder for them to correlate people's information. In fact, translating the identifier of _any_ resource for third parties is generally good practice.
 
 ## Cross-system compatibility
 
-Use all lowercase identifiers but treat them as case insensitive for compatibility across all kinds of data store and collation. Identifiers that differ only by case are a potential security risk and can cause hard to find bugs.
+Identifiers are one of the few things in systems that tend to stay stable, unlike languages and storage or data warehousing technologies. In addition, if they are sent to third parties then you have no idea how they will be processed. To ensure the highest level of compatibility then follow these guidelines.
+
+The most important consideration is not to create identifiers that differ only by case. Some data stores such as DynamoDB are case sensitive, others such as Postgres have selectable collations which control case sensitivity, and others such as Elasticsearch are _sometimes_ case sensitive depending on both index and query. Having identifiers that differ only by case makes it more likely that they will collide or be conflated, causing hard-to-find bugs that potentially have security or privacy implications.
+
+If the identifiers will not differ by case then it also makes sense to define a canonical case so that they can always be compared lexically as well as logically. For example `42A23DAB-67AD-4AD7-B7A9-3DAFF34F6C02` and `42a23dab-67ad-4ad7-b7a9-3daff34f6c02` are _logically_ the same UUID but are lexically unequal. If identifiers are always represented in a particular case (I prefer lowercase) then systems can convert identifiers to the canonical case and then it doesn't matter if they use logical or lexical comparison.
+
+On the subject of case, we don't want to deal with anomalies like the [Turkish I problem](http://www.i18nguy.com/unicode/turkish-i18n.html) so restrict identifiers to ASCII characters. As identifiers may end up being used in URLs, headers, cookies, etc. it's also best to stay away from any character that might have special meaning in those places. A safe character set to stick to is `0-9`, `a-z`, `-` and `_`.
+
+## Labelling
+
+One of the issues with identifiers is trying to work out what they refer to, and this gets worse in distributed systems or with data warehousing. A neat solution to this is to include labels in the identifiers.
+
+Stripe uses a fairly basic prefix approach with their API keys (which are really just a form of identifier) using a `pk_` prefix for publishable keys, `sk_` prefix for secret keys, and then a `live_` or `test_` environment slug. For example, a live publishable key looks like `pk_live_8hTOJDTo...`.
+
+Amazon uses a much more complex approach with [Amazon Resource Names (ARNs)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) which have a much more structured format that includes details of where the resource is and which account it belongs to: `arn:partition:service:region:account-id:resource-id`.
+
+These two examples also show a different approach to identifier uniqueness scope. In Stripe the resource identifier is globally unique, whereas in AWS it is only necessarily unique within the scope of the partition, service, region and account because the complete identifier is always used.
+
+At Deliveroo we chose an approach somewhere in between these two, using the format `drn:partition:market:resource-name:resource-id` which gave us future flexibility to partition the system, a market because all resources are strongly market-affine, and a globally unique resource identifier that can be used standalone in the many existing URLs without ambiguity (as those URLs typically already identify both the market and resource name).
+
+The market is deliberately abstracted from the shards in which that market resides to give more flexibility in future. We decided not to include an environment component as it added a generation and validation burden with little practical benefit because environments are strongly separated using other mechanisms.
 
 ## Short identifiers
 
-Be wary of truncating/hashing to make short identifiers as you only need sqrt(n in flight) to have a 50% chance of collision. Sequential generation is better here (with block allocation for better speed/reliability). 
+Be wary of truncating/hashing to make short identifiers as you only need sqrt(n in flight) to have a 50% chance of collision. Sequential generation is better here (with block allocation for better speed/reliability).
 
+## TL;DR
+
+If you haven't got the time or inclination to read everything above then here's a high level summary of the recommendations:
+
+- **Never** use sequential integer identifiers
+- **Usually** use v4 UUID identifiers
+- **Always** represent identifiers in lowercase
+- **Consider** labelling identifiers with their meaning
+- **Beware** shortening identifiers by truncating or hashing
+
+As always with software development, "never" doesn't mean never and "always" doesn't mean always. You'll find that many of these recommendations are broken in the wild, and often for good reason. However, this is a good base set of guidelines to start from, and you should think carefully before deviating.
