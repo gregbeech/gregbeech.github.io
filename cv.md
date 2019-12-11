@@ -2,7 +2,7 @@
 layout: page
 title: CV
 description: >
-  CV of Greg Beech, Principal Engineer at Deliveroo. Experienced engineer and software architect with over twelve years working in startups, building code and teams in high growth environments.
+  CV of Greg Beech, Staff Engineer @ Zego.
 hide_description: true
 menu: true
 ---
@@ -13,9 +13,15 @@ If I were looking for a job, then I would be interested in full-time, hands-on, 
 
 I don’t mention technologies much as I don’t think it’s that important when hiring generalist software engineers. I’m currently most familiar with Scala, Ruby, Dynamo, Postgres, Redis, and AWS in general. However, I’ve used many other languages and technologies over the years.
 
+## Staff Engineer, Zego
+
+***Jan 2020 -- Present***
+
+Too soon for any further information.
+
 ## Principal Engineer, Deliveroo
 
-***Apr 2017 -- Present***
+***Apr 2017 -- Dec 2020 (2 years 8 months)***
 
 Security and compliance tend to be somewhat undervalued in high growth startups; believing there was a need to change this, I set up and led a security engineering team. We worked on a variety of projects including a bug bounty program to provide ongoing security testing, and migrating traffic to Cloudflare to give DDoS and bot protection. These are rarely as trivial as they sound.
 
@@ -23,11 +29,11 @@ A major software project was rebuilding the service managing identity for all do
 
 I’ve also worked extensively with our legal, ISO and engineering teams on GDPR compliance, including secure-by-design guidelines, storage and deletion of personal data, and auditing of actions.
 
-I am currently leading the geosharding of Deliveroo, a project with many work streams requiring changes organisation-wide to everything from infrastructure to web and mobile apps.
+For the last six months before I left I was leading the geosharding of Deliveroo, a project with many work streams requiring coordination and changes organisation-wide to everything from infrastructure to web and mobile apps.
 
 ## Staff Engineer, Deliveroo
 
-***Mar 2015 -- Apr 2017 (2 years 2 months)***
+***Mar 2015 -- Apr 2017 (2 years 1 month)***
 
 I joined Deliveroo early on when it was around forty people delivering food in London. For much of the first year, three of us (one PM, two engineers) focused on launching eleven new countries in Europe and APAC, handling all aspects of i18n and l10n as well as other concerns like tax and invoicing.
 
