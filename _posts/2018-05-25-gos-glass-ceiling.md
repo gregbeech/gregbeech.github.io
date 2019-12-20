@@ -42,7 +42,7 @@ Go only has three return patterns by convention (`result`, `result, error` or `e
 ```go
 result, err := Foo()
 if err != nil {
-        return _, err
+        return nil, err
 }
 ```
 
@@ -51,7 +51,7 @@ Alternatively you could take inspiration from F# or Elixir and introduce a pipel
 ```go
 res0, err0 := Foo()
 if err0 != nil {
-        return _, err0
+        return nil, err0
 }
 
 result, err := Bar(res0)
@@ -122,7 +122,7 @@ for {
         case <-finished:
                 return renderPage(user, orders)
         case err := <-errors:
-                return _, err
+                return nil, err
         }
 }
 ```

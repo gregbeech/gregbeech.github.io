@@ -31,3 +31,14 @@ code, pre {
     color: rgb(106, 135, 89);
   }
 }
+
+p.note {
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 0 -15px 15px -15px;
+}
+
+p.info {
+  background-color: #eee;
+}
