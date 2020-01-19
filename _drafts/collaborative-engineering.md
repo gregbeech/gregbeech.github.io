@@ -5,6 +5,7 @@ date: 2019-12-12
 tags: [team health, software quality, deliberate engineering]
 author: gregbeech
 comments: true
+published: false
 ---
 
 Building a new software product or feature involves numerous disciplines, both from within and outside engineering. The speed of delivery, quality, and fitness for purpose depends on collaboration and good interactions between and within those disciplines. Let me tell you a story about one of the most collaborative, and consequently most successful, projects I have ever been a part of.

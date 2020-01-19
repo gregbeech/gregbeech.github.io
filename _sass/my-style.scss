@@ -42,3 +42,12 @@ p.note {
 p.info {
   background-color: #eee;
 }
+
+p.todo {
+  color: red;
+
+  &:before {
+    content: "📝 TODO: ";
+    font-weight: bold;
+  }
+}
