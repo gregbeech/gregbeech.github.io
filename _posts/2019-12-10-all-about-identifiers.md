@@ -17,6 +17,8 @@ Firstly, they make life difficult if you want to generate them in multiple place
 
 Secondly, sequential integers can impact application security because they facilitate enumeration and thus make [insecure direct object reference (IDOR)](https://www.owasp.org/index.php/Testing_for_Insecure_Direct_Object_References_(OTG-AUTHZ-004)) attacks easier to mount, and the consequences of insufficient access control more severe. No matter how dilligent you are, mistakes will be made in access control. While this is to some extent security by obscurity, it's still a valuable part of defence in depth.
 
+Another way security can be impacted by integer identifiers is in the aftermath of database failure. Because backups lag some way behind real-time, when a database is restored from a backup the latest id will be lower than the previously highest issued id which can result in things like `UserId`s being reissued to different people. If these integers have already been used elsewhere (security tokens, caches, third parties, etc.) then the person with the post-restore `UserId` may be able to access information related to the person who held it pre-restore. This isn't just a theoretical case; I have worked at a company where this happened.
+
 Lastly, they leak business information which could be valuable to competitors, who can derive things like how many orders/day you're doing from sequential order numbers. The workaround of partitioning the keyspace can make this leak even worse because if your partitions relate to business units or markets then competitors can obtain a more detailed breakdown. Trust me, your competitors _will_ do this.
 
 Instead I'd recommend using randomly generated identifiers with effectively zero probability of collision such as [v4 UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)). However, note that while most mainstram v4 UUID generation algorithms are cryptographically secure and thus the UUIDs are unguessable under any circumstances, this is not required by the specification. UUIDs are required to be _unique_ but not _unguessable_. As such, if the identifiers must be unguessable then it may be safest to use a cryptographically random generator directly.
@@ -76,3 +78,7 @@ Identifiers are more complex to get right than you might think. Here's a summary
 - **Remember** that identifiers can be personal data
 
 As always with software development, "never" doesn't mean never and "always" doesn't mean always. You'll find that many of these recommendations are broken in the wild, and often for good reason. However, this is a good base set of guidelines to start from, and you should think carefully before deviating.
+
+---
+
+_2020-03-24: Updated with additional paragraph about integer identifier security problems in the aftermath of database failure._

@@ -19,11 +19,11 @@ All code is technical debt because it never does what you will want it to in the
 
 Good static type systems are better than dynamic type systems. However, bad static type systems are worse. Any type system that does not differentiate between the presence or absence of a value is bad.
 
-All functions should accept a single argument and return a single value. Compilers should deal with converting `(a, b) -> c` into `a -> b -> c` automatically. Multiple parameter lists are a barely acceptable substitute.
+All functions should accept a single argument and return a single value. Compilers should curry `(a, b) -> c` into `a -> b -> c` automatically. Multiple parameter lists are a barely acceptable substitute.
 
 Subtype polymorphism is a poor alternative to _ad hoc_ polymorphism. Typeclasses are probably a poor alternative to something else that I either haven't heard of yet or hasn't been invented yet.
 
-Large-scale mutability makes programs impossible to reason about. This applies doubly if it has any form of concurrency or parallelism. Mutability is just about acceptable if contained within a single, short, function.
+Large-scale mutability makes programs impossible to reason about. This applies doubly if it has any form of concurrency or parallelism. Mutability is acceptable if entirely contained within a single small function.
 
 Side effects make programs impossible to reason about. This applies an order of magnitude more if they are triggered by lifecycle hooks on mutable objects. Effects should be explicit, and ideally modelled using pure functions. This does not include logging.
 
@@ -43,11 +43,11 @@ If you have multiple services sharing the same database then they are not multip
 
 ## Processes and tools
 
-Jira is inevitable, and isn't really that bad, so just accept it. This rule does not apply if it has been defiled by overzealous product managers to the point where new issues have 28 required fields and boards have 17 columns.
+Jira is inevitable, and isn't really that bad, so just accept it. This rule does not apply if it has been defiled by overzealous product managers to the point where new issues have 15 required fields and boards have 12 columns.
 
 Confluence on the other hand is bad, and should only be used if you want to ensure any information there is at least two years out of date, and that updating it is always somebody else's responsibility.
 
-Agile processes are mostly cargo-culted by people who use a capital "A" when writing agile. Unless you actually get benefits from estimation, standups, reviews, retros, etc. you should can them. If you don't get benefit from planning, you should can your product instead.
+Agile processes are mostly cargo-culted by people who use a capital "A" when writing agile. Unless you actually get benefits from estimation, standups, reviews, retros, etc. you should cancel them. If you don't get benefit from planning, you should cancel your product instead.
 
 
 
