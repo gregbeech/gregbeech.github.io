@@ -11,7 +11,7 @@ Introducing feature flags helps to separate release from deployment, and allow c
 
 The trouble with feature flags is that they sound so simple: They're just an on/off switch, right? Engineers tend to underestimate how much complexity there is in implementing them well, so they'll either spend too little time choosing an off-the-shelf system and later find out it won't scale with the company, or spend hundreds of engineering hours building it themselves (and probably still find out it won't scale with the company).
 
-We've just rolled out [LaunchDarkly](https://launchdarkly.com/) at [Zego](https://www.zego.com/) after evaluating a number of open-source and SaaS offerings. This post contains the criteria we used to select a provider so we can be confident they'll scale with us as a company. It's probably not an exhaustive list, but it'll give you a starting point.
+We've just rolled out [LaunchDarkly](https://launchdarkly.com/) at [Zego](https://www.zego.com/) after evaluating a number of open-source and SaaS offerings. This post contains the criteria we used to select a provider so we can be confident they'll scale with us. It's probably not an exhaustive list, but it'll give you a starting point.
 
 There are some table stakes requirements like multiple environments (production, staging, development, etc.), targeting groups using attributes, partial rollout of flags, archiving flags, and client libraries for all your backend and frontend languages. Pretty much every feature flagging system will support these. However, there are a many nonobvious requirements that are also essential. 
 
@@ -28,7 +28,7 @@ There are some table stakes requirements like multiple environments (production,
 
 ## Should haves
 
-- **Partial updates (network)** - Ovet time it's likely you'll get to get to hundreds or even thousands of feature flags. If updates are loaded from a single file, as some services do, then this can cause significant network usage especially from clients or when not centralised. Ideally updates should only update the things that have changed.
+- **Partial updates (network)** - Over time it's likely you'll get to get to hundreds or even thousands of feature flags. If updates are loaded from a single file, as some services do, then this can cause significant network usage especially from clients or when not centralised. Ideally updates should only update the things that have changed.
 - **Good documentation (ease of use)** - Growing companies onboard people frequently and if the documentation is bad then people won't read it and they'll make mistakes. It's not essential as they can learn from examples, but it really helps.
 - **Target groups (ease of use)** - It's possible to create properties to represent target groups, e.g. whether they are an employee, but it can make configuration easier if it's possible to create target groups of common properties, and be able to target them. Bonus points for being able to combine Boolean logic on conditions and groups.
 
