@@ -2,34 +2,38 @@
 layout: page
 title: CV
 description: >
-  CV of Greg Beech, Staff Engineer @ Zego.
+  CV of Greg Beech, Principal Engineer @ Zego.
 hide_description: true
 menu: true
 ---
 
-I’m an experienced engineer, capable of designing and building reliable and scalable software, and leading projects with company-wide impact. My last twelve years have been spent working in startups, building/running code and teams in high growth environments from Series A through G.
+I’m an experienced engineer and engineering leader, with a track record of incepting and delivering projects that have company-wide impact. I've spent the last fourteen years working in high growth startups, from series A through G.
 
-If I were looking for a job, then I would be interested in full-time, hands-on, challenging software engineering roles. This could either be in a funded startup around the Series A/B stage or in a more mature tech company with complex problems to solve, though my preference is for the former.
+The type of role I enjoy is hands-on technical leadership rather than people management. This could either be in a funded startup around the series A/B stage or in a more mature company with complex problems to solve, though my preference is for the former.
 
-I don’t mention technologies much as I don’t think it’s that important when hiring generalist software engineers. I’m currently most familiar with Scala, Ruby, Dynamo, Postgres, Redis, and AWS in general. However, I’ve used many other languages and technologies over the years.
+This CV doesn't mention technologies much as I don’t think it’s that important when hiring generalists, but if you're interested I'm currently most familiar with Scala, Ruby, Python, Dynamo, Postgres, Redis, and AWS in general. I'm a proponent of domain-driven design and functional programming.
+
+## Principal Engineer, Zego
+
+***Apr 2021 -- Present***
+
+_/* TODO */_
 
 ## Staff Engineer, Zego
 
-***Jan 2020 -- Present***
+***Jan 2020 -- Mar 2021 (1 year 2 months)***
 
-Too soon for any further information.
+_/* TODO */_
 
 ## Principal Engineer, Deliveroo
 
 ***Apr 2017 -- Dec 2020 (2 years 8 months)***
 
-Security and compliance tend to be somewhat undervalued in high growth startups; believing there was a need to change this, I set up and led a security engineering team. We worked on a variety of projects including a bug bounty program to provide ongoing security testing, and migrating traffic to Cloudflare to give DDoS and bot protection. These are rarely as trivial as they sound.
+I was the engineering lead for security and compliance for much of this period. This included a variety of things including launching and managing a bug bounty program, migrating to and managing the WAF to give DDoS and bot protection, and building tools to analyse data and change policies in near real-time.
 
-A major software project was rebuilding the service managing identity for all domains (customers, riders, employees, etc.) to be capable of 5N availability in multiple regions, and supporting OpenID Connect as well as role-based access backed by Google & AD. We also spent a lot of time with teams, building libraries and helping them to migrate their client applications.
+Larger software projects included rebuilding the service managing identity for all domains to consolidate it and integrate with third party providers, and an auditing system to make all business actions trackable and searchable. 
 
-I’ve also worked extensively with our legal, ISO and engineering teams on GDPR compliance, including secure-by-design guidelines, storage and deletion of personal data, and auditing of actions.
-
-For the last six months before I left I was leading the geosharding of Deliveroo, a project with many work streams requiring coordination and changes organisation-wide to everything from infrastructure to web and mobile apps.
+For the last six months before I left I was leading the geosharding of Deliveroo, a project with many work streams requiring coordination and changes organisation-wide to everything from infrastructure to web and mobile apps and data warehousing.
 
 ## Staff Engineer, Deliveroo
 
@@ -37,33 +41,31 @@ For the last six months before I left I was leading the geosharding of Deliveroo
 
 I joined Deliveroo early on when it was around forty people delivering food in London. For much of the first year, three of us (one PM, two engineers) focused on launching eleven new countries in Europe and APAC, handling all aspects of i18n and l10n as well as other concerns like tax and invoicing.
 
-Subsequently I spent a few months building a new team and launching the corporate product, Deliveroo for Business. After becoming concerned that this wasn’t the most valuable thing for us to be working on, I pivoted the team to focus on fixing our live ops tooling, monitoring billions of events to detect and resolve issues in real-time.
+Subsequently I spent a few months building a new team and launching the corporate product, Deliveroo for Business. After becoming concerned that this wasn’t the most valuable thing for us to be working on, I pivoted the team to focus on fixing our live ops tooling, monitoring billions of events to detect and resolve issues in real-time. This work also provided the foundations for decomposing the monolith into services.
 
 ## Head of Platform Development, blinkbox Books
 
 ***Jan 2013 -- Mar 2015 (2 years 3 months)***
 
-I was responsible for the architecture and delivery of the books platform. My main focus was on hiring a team of engineers and evolving the existing monolithic Java web application into a federation of vertically partitioned services.
-
-Some achievements in this role were successfully transitioning the team to Scala (primarily to give us a hiring edge in a competitive market), moving to an event and command driven architecture, and reducing the six-weekly develop/deploy cycle to almost continuous deployment.
+I was responsible for the architecture and delivery of the books platform. My main focus was on hiring a team of engineers and evolving the existing monolithic Java web application into a federation of vertically partitioned services. Achievements in this role were successfully transitioning the team to Scala (primarily to give us a hiring edge in a competitive market), moving to an event driven architecture, and reducing the six-weekly develop/deploy cycle to almost continuous deployment.
 
 ## Principal Development Engineer Lead, blinkbox Movies
 
 ***May 2011 -- Dec 2012 (1 year 8 months)***
 
-I built the Xbox 360 native application with one other engineer. Subsequently we took many of the approaches we had developed for that app and improved the foundations of the company’s iOS, Android and web apps.
+Built the Xbox 360 native application. Subsequently took many of the approaches we had developed for that app to improve the foundations of the company’s mobile and web apps.
 
 ## Senior Development Engineer Lead, blinkbox Movies
 
 ***Aug 2007 -- Apr 2011 (3 years 9 months)***
 
-I worked with a small team to design and build a scalable platform using a service-oriented architecture. We also developed a distributed video encoder, and wrote parsers to be able to reliably read and modify video files.
+I worked with a small team to design and build a scalable platform. We also developed a distributed video encoder, and wrote parsers to be able to read and modify video files.
 
-## Principal Consultant, Netstore
+## Senior Consultant, Netstore
 
 ***Aug 2006 -- Aug 2007 (1 year 1 month)***
 
-My role involved working across a number of projects simultaneously, including architectural reviews, pre-sales, and performance tuning. I was the lead developer on a number of proof-of-concept solutions.
+Worked across a number of projects simultaneously including architectural reviews, pre-sales, and performance tuning. I was the lead developer on a number of proof-of-concept solutions.
 
 ## Senior Developer, Charteris
 
