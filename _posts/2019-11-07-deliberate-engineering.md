@@ -27,13 +27,13 @@ The trouble is, they often can’t do either fast or good.
 
 Every company wants to deliver new features fast, because features are thought to be what drives sales, conversion, etc. and so getting them out in front of customers is the most important thing. When the pressure is on to go fast, people want to look and feel like they're going fast.
 
-The majority of engineers appear to believe the fallacy that any activity other than writing code isn’t “real work” and is just ceremony that slows them down. This means when they want to feel like they're going fast they'll forgo--or merely pay lip service to--gathering requirements, writing design documents, doing research, and building proof-of-concepts to test and measure. Instead they jump straight into the code and start building.
+The majority of engineers appear to believe the fallacy that any activity other than writing code isn’t “real work” and is just ceremony that slows them down. This means when they want to feel like they're going fast they'll forgo---or merely pay lip service to---gathering requirements, writing design documents, doing research, and building proof-of-concepts to test and measure. Instead they jump straight into the code and start building.
 
 They don't even realise that they're trading off good. They're getting peer review on the code and fixing up the issues pointed out there, they have good test coverage, and they may even be extracting reusable components. They feel like they're moving fast, and they feel like they're doing good quality work. In the first month or two it can be hard to tell a successful project from a doomed one.
 
 Building software is a bit like building a house. We all know roughly what shape a house is, that it's built of bricks, and that it has windows and doors. If you were to start laying down bricks and putting in windows then fairly quickly you'll have something that starts to resemble a house. You might even convice yourself you'll be finished soon.
 
-Then the rain comes and because you didn't build foundations one of the walls starts to subside and crack, and you need to spend time propping it up and repairing it. Then you realise you forgot to hook up the gas or water so you have to dig up the floor. Then you find out you've got two kitchens but no bathroom. Then you find out that the client wanted a chalet, not a house.
+Then the rain comes and because you didn't build foundations one of the walls starts to subside and crack, and you need to spend time propping it up and repairing it. Then you realise you forgot to hook up the gas or water so you have to dig up the floor. Then you find out you've got two kitchens but no bathroom. Then you find out that the client wanted a barn, not a house.
 
 By forgoing the requirements and blueprints and foundations the house starts to take shape quickly, but finishing it off takes far longer than originally planned because it keeps needing to be re-engineered. The end result isn't quite what anybody wanted, and it keeps trying to fall over because it has no foundations.
 
@@ -58,7 +58,3 @@ Once you’ve done the preparation, you can deliver deliberately and fast. On an
 This doesn't necessarily mean you'll end up with good software. If fast is the main priority, as it might be for features of uncertain long-term value, then you will make some design decisions that are not objectively good. For example using a data store with a high hosting cost to reduce implementation time, or omitting reliability features like retries or circuit breakers because downtime is an acceptable risk. What's important is that you considered these decisions, made them deliberately, and you know the future cost of making the software good, should that prove necessary.
 
 On the flip side if your priority leans towards good, as it might for features that form the core of the business and which you know will need to be evolved over years, then deliberate engineering helps you to ensure that you meet your goals, and also gives you the best chance of delivering it fast.
-
----
-
-In the next post in this series we'll take a look at why many teams use the "feels fast" approach instead of a deliberate approach, and why deliberate engineering is often mistaken for over-engineering.

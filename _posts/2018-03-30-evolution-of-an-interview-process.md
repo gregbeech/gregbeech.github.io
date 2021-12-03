@@ -70,7 +70,7 @@ But we still had some major changes to make before we were happy with it.
 
 ## The modern era
 
-First things first, the "culture fit" interview became a behavioural interview. The goal was still the same--to try and ensure that we hired people who would be successful at Deliveroo--but the focus was changed to be less about culture fit and more about whether people exhibited desirable behaviours. This might seem like a subtle distinction, but it's an important one as culture fit implies that we're trying to hire a brigade of clones, whereas Deliveroo values diversity and people shouldn't have to 'fit' into a culture. Culture can and should evolve.
+First things first, the "culture fit" interview became a behavioural interview. The goal was still the same---to try and ensure that we hired people who would be successful at Deliveroo---but the focus was changed to be less about culture fit and more about whether people exhibited desirable behaviours. This might seem like a subtle distinction, but it's an important one as culture fit implies that we're trying to hire a brigade of clones, whereas Deliveroo values diversity and people shouldn't have to 'fit' into a culture. Culture can and should evolve.
 
 We also added more people to the interviews. While we had already added a second person to the pairing interviews, the architectural and behavioural interviews were done by a single person. The reasoning behind this was rather primitive: We had fewer people capable of running those interviews and we didn't want to use up all their time doing it.
 

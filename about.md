@@ -9,7 +9,7 @@ title: About
 # Write a short (~150 characters) description of each blog post.
 # This description is used to preview the page on search engines, social media, etc.
 description: >
-  About Greg Beech, Staff Engineer @ Zego.
+  About Greg Beech, Principal Engineer @ Zego.
 
 # You can show the description on the page by deleting this line:
 hide_description: true
