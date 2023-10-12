@@ -9,7 +9,7 @@ title: About
 # Write a short (~150 characters) description of each blog post.
 # This description is used to preview the page on search engines, social media, etc.
 description: >
-  About Greg Beech, Principal Engineer @ Zego.
+  About Greg Beech, Chief Engineer @ Zego.
 
 # You can show the description on the page by deleting this line:
 hide_description: true
@@ -23,4 +23,4 @@ menu: true
 This site is a rarely-updated collection of things I've written or spoken about over the years. All views are my own and may not reflect those of my employers. They may not even reflect my own views any more, as 
 they do tend to change over time.
 
-I'm not on LinkedIn because it's a source of far too much untargeted spam. You can get in touch with me using email or on Twitter. Please note that I rarely change jobs and am usually not looking, though if your mail is targeted and relevant I'll at least try to respond. I have no interest in unethical industries such as payday loans or gambling.
+I rarely change jobs and am usually not looking, but if your message is targeted and relevant I'll do my best to respond. I have no interest in unethical or scam industries such as payday loans, gambling, or crypto, so please don't contact me about those.
