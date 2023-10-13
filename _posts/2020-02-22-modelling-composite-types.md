@@ -13,7 +13,7 @@ These are easy to model in functional languages that use algebraic type systems,
 
 To explore this, we'll model a contact info type which can be either a phone number or an email, show how it's used, and then evolve it to also add a website URL alternative.
 
-# Algebraic modelling
+## Algebraic modelling
 
 For the algebraic type system I'm going to use F# as it has particularly clean syntax for domain modelling. The contact info can be modelled as a discriminated union where `|` indicates a choice between the type constructors, i.e. a `ContactInfo` is either a `Phone` containing a string, or an `Email` containing a string.
 
@@ -59,7 +59,7 @@ That was pretty neat. Adding a different type didn't require any existing lines 
 
 Now let's see how we can model this concept in an object-oriented language.
 
-# Object-oriented attempt 1: Tagging
+## Object-oriented attempt 1: Tagging
 
 The approach I see most often used for this situation in object-oriented languages is to add an enum tag to the class indicating the type of value. This is probably because corresponds to the way you'd store the data in a relational database (a column for the type and a column for the value) so it's easy to use with object-relational mappers.
 
@@ -148,7 +148,7 @@ In general, this kind of tagged data approach is not very future-proof in object
 
 Let's see if we can do better.
 
-# Object-oriented attempt 2: Inheritance
+## Object-oriented attempt 2: Inheritance
 
 For our second attempt we'll use the proper object-oriented approach of inheritance and subtype polymorphism. I've used an abstract base class here, but an interface could be used instead without changing any of the modelling discussion.
 
@@ -228,7 +228,7 @@ All good then? Not quite. Unfortunately, subtype polymorphism is only viable whe
 
 Subtype polymorphism is a great approach for functionality that is intrinsic to the type, but for other things you might want to do with it (e.g. converting it to data transfer objects for rendering in APIs or UIs) another approach is necessary.
 
-# Object-oriented attempt 3: Visitor pattern
+## Object-oriented attempt 3: Visitor pattern
 
 We'll start off with subtype polymorphism again, but this time we will expose the data because the visitor pattern does dispatch based on type. Note, however, that there are no shared properties or behaviour and so `ContactInfo` becomes effectively a marker interface.
 
@@ -339,7 +339,7 @@ Look back at the visitor pattern again though. We've exposed disparate propertie
 
 Unfortunately with traditional object-oriented languages we haven't found an ideal approach for modelling composite types.
 
-# _Ad hoc_ interface implementation
+## _Ad hoc_ interface implementation
 
 This brings us neatly around to another form of modelling which is neither algebraic nor object-oriented. It's the approach used in Go's interfaces and Rust's trait objects, as shown below. Note that in Go you wouldn't tend to declare the interface along with the structures, but only when you need to make them implement a common behaviour.
 
