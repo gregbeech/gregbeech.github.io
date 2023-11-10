@@ -27,11 +27,11 @@ title:                 Greg Beech
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  Blog and CV of Greg Beech, Chief Engineer @ Zego
+  Blog and CV of Greg Beech
 
 # A shorter description for the sidebar.
 tagline:               >
-  Chief Engineer @ Zego
+  Just Another Engineer
 
 # A list of keywords for your blog.
 keywords:              []

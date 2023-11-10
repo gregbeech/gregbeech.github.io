@@ -2,7 +2,7 @@
 layout: page
 title: CV
 description: >
-  CV of Greg Beech, Chief Engineer @ Zego.
+  CV of Greg Beech.
 hide_description: true
 menu: true
 ---
@@ -15,7 +15,7 @@ This CV doesn't mention technologies much because they change far more quickly t
 
 ## Zego
 
-Chief Engineer, B2C, Jul 2022 -- Present
+Chief Engineer, B2C, Jul 2022 -- Nov 2023
 
 
 Principal Engineer, Apr 2021 -- Jun 2022
