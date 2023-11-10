@@ -1,4 +1,4 @@
-# Greg Beech's Website
+# My Website
 
 Based on [Jekyll](https://jekyllrb.com/) with the [Hydejack](https://qwtel.com/hydejack/) theme. Hosted on [GitHub Pages](https://pages.github.com/) with [Cloudflare](https://www.cloudflare.com/) for SSL.
 
