@@ -199,8 +199,8 @@ remote_theme: hydecorp/hydejack@v9.1.6
 #   yandex:              <verification-id>
 
 # Used for Twitter cards
-twitter:
-  username:            gregbeech
+# twitter:
+#   username:            gregbeech
 
 # Used for Facebook open graph
 # facebook:
@@ -212,7 +212,6 @@ twitter:
 social:
   name:                Greg Beech
   links:
-    - https://twitter.com/gregbeech
     - https://github.com/gregbeech
 
 
