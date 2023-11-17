@@ -7,33 +7,35 @@ author: gregbeech
 comments: true
 ---
 
-A fair bit of my last two decades has been spent building on monoliths, followed shortly after by leading the effort to re-platform away from those same monoliths. That might make you think I don’t like monoliths, but the mundane reality is the practices used to build them meant they tended to reach a state where they could no longer be reasonably maintained or evolved, and it’s usually more efficient to rebuild externally and migrate than to rebuild in-place.
+A fair bit of my last two decades has been spent building in monoliths, followed shortly after by leading the effort to re-platform away from those same monoliths. That might make you think I don’t like monoliths, but the far more mundane reality is the practices used to build them meant they tended to reach a state where they could no longer be reasonably maintained or evolved, and it’s usually more efficient to rebuild externally and migrate than to rebuild in-place.
 
 However, rebuilding—at least as a single big effort—is _The Thing You Never Want To Do_ because all the time you’re doing it your product stagnates and your competitive advantage slips away. What you really want to do is build your monolith well, or at least well enough that you can continue to maintain and evolve it indefinitely, while still catering for the possibility you may want to replace parts of it later.
 
 If you follow these ten rules, ranked roughly from most to least important, then you should find your monolith serves you well for many years to come. None of them will cost you much time in the short term, but each of them will save you huge amounts of time in the future. 
 
-That said, if you’re building a monolith it’s pretty likely you’re working at a startup. I’ve spent the last seventeen years working in high growth startups and I’m all too aware even a bit more time in the short term might be too much more time. So treat these more like guidelines than actual rules, and give them more consideration for your core functionality than peripheral or experimental features.
+That said, if you’re building a monolith it’s pretty likely you’re working at a startup. I’ve spent the last seventeen years working in high growth startups and I’m all too aware even a bit more time in the short term might be too much more time. So treat these more like guidelines than actual rules, and give them more weight for your core functionality than peripheral or experimental features.
 
 I’ll be illustrating the points with specific reference to Rails and Django because they’re the monolithic frameworks I know well and have used for years, but they apply to any monolithic application, even if it's not "Rails-like".
 
 ## 1. Have fast build/test/deploy cycles
 
-Monoliths seem to tend towards a right old state where setting up the application and its dependencies takes hours, running the tests locally takes an eternity, some of the tests won't run locally unless you spend another day or two getting _those_ dependency issues just right, and then even though you've split your tests out into numerous parallel jobs in CI it still takes twenty minutes to check a pull request and another half hour or so to deploy.
+Monoliths seem to tend towards a painful state where setting up the application and its dependencies takes hours, running the tests locally takes an eternity, some of the tests won't run locally unless you spend another day or two finding the right incantations to get _those_ native dependencies to play nice, and then even though you've split your tests out into numerous parallel jobs in CI it still takes twenty minutes to check a pull request and another half hour or so to deploy.
 
-Your cycle time to deploy even a small change goes to an hour plus, and you get nervous deploying because issues will be slow to fix, and rolling back can be risky or even impossible if you've made incompatible database changes. Say goodbye to productivity, and hello to everybody wanting to write things outside the monolith, even if only to get away from those horrendously slow cycle times.
+Your cycle time to deploy even a small change goes to an hour plus, and you get nervous deploying because issues will be slow to fix, and rolling back can be risky or even impossible if you've made incompatible database changes. Say goodbye to productivity, and hello to everybody wanting to write things outside the monolith, even if only to get away from the horrendously slow cycle times.
 
-More than anything else, slow builds and deploys will kill your monolith because they lead to nobody _wanting_ to work on it any more, and once you've lost this particular battle, you've lost the war.
+More than anything else, slow tests, build and deploys will kill your monolith because they lead to nobody _wanting_ to work on it any more, and once that battle is lost, you've lost the war.
 
-The biggest culprit by far tends to be the use of database entities in tests, so even web or controller tests need to have data set up, queried, and torn down. For tens of test suites this might not seem like a huge deal, but once you've got hundreds or even thousands of suites, it can be the difference between sixty seconds and sixty minutes for a full test run. Avoid hitting the database in tests unless you're specifically testing database interactions.
+The biggest culprit by far tends to be the use of database entities in tests, so even web or controller tests need to have data set up, queried, and torn down. For tens of test suites this might not seem like a huge deal, but once you've got hundreds or even thousands of suites, it can be the difference between sixty seconds and sixty minutes for a full test run. Avoid hitting the database in tests unless you're specifically testing database interactions, or in a very limited set of full system tests.
 
-As a heuristic, I'd suggest any time your builds or deploys get above two or three minutes, you should spend some time making them faster. Don't wait until they get to twenty or ten or even five minutes before you act, because by then it could be too late.
+As a heuristic, I'd suggest any time your builds or deploys get above two or three minutes, you should spend some time making them faster. Don't wait until they get to twenty or ten or even five minutes before you act, because by then you're already on the fated path.
 
 ## 2. Validate data rigorously
 
-This might seem a surprising rule to have so high up, but there's a good reason for it. It’s time consuming, and often impossible without user intervention, to fix bad or missing data. It's also the thing every single person building monoliths seems to neglect until it's too late, and you've got users with invalid or unconfirmed email addresses, driving licence numbers in the wrong format, addresses with no postal code, and so on.
+This might seem a surprising rule to have so high up, but there's a good reason for it. Bad data causes myriad problems because systems don't work as expected when supposed invariants are violated, for example when you've got users with invalid or unconfirmed email addresses, multiple users with the same phone number, or orders that were placed eight years in the future.
 
-If you only apply _one_ rule from this list, make it this one. At least if you've got good data you can remodel it into the shape you need it in future. This is important if you reach the point where you do want to rebuild part of the system, as rebuilds tend to be more rigorous on validation, and you may find you can't migrate easily because the data you have doesn't meet the expectations of the new system.
+These problems usually have to be investigated by engineers on a case-by-case basis to find and fix the root cause, and then go back and fix up the data itself. If the data is from a source you can query this might just take engineering time. Unfortunately, it's often impossible to fix the data without either manual work or user intervention.
+
+If you only apply _one_ rule from this list, make it this one. At least if you've got good data you can easily migrate it to the new services you had to build because you neglected your cycle times. (This isn't a hypothetical concern; rebuilt systems tend to have more rigorous data validation and I've seen poor data block migrations by many months.)
 
 Rails makes adding validation to your models straightforward, and will run validations by default on the usual `create`, `update` and `save` methods, although it does have other methods which bypass validation which isn't great because it's easy for people new to Rails to use them without realising. Django really drops the ball though, because completely counter to any reasonable expectation it doesn't run validations when you save a model unless you explicitly override `save` to call `clean`. Which you should.
 
@@ -41,7 +43,14 @@ As a backstop for validations being accidentally not run, I'd recommend defining
 
 ## 3. Model the real world
 
-If you've worked with me in the past then you know this is where I'm going to start talking about Domain-Driven Design (DDD), and you're probably shocked it isn't sitting in the coveted #1 spot.
+If you've worked with me in the past then you know this is where I'm going to start talking about Domain-Driven Design. DDD is a _huge_ topic and far too much to cover here. If you aren't familiar with it then do yourself---and everyone else---a favour and learn more about it.
+
+One of the biggest problems in monoliths tends to be the addition of inappropriate properties to entities, so the `User` entity ends up holding tangentially related data like `balance` and `last_login_at`. This creates a high degree of coupling between different subsystems (in this case, users, finance, and authentication) which makes them hard to work on independently or extract into separate services.
+
+Even if you're not too worried about that, wide rows can lead to performance problems. I've seen this particularly in Postgres if one or two columns are updated frequently as rows are copied on write just to update that one column which leads to a lot of dead rows, which can lead to excessive vacuuming.
+
+If you follow DDD principles you'll always be asking yourself questions like "what is the real-world entity this data belongs to?" so you won't put inappropriate data on entities, and they'll stay smaller, more focused, and easier to work with.
+
 
 
 
