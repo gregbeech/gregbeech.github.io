@@ -95,16 +95,16 @@ Both of these are valid but we chose the latter because archived books should no
 
 There are a number of different ways of representing lists. The most basic is an array, i.e.
 
-{% highlight json %}
+```json
 [
   { "isbn": "9780297859406" },
   { "isbn": "9781447252566" }
 ]
-{% endhighlight %}
+```
 
 This is the most lightweight approach in terms of bytes on the wire, but has a major disadvantage that you cannot associate any metadata with the list itself such as whether there are more pages of results. As such, for lists we return an object with an `items` field, meaning you can insert metadata related to the list, e.g.
 
-{% highlight json %}
+```json
 {
   "lastPage": false,
   "items": [
@@ -112,18 +112,18 @@ This is the most lightweight approach in terms of bytes on the wire, but has a m
     { "isbn": "9781447252566" }
   ]
 }
-{% endhighlight %}
+```
 
 We try to avoid heterogenous lists (ones that contain multiple types of resource) as these are harder for clients to work with, but sometimes it's unavoidable such as when returning search suggestions which could be a book, an author, etc. In this case we use a discriminator field `type` so that clients can differentiate between the resource types:
 
-{% highlight json %}
+```json
 {
   "items": [
     { "type": "Book", "isbn": "9780297859406" },
     { "type": "Author", "id": "1726" }
   ]
 }
-{% endhighlight %}
+```
 
 All lists are pageable using `offset` and `count` parameters, where `offset` is the zero-based index at which to start returning results, and `count` is the maximum number of results to return. We prefer not to return the total number of results available (e.g. to allow things like "Page 1 of 23" in the client) because it makes queries harder to optimise and this kind of paged design is somewhat old-fashioned meaning clients have little need for it. Instead we return a `nextPage` flag which indicates whether there are more results.
 
@@ -197,7 +197,7 @@ Because it's rare to have both `PUT` and `PATCH` verbs supported on the same end
 
 The next question is what should your `PATCH` body contain? You might have seen [RFC 6902][1] which describes an operation-based approach to updating resources, with a body something like this:
 
-{% highlight json %}
+```json
 [
   { "op": "test", "path": "/a/b/c", "value": "foo" },
   { "op": "remove", "path": "/a/b/c" },
@@ -206,7 +206,7 @@ The next question is what should your `PATCH` body contain? You might have seen 
   { "op": "move", "from": "/a/b/c", "path": "/a/b/d" },
   { "op": "copy", "from": "/a/b/d", "path": "/a/b/e" }
 ]
-{% endhighlight %}
+```
 
 This approach is, in my opinion, overly-complex nonsense.
 
@@ -287,12 +287,12 @@ Another factor to consider with errors is that sometimes when debugging things y
 
 Consequently, for all errors we return a JSON body with a status code and a helpful developer message such as:
 
-{% highlight json %}
+```json
 {
   "code": "InvalidParameter",
   "developerMessage": "The 'count' parameter must be greater than zero."
 }
-{% endhighlight %}
+```
 
 The `code` field is by default the description of the status code such as `BadRequest` or `NotFound`, although when a more specific error code is appropriate it can be substituted, as shown in the example above.
 
@@ -316,9 +316,9 @@ The downside of this is that when you need to display the money it needs to be d
 
 The JSON specification doesn't actually define the binary representation of numbers; it's simply a number so it's up to clients to interpret it appropriately. As such, because we always interpret non-integer numbers in JSON as decimals for safety, we made the decision to use the primary currency unit and have floating point numbers in the representation, e.g. £13.37 would be:
 
-{% highlight json %}
+```json
 { "currency": "GBP", "value": 13.37 }
-{% endhighlight %}
+```
 
 You don't have to include the currency code if you're sure you'll only ever accept one currency. If you suspect you might use other currencies in future then it doesn't hurt to put it in there for forwards-compatibility.
 

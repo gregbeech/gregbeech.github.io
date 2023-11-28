@@ -13,7 +13,7 @@ The trouble with feature flags is that they sound so simple: They're just an on/
 
 We've just rolled out [LaunchDarkly](https://launchdarkly.com/) at [Zego](https://www.zego.com/) after evaluating a number of open-source and SaaS offerings. This post contains the criteria we used to select a provider so we can be confident they'll scale with us. It's probably not an exhaustive list, but it'll give you a starting point.
 
-There are some table stakes requirements like multiple environments (production, staging, development, etc.), targeting groups using attributes, partial rollout of flags, archiving flags, and client libraries for all your backend and frontend languages. Pretty much every feature flagging system will support these. However, there are a many nonobvious requirements that are also essential. 
+There are some table stakes requirements like multiple environments (production, staging, development, etc.), targeting groups using attributes, partial rollout of flags, archiving flags, and client libraries for all your backend and frontend languages. Pretty much every feature flagging system will support these. However, there are many nonobvious requirements that are also essential. 
 
 ## Must haves
 

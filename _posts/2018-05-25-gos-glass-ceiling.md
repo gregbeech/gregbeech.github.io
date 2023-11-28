@@ -173,7 +173,7 @@ It would have had everything I needed.
 
 But it wouldn't have had any of the things I didn't know I needed. It wouldn't have had generics. It wouldn't have had higher-order functions. It wouldn't have had typeclasses. It wouldn't have had pattern matching. It wouldn't have had metaprogramming. It wouldn't have had macros. It wouldn't have had any of the tools that I now take for granted to build abstractions.
 
-And here's the rub. Go's documentation, in its justification of why the language omits so many features, does its best to explain that [they are too difficult or complex for you](https://golang.org/doc/faq). In fact, the FAQ includes the words "difficult" or "complex" sixteen times and "simple" or "simplifies" twenty:
+Go's documentation, in its justification of why the language omits so many of these features, does its best to explain that [they are too difficult or complex for you](https://golang.org/doc/faq). In fact, the FAQ includes the words "difficult" or "complex" sixteen times and "simple" or "simplifies" twenty:
 
 > Programming had become too difficult and the choice of languages was partly to blame.
 
@@ -194,7 +194,7 @@ It's pretty easy for most programmers to convince themselves of this. Paul Graha
 
 > As long as our hypothetical Blub programmer is looking down the power continuum, he knows he's looking down. Languages less powerful than Blub are obviously less powerful, because they're missing some feature he's used to. But when our hypothetical Blub programmer looks in the other direction, up the power continuum, he doesn't realize he's looking up. What he sees are merely weird languages. He probably considers them about equivalent in power to Blub, but with all this other hairy stuff thrown in as well. Blub is good enough for him, because he thinks in Blub.
 
-But here's the thing. Those of us who have invested huge amounts of time and effort into learning higher level languages that have these complicated features generally prefer to use them over languages like Go. We have the capability to work in pretty much any language we want, and we choose higher level ones like Scala or Ruby or Rust instead of basic ones like Go.
+However, those of us who have invested huge amounts of time and effort into learning higher level languages that have these complicated features generally prefer to use them over languages like Go. We have the capability to work in pretty much any language we want, and we choose higher level ones like Scala or Ruby or Rust instead of basic ones like Go.
 
 Do you really think it's just because we want to make life hard for ourselves, or could there be something deeper than that? Could it be that learning these languages and concepts makes you a better programmer, and lets you build software in a way that's _ultimately_ simpler by creating high level abstractions and composing them?
 
@@ -202,4 +202,4 @@ If you're happy with Go, you'll probably never know the answer. And, more tragic
 
 _That_ is what troubles me.
 
-An entire generation robbed of the chance to reach their potential.
+An entire cohort of engineers deprived of the chance to reach their potential.
