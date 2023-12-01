@@ -1,4 +1,4 @@
-:root {
+html {
   --font-weight-heading: normal;
 }
 
@@ -14,7 +14,7 @@
     }
 }
 
-h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5, .heading, .sidebar-nav-item {
+h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5, .heading, .sidebar-nav-item, .post-date {
   font-weight: normal;
 }
 
