@@ -1,7 +1,10 @@
+:root {
+  --font-weight-heading: normal;
+}
+
 .highlight {
   margin-bottom: 1rem;
 }
-
 
 @media screen and (min-width: 1664px) {
     body:not(.no-large-headings) .content h1, body:not(.no-large-headings) .content .h1 {
