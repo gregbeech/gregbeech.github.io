@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "command": "foreman",
+    "isshellcommand": true,
+    "tasks": [
+        {
+            "label": "start",
+            "args": [
+                "start"
+            ],
+        }
+    ]
+}
