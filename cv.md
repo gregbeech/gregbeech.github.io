@@ -9,9 +9,13 @@ menu: true
 
 I’m an experienced engineer and engineering leader, with a track record of incepting and delivering projects that have company-wide impact. I've spent the last seventeen years working in high growth startups, from series A through G.
 
-The type of role I enjoy is hands-on technical implementation and leadership rather than people management. This could either be in an early stage startup or in a more mature company with complex problems to solve, though my preference is for the former.
+The type of role I enjoy is hands-on technical implementation and leadership rather than pure people management. This could either be in an early stage startup or in a more mature company with complex problems to solve, though my preference is for the former.
 
 This CV doesn't mention technologies much because they change far more quickly than principles, but if you're interested the languages I'm most familiar with and generally like are Scala, Ruby, Python, and TypeScript. I'm a proponent of domain-driven design.
+
+## Jitty
+
+Founding Engineer, Jan 2024 -- Present
 
 ## Zego
 
