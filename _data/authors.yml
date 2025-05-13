@@ -25,10 +25,11 @@ gregbeech:
   # Social media icons in sidebar.
   # Comment/uncommet to show/hide. Rearrange to change the order in which they appear.
   social:
+    linkedin:        gregbeech
     github:          gregbeech
     stackoverflow:   13552/greg-beech
     # twitter:         gregbeech
-    linkedin:        gregbeech
+    instagram:       gsbeech
     email:           mailto:greg@gregbeech.com
     rss:             /feed.xml
     # download:        https://github.com/qwtel/hydejack-starter-kit/archive/master.zip
@@ -41,7 +42,6 @@ gregbeech:
     # spotify:         <user>/<number>
     # soundcloud:      <username>
     # lastfm:          <username>
-    # instagram:       <username>
     # flickr:          <string@string>
     # 500px:           <username>
     # dribbble:        <username>
