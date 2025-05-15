@@ -2,7 +2,7 @@
 layout: post
 title: Feature flags
 date: 2020-11-02
-tags: [reliability, deployment]
+tags: [reliability, deployment, velocity]
 author: gregbeech
 comments: true
 ---

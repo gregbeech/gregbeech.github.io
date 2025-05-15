@@ -2,7 +2,7 @@
 layout: post
 title: Beech's Law of Integrations
 date: 2025-05-13
-tags: [planning, software engineering, integrations]
+tags: [planning, integrations]
 author: gregbeech
 comments: true
 ---
