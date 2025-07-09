@@ -7,7 +7,7 @@ author: gregbeech
 comments: true
 ---
 
-I've been meaning to write something about why I'll likely never go back to an in-office role, and why hybrid working is unworkable, but I've been struggling to find the right angle. A company approached me recently and while checking the role description---just out of curiosity, not because I had any real interest---I saw wording along the lines of "we like spending as much time with our colleagues as possible so we want you to commit to at least three days a week in the office" and boom, there's the angle, because I don't want to spend as much time with my colleagues as possible. 
+I've been meaning to write something about why I'll likely never go back to an in-office role, and why hybrid working is unworkable, but I've been struggling to find the right angle. A company approached me recently and while checking the role description---just out of curiosity, not because I had any real interest---I saw wording along the lines of "we like spending as much time with our colleagues as possible so we want you to commit to at least three days a week in the office" and there's the angle, because I don't want to spend as much time with my colleagues as possible. 
 
 It's not that I dislike spending time with colleagues. At Jitty we get together in person about once a month and it's great collaborating with people then heading out for a few beers afterwards. I enjoy the "[Jit Tea](https://coops.dev/standups-are-an-unnecessary-evil)" chats we have most mornings which are purely sociable remote meetings with no work talk, and no obligation to join. But outside work hours I'd generally rather spend my time with family and friends, not colleagues. 
 
