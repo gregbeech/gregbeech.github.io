@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The monolith rules, introduction
+title: "The monolith rules: Introduction"
 date: 2025-06-06
 tags: [monoliths, rails, django, ruby, python]
 author: gregbeech
