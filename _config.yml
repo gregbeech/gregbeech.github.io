@@ -4,7 +4,7 @@
 # IMPORTANT: Set the URL of your page.
 # Set to https://<username>.github.io when hosting on GitHub Pages
 # (unless you are using a custom domain).
-url:                   https://www.gregbeech.com
+url: https://www.gregbeech.com
 
 # IMPORTANT: Set The "base URL" of your site.
 #
@@ -15,81 +15,79 @@ url:                   https://www.gregbeech.com
 # When using GitHub Pages, set to '' when hosting a user- or organization page,
 # i.e. when the name of the repository looks like <username>.github.io.
 # Otherwise, set to /<name of repository> (with leading /, but without the < >).
-baseurl:               ''
+baseurl: ""
 
 # Language of your content in 2-letter code, e.g.: en, de.
 # You may also provide a location, e.g.: en-us, de_AT.
-lang:                  en
+lang: en
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 Greg Beech
+title: Greg Beech
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
-description:           >
+description: >
   Blog and CV of Greg Beech
 
 # A shorter description for the sidebar.
-tagline:               >
+tagline: >
   Just Another Engineer
 
 # A list of keywords for your blog.
-keywords:              []
+keywords: []
 
 # Used by jekyll-seo-tag.
-logo:                  /assets/icons/icon.png
+logo: /assets/icons/icon.png
 
 # This should be the same author as first entry in `_data/authors.yml`.
 # Duplication is necessary due to the `jekyll-feed`, `jekyll-seo-tag` plugin.
 author:
-  name:                Greg Beech
-  email:               greg@gregbeech.com
+  name: Greg Beech
+  email: greg@gregbeech.com
   # Used by `jekyll-seo-tag`:
-  twitter:             gregbeech
+  twitter: gregbeech
 
 # This text will appear in a `<small>` tag in the footer of every page.
-copyright:             © 2013-2021 Greg Beech. All rights reserved.
+copyright: © 2013-2026 Greg Beech. All rights reserved.
 
 # Format of the permalinks
-permalink:             pretty
+permalink: pretty
 
 # Pagination configuration (used by the `blog` layout)
-paginate:              5
-paginate_path:         /page-:num/
-
+paginate: 5
+paginate_path: /page-:num/
 
 # Customizaton
 # ========================================================================================
 
 # Sidebar image and theme color of the site.
-accent_image:          none
-accent_color:          'rgb(36, 31, 108)'
+accent_image: none
+accent_color: "rgb(36, 31, 108)"
 
 # The string encoding which fonts to fetch from Google Fonts.
 # See: <https://qwtel.com/hydejack/docs/configuration/>
-google_fonts:          Montserrat:400,400i,500,500i
+google_fonts: Montserrat:400,400i,500,500i
 
 # The text font. Expects a string that is a valid CSS font-family value.
-font:                  Montserrat, Helvetica, Arial, sans-serif
+font: Montserrat, Helvetica, Arial, sans-serif
 
 # The font used for headings. Expects a string that is a valid CSS font-family value.
-font_heading:          Montserrat, Helvetica, Arial, sans-serif
+font_heading: Montserrat, Helvetica, Arial, sans-serif
 
 # 3rd Party Integrations
 # ----------------------------------------------------------------------------------------
 
 # Setting a disqus shortname will enable the comment section on
 # pages with `comments: true` in the front matter.
-disqus:                gregbeech
+disqus: gregbeech
 
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
-google_analytics:      UA-113631298-1
+google_analytics: UA-113631298-1
 
 # Setting a tinyletter username will enable the newsletter subscription box.
 # PRO version only!
 # tinyletter:            <tinyletter_username>
-
 
 # Hydejack Settings
 # ----------------------------------------------------------------------------------------
@@ -97,66 +95,64 @@ google_analytics:      UA-113631298-1
 
 hydejack:
   # Configure the order of complementary content on blog posts
-  post_addons:         [about, newsletter, related]
+  post_addons: [about, newsletter, related]
 
   # Configure the order of complementary content on project pages
-  project_addons:      [about, newsletter, other]
+  project_addons: [about, newsletter, other]
 
   # If you do not use Google Fonts, set to `true`.
-  no_google_fonts:     false
+  no_google_fonts: false
 
   # Set to `true` if you don't want to show an icon indicating external links
-  no_mark_external:    false
+  no_mark_external: false
 
   # Set to `true` if third party plugins fail to work with dynamically loaded pages
-  no_push_state:       false
+  no_push_state: false
 
   # Set to `true` if you want to disable the drawer
-  no_drawer:           false
+  no_drawer: false
 
   # Set to `true` if you do not want parts of the css inlined in <head/>
   # This *may* be benefitial when serving the site over HTTP/2.
-  no_inline_css:       false
+  no_inline_css: false
 
   # Code blocks and tables "break" the layout by spanning the full available width.
   # Set this to true if you want them to be the same width as other content.
-  no_break_layout:     false
+  no_break_layout: false
 
   # Set to `true` if you do not want to expose your resume and projects
   # in machine-readable formats.
-  no_structured_data:  false
+  no_structured_data: false
 
   # You can set this to `true` if you don't want to set the `theme-color` meta tag,
   # This only affects the meta tag, not the color specified in the app manifest.
-  no_theme_color:      false
+  no_theme_color: false
 
   # Set to `true` when building with the `--lsi` option
-  use_lsi:             false
+  use_lsi: false
 
   dark_mode:
-    always:            false
-    dynamic:           true
-    sunrise:           6
-    sunset:            18
-    icon:              true
-
+    always: false
+    dynamic: true
+    sunrise: 6
+    sunset: 18
+    icon: true
 
 # Collections
 # ========================================================================================
 
 collections:
   featured_categories:
-    permalink:         /category/:name/
-    output:            true
+    permalink: /category/:name/
+    output: true
 
   featured_tags:
-    permalink:         /tag/:name/
-    output:            true
+    permalink: /tag/:name/
+    output: true
 
   projects:
-    permalink:         /projects/:path/
-    output:            true
-
+    permalink: /projects/:path/
+    output: true
 
 # File inclusion/exclusion
 # ========================================================================================
@@ -165,7 +161,6 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
-
 
 # Plugins and Plugin Configuration
 # ========================================================================================
@@ -192,7 +187,6 @@ plugins:
 # theme: jekyll-theme-hydejack
 remote_theme: hydecorp/hydejack@v9.2.1
 
-
 # SEO Tag
 # ---------------------------------------------------------------------------------------
 
@@ -217,41 +211,40 @@ remote_theme: hydecorp/hydejack@v9.2.1
 
 # Used on index and about sites
 social:
-  name:                Greg Beech
+  name: Greg Beech
   links:
     - https://github.com/gregbeech
-
 
 # Other Plugins
 # ---------------------------------------------------------------------------------------
 
 optional_front_matter:
-  remove_originals:    true
+  remove_originals: true
 
 readme_index:
-  remove_originals:    true
+  remove_originals: true
 
 relative_links:
-  collections:         true
+  collections: true
 
 titles_from_headings:
-  strip_title:         true
-  collections:         true
+  strip_title: true
+  collections: true
 
 kramdown:
-  footnote_backlink:   '&#x21a9;&#xfe0e;'
-  math_engine:         mathjax
+  footnote_backlink: "&#x21a9;&#xfe0e;"
+  math_engine: mathjax
   math_engine_opts:
-    preview:           true
-    preview_as_code:   true
+    preview: true
+    preview_as_code: true
 
 compress_html:
-  comments:            ['<!-- ', ' -->']
-  clippings:           all
-  endings:             all
+  comments: ["<!-- ", " -->"]
+  clippings: all
+  endings: all
 
 sass:
-  style:               compressed
+  style: compressed
 
 # If you are upgrading form v5 (or earlier), uncomment the lines below,
 # so that the location of the feed XML stays the same.
