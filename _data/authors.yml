@@ -3,35 +3,35 @@
 # You can change `author1` to your shortname.
 gregbeech:
   # Replace <...> with your own (remove the < >)
-  name:              Greg Beech
-  email:             greg@gregbeech.com
+  name: Greg Beech
+  email: greg@gregbeech.com
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
-  about:             |
-    I'm currently a Founding Engineer at [Jitty](https://jitty.com/). Previously I was the Chief Engineer in B2C
+  about: |
+    I'm currently CTO at [Jitty](https://jitty.com/). Previously I was the Chief Engineer
     at [Zego](https://www.zego.com/) and a Principal Engineer at [Deliveroo](https://deliveroo.co.uk). For more 
     information about my career have a look at [my CV](/cv/). When I'm not working I'll either be found in my garage 
     gym, out and about on collection of cars, motorbikes and mountain bikes, or keeping my wife and son entertained.
 
   # This photo will be used in the about section.
   picture:
-    path:            /assets/img/gregbeech.jpg
+    path: /assets/img/gregbeech.jpg
     # srcset is optional, but can be used to provide higher res versions for retina displays
     srcset:
-      1x:            /assets/img/gregbeech.jpg
-      2x:            /assets/img/gregbeech.jpg
+      1x: /assets/img/gregbeech.jpg
+      2x: /assets/img/gregbeech.jpg
 
   # Social media icons in sidebar.
   # Comment/uncommet to show/hide. Rearrange to change the order in which they appear.
   social:
-    linkedin:        gregbeech
-    github:          gregbeech
-    stackoverflow:   13552/greg-beech
+    linkedin: gregbeech
+    github: gregbeech
+    stackoverflow: 13552/greg-beech
     # twitter:         gregbeech
-    instagram:       gsbeech
-    email:           mailto:greg@gregbeech.com
-    rss:             /feed.xml
+    instagram: gsbeech
+    email: mailto:greg@gregbeech.com
+    rss: /feed.xml
     # download:        https://github.com/qwtel/hydejack-starter-kit/archive/master.zip
     # facebook:        <username>
     # google:          <number>
