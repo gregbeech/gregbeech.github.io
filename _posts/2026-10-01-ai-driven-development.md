@@ -164,6 +164,8 @@ Then there's the exhaustion. I've already said the slack has gone, but it bears 
 
 Finally, it doesn't work everywhere. Everything in this post relies on fast, reliable feedback: tests, preflight checks, CI. If you've got a legacy system without them, or you're working in a niche language the models have seen little of, retrofitting this way of working will be a long haul. You'll need to build the safety net before you can lean on it.
 
+## What It Doesn't Cost
+
 There are a few concerns I hear a lot that don't worry me much. Comprehension is one: if nobody wrote the code by hand, does anyone understand it? But you've never remembered every line of a codebase, and most of it was written by someone else anyway. The difference now is that the author is always available. Point an agent at unfamiliar code and you'll have an explanation in seconds, which is more than you can say for a colleague who left two years ago.
 
 Correlated blind spots are another. If one AI writes the code and another reviews it, couldn't they both miss the same thing? Sure, but human teams share blind spots too. Make sure your writer and reviewer are different model families, though, so you're not having a model mark its own homework.
