@@ -160,17 +160,17 @@ The bigger cost is to people, starting with juniors. The traditional entry-level
 
 Will we end up with engineers who can't code? To some extent, probably, and not just juniors. I can already feel my coding skills starting to atrophy. But that tends to happen once you reach staff level and your job becomes more about direction than implementation, and nobody thinks staff engineers are worse engineers for it. We've also long accepted engineers building database-backed systems who can't write SQL or read a query plan. Syntax fades quickly. Principles fade much more slowly, and working this way exercises them more, not less.
 
-Then there's the exhaustion. I've already said the slack has gone, but it bears saying plainly: working like this is tiring in a way that writing code never was. It's compounded by a sense of a race. If everyone around you is running three agents, nobody wants to be the one still typing. That's not a healthy dynamic, and I don't have a good answer to it beyond noticing that it's there.
+Then there's the exhaustion. I've already said the slack has gone, but it bears saying plainly: working like this is tiring in a way that writing code never was. It's compounded by the sense of being a race to the top. If everyone around you is running three agents, nobody wants to be the one still typing. That's not a healthy dynamic, and I don't have a good answer to it beyond noticing that it's there.
 
 Finally, it doesn't work everywhere. Everything in this post relies on fast, reliable feedback: tests, preflight checks, CI. If you've got a legacy system without them, or you're working in a niche language the models have seen little of, retrofitting this way of working will be a long haul. You'll need to build the safety net before you can lean on it.
 
 ## What It Doesn't Cost
 
-There are a few concerns I hear a lot that don't worry me much. Comprehension is one: if nobody wrote the code by hand, does anyone understand it? But you've never remembered every line of a codebase, and most of it was written by someone else anyway. The difference now is that the author is always available. Point an agent at unfamiliar code and you'll have an explanation in seconds, which is more than you can say for a colleague who left two years ago.
+There are a few concerns I hear a lot that don't worry me much. Comprehension is one: if nobody wrote the code by hand, does anyone understand it? But you don't remember every line you've written in a codebase, and most of it was written by someone else anyway. The difference now is that the author is always available, and the rationale is documented. Point an agent at unfamiliar code and you'll have an explanation of what, and why, in seconds, which is more than you can say for a colleague who left two years ago.
 
-Correlated blind spots are another. If one AI writes the code and another reviews it, couldn't they both miss the same thing? Sure, but human teams share blind spots too. Make sure your writer and reviewer are different model families, though, so you're not having a model mark its own homework.
+Correlated blind spots are another. If one AI writes the code and another reviews it, couldn't they both miss the same thing, because they've likely been trained on similar data? Sure, but human teams share blind spots too. Make sure your writer and reviewer are different model families, though, so you're not having a model mark its own homework.
 
-And then code quality. I'm not convinced agents are worse than humans here, and a few humans with agents working to strong, written-down guidelines may well produce a more consistent codebase than a large team ever did.
+And then there's code quality. I'm not convinced agents are worse than humans here, particularly the latest ones that seem much better at abstracting purpose from mechanics. A few humans with agents working to strong, written-down guidelines may well produce a higher quality and more consistent codebase than a large team ever did.
 
 ## Last Argument of Kings
 
