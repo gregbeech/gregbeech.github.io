@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The production gap
-date: 2026-10-10
+date: 2026-10-12
 tags: [ai, software engineering]
 author: gregbeech
 comments: true
@@ -16,8 +16,6 @@ But he was curious about something, and asked what the gap actually is between a
 In my last post, I argued that engineers increasingly own the things no single change reveals. This is what that looks like in practice.
 
 ## The Proof of Concept
-
-The proof of concept had its share of rough edges that needed productionising, but one of the most interesting to dive into to show the gap between PoC and production is something that might seem quite simple on the surface: rate limiting.
 
 Every request a crawler makes costs the site something. The web server burns CPU rendering the page, the database burns CPU, memory and IO fetching the data, and everything burns network moving it around. Push any of those towards their limits and the site slows down or falls over.
 
