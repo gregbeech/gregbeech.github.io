@@ -17,7 +17,7 @@ In my last post, I argued that engineers increasingly own the things no single c
 
 ## The Proof of Concept
 
-The proof of concept had its share of rough edges. Every adapter parsed HTML with regular expressions, which anyone who's read [that Stack Overflow answer](https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454) will appreciate. But that's the kind of gap an engineer spots straight away. The one I want to talk about is one most people never think about at all.
+The proof of concept had its share of rough edges that needed productionising, but one of the most interesting to dive into to show the gap between PoC and production is something that might seem quite simple on the surface: rate limiting.
 
 Every request a crawler makes costs the site something. The web server burns CPU rendering the page, the database burns CPU, memory and IO fetching the data, and everything burns network moving it around. Push any of those towards their limits and the site slows down or falls over.
 
