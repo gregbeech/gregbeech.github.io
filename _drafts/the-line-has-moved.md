@@ -1,19 +1,17 @@
 ---
 layout: post
 title: The line has moved
-date: 2026-10-13
+date: 2026-10-14
 tags: [ai, software engineering]
 author: gregbeech
 comments: true
 ---
 
-A few weeks ago, Rich, who looks after growth for us, made his first real commit to our codebase. He's now well past his hundredth. That ranges from SEO, our main growth driver, to new UI features and performance improvements, and it isn't trivial stuff: some of these changes involve database migrations and background jobs. The work is well thought through and high quality. If I didn't know better, I'd assume the analysis and implementation came from an experienced engineer.
+A few weeks ago, Rich, who looks after growth for us, opened his first pull request against our codebase. He's just merged his seventieth. That ranges from SEO, our main growth driver, to new UI features and performance improvements, and it isn't trivial stuff: some of these changes involve database migrations, background jobs, and changes to our Stripe integration. The work is well thought through and high quality. If I didn't know better, I'd assume the analysis and implementation came from an experienced engineer.
 
 He can't code. At all.
 
-Millie, our partnerships manager, came up with the idea of using AI to produce homebuyer reports, pulling together myriad data sources including land registry records, planning applications, flood risk, sales history and more. Rich built a feature to allow people to buy them, including the changes our Stripe integration needed to take payment. People are buying them.
-
-So two people who can't code took an idea all the way to a revenue-generating feature, and engineering's only involvement was a few minor review comments. As Rich put it in [his own post](https://www.linkedin.com/feed/update/urn:li:activity:7513922056082669568/) about the experience: "Not ship vibe-coded slop, but ship ship." It's real, meaningful work that until very recently would have needed an engineer.
+As Rich put it in [his own post](https://www.linkedin.com/feed/update/urn:li:activity:7513922056082669568/) about the experience: "Not ship vibe-coded slop, but ship ship." It's real, meaningful work that until very recently would have needed an engineer.
 
 This is very cool. It feels like a revolution, and in one way it is: this is production software, serving paying customers. But non-engineers building software isn't new, so it's worth looking at what's actually changed, and what it means for engineers.
 
