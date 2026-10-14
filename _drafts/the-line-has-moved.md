@@ -27,7 +27,7 @@ Until something leaks, anyway. In my experience, most reportable data breaches c
 
 What's different now is where the work lands. Rich's changes go into the real codebase, through the same pull requests, the same CI, and the same agentic review as everyone else's. Rather than creating more shadow engineering, AI is dragging it into the light.
 
-It also unlocks the small features and fixes that never make it onto a roadmap because they're too minor to compete with bigger priorities. SEO improvements are a perfect example. Individually they're small, collectively they're valuable, and they're permanently stuck behind whatever engineering is working on this quarter. Now the person who cares most about them can just do them.
+It also unlocks the small features and fixes that never make it onto a roadmap because they're too minor to compete with bigger priorities. SEO improvements are a perfect example. Individually they're small, collectively they're valuable, and they're permanently stuck behind whatever engineering is working on this week. Now the person who cares most about them can just do them.
 
 Rich's own take is that his main contribution was having the will and the headspace to move it forward. That's exactly the point. The work just never got prioritised.
 
