@@ -29,7 +29,7 @@ What's different now is where the work lands. Rich's changes go into the real co
 
 It also unlocks a category of work that has always struggled to get done: the small features and fixes that never make it onto a roadmap because they're too minor to compete with bigger priorities. SEO improvements are a perfect example. Individually they're small, collectively they're valuable, and they're permanently stuck behind whatever engineering is working on this quarter. Now the person who cares most about them can just do them.
 
-Rich is refreshingly honest that a good chunk of the code didn't take much effort. By his own account, his role was mostly being someone with the will and the headspace to move it forward. That's exactly the point: the work just never got prioritised.
+Rich's own take is that his main contribution was having the will and the headspace to move it forward. That's exactly the point: the work just never got prioritised.
 
 So the software isn't new, but the scrutiny is. And once it's in the light, it raises a question Zapier never did: who gets to merge?
 
@@ -51,7 +51,7 @@ So rather than a blanket gate, the principle becomes: human sign-off for changes
 
 We're not there yet on our main repository. It's older, isn't as well set up for agents as our newer ones, and doesn't have a proper code review skill, so for now the gate stays.
 
-Interestingly, Rich thinks that kind of setup is mostly unnecessary, and he's partly right. The review agents do a good job without a skill. But most of what engineers have flagged in his pull requests wasn't wrong so much as wrong for us: adding hooks to the site template because one component needed them, or adding a dedicated job queue so his job could jump ahead of the others. A generic reviewer can't know those things. A review skill could.
+Rich thinks that kind of setup is mostly unnecessary, and he's partly right. The review agents do a good job without a skill. But most of what engineers have flagged in his pull requests wasn't wrong so much as wrong for us: adding hooks to the site template because one component needed them, or adding a dedicated job queue so one job could jump ahead of the others. A generic reviewer can't know those things. A review skill could.
 
 The way to remove the gate is the same way the rest of our agent setup grew: scar tissue. Every time an engineer catches something in one of his pull requests that the review agent missed, it goes into the review skill. Over time, human sign-off turns into a measurement of what the agent still doesn't know. When engineers stop finding anything over a decent run of pull requests, there's evidence the gate can go, rather than just a feeling.
 
@@ -61,9 +61,9 @@ Even then, it makes me a bit nervous. That's probably healthy. Zapier workflows 
 
 In [my last post](https://www.gregbeech.com/2026/10/08/ai-driven-development/) I argued that writing code is the easy bit between the hard bits. Rich has the hard bits for his domain. He understands SEO far better than any of our engineers, and as he points out, that business context makes him a better fit than an engineer for some pull requests. What he was missing was the easy bit, and agents have filled that in.
 
-What agents can't fill in is everything that makes his changes safe to ship. The comprehensive testing strategy, the CI pipeline, the preflight checks, the feature flags and release practices, the instinct that a new precompute job is going to hurt the database: all of it comes from engineers, and from where he sits, it's invisible. It's also why the models seem to need so little setup: they're working inside guardrails somebody already built.
+What agents can't fill in is everything that makes his changes safe to ship. The comprehensive testing strategy, the CI pipeline, the preflight checks, the feature flags and release practices, the instinct that a new precompute job is going to hurt the database: all of it comes from engineers, and from where he sits, it's invisible. Rich says as much himself: there's a lot of technical context he doesn't have, which is why engineers are still necessary. The same guardrails are why the models seem to need so little setup: they're working inside guardrails somebody already built.
 
-Those are the hard bits of engineering. Engineers need to be domain experts too, and their domain is engineering. Not knowing a language or a framework, but knowing how systems behave under load, how data outlives the code that wrote it, how changes fail and how to make them fail safely, and how to build the environment that lets everyone else ship without breaking things. That's what Rich is borrowing every time he merges.
+Those are the hard bits of engineering. Engineers need to be domain experts too, and their domain is engineering. Not knowing a language or a framework, but knowing how systems behave under load, how data outlives the code that wrote it, how changes fail and how to make them fail safely, and how to build the environment that lets everyone else ship without breaking things. That's what Rich is relying on every time he merges.
 
 For a long time you could have a perfectly good career by showing up and writing code, because the code was scarce. It isn't any more. An agent can write it, and a domain expert with an agent can write it with better business context than you have. If what you bring is turning tickets into pull requests, you're competing with both, and you're the one with less context. Writing code is no longer a differentiator; it's table stakes.
 
@@ -71,7 +71,7 @@ That's particularly uncomfortable for junior engineers, because the traditional 
 
 ## Redrawing the line
 
-So the line between engineering and everything else hasn't disappeared. It's moved. Domain experts increasingly own the changes in their domain. Engineers increasingly own the things that don't show up in any single change: performance, architecture, reliability, and the guardrails that let everyone else work safely. And as Rich admits, he's been having something of an existential crisis about it too: it's not only engineers who are wondering what their job looks like in a year.
+So the line between engineering and everything else hasn't disappeared. It's moved. Domain experts increasingly own the changes in their domain. Engineers increasingly own the things that don't show up in any single change: performance, architecture, reliability, and the guardrails that let everyone else work safely. And as Rich says in his post, he's been having something of an existential crisis about it too: it's not only engineers who are wondering what their job looks like in a year.
 
 It moves the bottleneck, too. Rich makes the point himself: "Building stuff was never really the main issue. Building the right stuff was." When anyone can ship, it's easy to build faster than you can learn from users. I've argued before that you should [just build it, but not ship it](https://www.gregbeech.com/2025/05/16/just-build-it-but-dont-ship-it/), and that's truer now than ever. Building is cheap enough for anyone; the discipline is being brutally honest about what deserves to reach users.
 
