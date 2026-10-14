@@ -23,7 +23,7 @@ This kind of software creates enormous value. It also lives entirely outside eng
 
 So engineering turns a blind eye and pretends the Zapier and spreadsheets don't exist because they've already got enough work, and the business just kind of ignores engineering because they're too slow anyway, and everybody is happy.
 
-Until something leaks, anyway. In my experience, it's this kind of software that most reportable data breaches come from. Not from engineering, but from a file containing personal data dropped into a public S3 bucket, or a mail merge that CC'd everyone instead of BCC'd. Engineering is where people tend to worry about breaches most, and I suspect that's exactly why they're rarer there: it's the part of the business that gets the scrutiny.
+Until something leaks, anyway. In my experience, most reportable data breaches come from this kind of software, not from engineering: a file of personal data dropped into a public S3 bucket, or a mail merge that CC'd everyone instead of BCC'd. Engineering is where people worry about breaches most, and I suspect that's exactly why they're rarer there: it's the part of the business that gets the scrutiny.
 
 What's different now is where the work lands. Rich's changes go into the real codebase, through the same pull requests, the same CI, and the same agentic review as everyone else's. Rather than creating more shadow engineering, AI is dragging it into the light.
 
