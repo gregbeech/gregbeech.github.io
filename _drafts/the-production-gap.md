@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The production gap
-date: 2026-10-12
+date: 2026-10-21
 tags: [ai, software engineering]
 author: gregbeech
 comments: true
@@ -31,7 +31,7 @@ Many estate agents don't run their own website. They use a platform, and some pl
 
 So a polite one request every couple of seconds per site becomes a hundred or more requests per second to one company's servers. That's no longer polite. It's getting uncomfortably close to a denial-of-service attack, and it's exactly the harm we said we wouldn't do.
 
-The fix is to work out which sites share an origin, and rate limit at that level as well as per site. Nobody publishes that, so we have to infer it. DNS records (A, AAAA, CNAME and PTR) give strong signals, and TLS certificate fingerprints and serial numbers fill in a lot of the gaps. Put together, they let us say with reasonable confidence that these hundreds of domains are really one set of servers. If PTR records and certificate serials mean nothing to you, that's rather the point.
+The fix is to work out which sites share an origin, and rate limit at that level as well as per site. Nobody publishes that, so we have to infer it. DNS records (A, AAAA, CNAME and PTR) give strong signals, and TLS certificate fingerprints and serial numbers fill in a lot of the gaps. Put together, they let us say with reasonable confidence that these hundreds of domains are really one set of servers. If PTR records and certificate serials mean nothing to you, that's rather the point of this post.
 
 So that's the pages sorted. Done? Not even close.
 

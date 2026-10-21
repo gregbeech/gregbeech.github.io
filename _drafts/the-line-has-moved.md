@@ -1,31 +1,31 @@
 ---
 layout: post
 title: The line has moved
-date: 2026-10-14
+date: 2026-10-21
 tags: [ai, software engineering]
 author: gregbeech
 comments: true
 ---
 
-A few weeks ago, Rich, who looks after growth for us, opened his first pull request against our codebase. He's just merged his seventieth. That ranges from SEO, our main growth driver, to new UI features and performance improvements, and it isn't trivial stuff. Some of these changes involve database migrations, background jobs, and changes to our Stripe integration. The work is well thought through and high quality. If I didn't know better, I'd assume the analysis and implementation came from an experienced engineer.
+A few weeks ago, Rich, who looks after growth for us, opened his first pull request against our codebase. He's almost up to his hundredth. They range from SEO, our main growth driver, to new UI features and performance improvements, and it isn't trivial stuff. Several have involved database migrations, background jobs, or changes to our Stripe integration. The work is well thought through and high quality. If I didn't know better, I'd assume the analysis and implementation came from an experienced engineer.
 
 He can't code. At all.
 
-As Rich put it in [his own post](https://www.linkedin.com/feed/update/urn:li:activity:7513922056082669568/) about the experience: "Not ship vibe-coded slop, but ship ship." It's real, meaningful work that until very recently would have needed an engineer.
+As Rich put it in [his own post](https://www.linkedin.com/feed/update/urn:li:activity:7513922056082669568/) about the experience: "Not ship vibe-coded slop, but ship ship." It's real, meaningful work that until very recently would have needed an engineer. It's pretty amazing.
 
-This is very cool. It feels like a revolution, and in one way it is, because this is production software serving paying customers. But non-engineers building software isn't new, so it's worth looking at what's actually changed, and what it means for engineers.
+It feels like a revolution, and in one way it is, because this is production software serving paying customers. But non-engineers building software isn't new.
 
 ## Out of the shadows
 
-Businesses have run on spreadsheets for decades, and plenty of those spreadsheets had enough VBA in them to count as software by any reasonable definition. More recently, tools like Zapier let people wire systems together without writing code at all. In the early days of Deliveroo, a lot of our operations ran on Zapier, because there weren't enough engineers to build what the operations teams needed.
+Businesses have run on spreadsheets for decades, and plenty of those spreadsheets had enough VBA in them to count as software by any reasonable definition. More recently, Zapier _et al._ let people wire systems together without writing code at all. In the early days of Deliveroo, a lot of our operations ran on Zapier, because there weren't enough engineers to build what the operations teams needed.
 
-This kind of software creates enormous value. It also lives entirely outside engineering, with no version control, no review, no tests, and usually no monitoring, so when it goes wrong, the people running it often don't know. In many big companies that's deliberate, because otherwise The Process is invoked, and the half hour spreadsheet job gets Prioritised and put on a Roadmap, and won't happen for six to twelve months, if ever.
+This kind of software is essential to most companies. It also lives entirely outside engineering, with no version control, no tests, no reviews, and no monitoring. In many big companies that's deliberate, because otherwise The Process is invoked, and the half hour spreadsheet job gets Prioritised and put on a Roadmap, and won't get Scheduled for six to twelve months. If ever.
 
 So engineering turns a blind eye and pretends the spreadsheets and Zapier don't exist because they've already got enough work, and the business just kind of ignores engineering because they're too slow anyway, and everybody is happy.
 
-Until something leaks, anyway. In my experience, most reportable data breaches come from this kind of software, not from engineering. It's the file of personal data dropped into a public S3 bucket, or the mail merge that CC'd everyone instead of BCC'd. Engineering is where people worry about breaches most, and I suspect that's exactly why they're rarer there, because it's the part of the business that gets the scrutiny.
+Until something leaks, anyway. In my experience, most reportable data breaches come from this kind of software, not from engineering. It's the file of personal data dropped into a public S3 bucket, or the mail merge that CC'd everyone instead of BCC'd. Engineering is where people worry about breaches most, and I suspect that's why they're rarer there, because it's the part of the business that gets the scrutiny.
 
-What's different now is where the work lands. Rich's changes go into the real codebase, through the same pull requests, the same CI, and the same agentic review as everyone else's. Rather than creating more shadow engineering, AI is dragging it into the light.
+What's different now is where the work lands. Rich's changes go into the real codebase, through the same pull requests, the same CI, and the same agentic review as everyone else's. Rather than being shadow engineering, AI brings it into the light.
 
 It also unlocks the small features and fixes that never make it onto a roadmap because they're too minor to compete with bigger priorities. SEO improvements are a perfect example. Individually they're small, collectively they're valuable, and they're permanently stuck behind whatever engineering is working on this week. Now the person who cares most about them can just do them.
 
@@ -37,25 +37,25 @@ So the software isn't new, but the scrutiny is. And once it's in the light, it r
 
 Right now, there's one difference in how Rich's work is treated. Engineers can merge their own pull requests once the automated reviews are happy, but his need a final sign-off from an engineer. He counts those approvals among the guardrails that make this work, and he's right. But on an engineering team as small as ours, every sign-off is also an interruption.
 
-It's tempting to think that gate is about code quality, but it isn't, really. The automated review is the same either way. The gate is about who owns the outcome. When an engineer gets something wrong, they fix it, and they're on the on-call rota. When a non-engineer gets something wrong, an engineer fixes it, and it's still the engineer on the on-call rota. Nobody's being careless, but it's hard to weigh a risk you don't even know exists, and harder still when someone else will be the one paying for it.
+It's tempting to think that gate is about code quality, but it isn't, really. The automated review is the same either way. The gate is about who owns the outcome. When an engineer gets something wrong, they fix it, and they're on the on-call rota. When a non-engineer gets something wrong, an engineer fixes it, and it's still an engineer on the on-call rota. Nobody's being careless, but it's hard to weigh risks you don't understand, and harder still when someone else will be the one paying for it.
 
 We already have a rule that captures the principle. If you merge out of hours, you put yourself on call for the night. Whoever merges carries the pager. So the useful question isn't whether the review agent is good enough. It's whether Rich could carry the pager for his own changes.
 
-The bar for that is lower than it sounds. Deploy isn't release, so everything we ship sits behind a feature flag, and the first response to most incidents is switching that flag off. Anyone can do that. Our CI is fast enough that we usually roll forward rather than back, and with agents that can see logs, metrics and exceptions, a non-engineer can get a long way towards diagnosing and fixing a problem too. I'd still want the flag to be the answer at 3am, but turning it off and looking properly in the morning is often the right call for anyone.
+The bar for that is lower than it sounds. Deploy isn't release, so everything we ship sits behind a feature flag, and the first response to most incidents is switching that flag off. Anyone can do that. Our CI is fast enough that we usually roll forward rather than back, and with agents that can see logs, metrics and exceptions, a non-engineer can get a long way towards diagnosing and fixing a problem too. I'd still want the flag to be the answer at 3am, but turning it off and looking properly in the morning is often the right call.
 
 ## Changes you can't switch off
 
 The real risk lives in the changes a flag can't contain. Migrations. Anything that writes or transforms data. Batch jobs that run whether a flag is on or not. Performance problems, like a precompute job that quietly hammers the database. These are often irreversible, and they're exactly the system-level things a non-engineer can't see.
 
-So rather than a blanket gate, the principle becomes human sign-off for changes you can't switch off. Anything fully behind a flag could merge on the same terms as an engineer's work. Anything irreversible needs an engineer, whoever wrote it. It's the same reasoning that lets us [run without a staging environment](https://www.gregbeech.com/2024/12/22/exit-staging-left/). It's not that there's no risk; it's that specific practices for the genuinely dangerous changes beat a checkpoint on everything.
+So rather than a blanket gate, the principle becomes human sign-off for changes you can't switch off. Anything fully behind a flag could merge on the same terms as an engineer's work. Anything irreversible needs an engineer. It's the same reasoning that lets us [run without a staging environment](https://www.gregbeech.com/2024/12/22/exit-staging-left/). It's not that there's no risk; it's that specific practices for the genuinely dangerous changes beat a checkpoint on everything.
 
 We're not there yet on our main repository. It's older, isn't as well set up for agents as our newer ones, and doesn't have a proper code review skill, so for now the gate stays.
 
-Rich thinks that kind of setup is mostly unnecessary, and he's partly right. The review agents do a good job without a skill. But most of what engineers have flagged in his pull requests wasn't wrong so much as wrong for us: adding hooks to the site template because one component needed them, or adding a dedicated job queue so one job could jump ahead of the others. A generic reviewer can't know those things. A review skill could.
+The review agents do a good job without a skill. But most of what engineers have flagged in his pull requests wasn't wrong so much as wrong for us: adding hooks to the site template because one component needed them, or adding a dedicated job queue so one job could jump ahead of the others. A generic reviewer can't know those things. A review skill could.
 
 The way to remove the gate is the same way the rest of our agent setup grew: scar tissue. Every time an engineer catches something in one of his pull requests that the review agent missed, it goes into the review skill. Over time, human sign-off turns into a measurement of what the agent still doesn't know. When engineers stop finding anything over a decent run of pull requests, there's evidence the gate can go, rather than just a feeling.
 
-Even then, it makes me a bit nervous. That's probably healthy. Zapier workflows didn't go wrong because non-engineers built them. They went wrong because nobody was checking the things their authors couldn't see.
+Even then, it makes me a bit nervous.
 
 ## Engineering is a domain too
 
