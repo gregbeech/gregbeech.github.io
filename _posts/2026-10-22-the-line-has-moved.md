@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The line has moved
-date: 2026-10-21
+date: 2026-10-22
 tags: [ai, software engineering]
 author: gregbeech
 comments: true
@@ -41,7 +41,7 @@ It's tempting to think that gate is about code quality, but it isn't, really. Th
 
 We already have a rule that captures the principle. If you merge out of hours, you put yourself on call for the night. Whoever merges carries the pager. So the useful question isn't whether the review agent is good enough. It's whether Rich could carry the pager for his own changes.
 
-The bar for that is lower than it sounds. Deploy isn't release, so everything we ship sits behind a feature flag, and the first response to most incidents is switching that flag off. Anyone can do that. Our CI is fast enough that we usually roll forward rather than back, and with agents that can see logs, metrics and exceptions, a non-engineer can get a long way towards diagnosing and fixing a problem too. I'd still want the flag to be the answer at 3am, but turning it off and looking properly in the morning is often the right call.
+The bar for that is lower than it sounds. Deploy isn't release, so everything we ship sits behind a feature flag, and the first response to most incidents is switching that flag off. Anyone can do that. Our CI is fast enough that we usually roll forward rather than back, and with agents that can see logs, metrics and exceptions, a non-engineer can get a long way towards diagnosing and fixing a problem too. I'd still want the flag to be the answer at 3am, because turning it off and looking properly in the morning is usually the right call.
 
 ## Changes you can't switch off
 
