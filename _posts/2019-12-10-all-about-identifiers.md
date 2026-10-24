@@ -4,7 +4,6 @@ title: All about identifiers
 date: 2019-12-10
 tags: [Architecture, Security]
 author: gregbeech
-comments: true
 ---
 
 Identifiers aren't usually considered very interesting. Indeed, popular frameworks such as Django or Hibernate find them so uninteresting that they ship with the default of auto-incrementing integers so users don't need to be concerned with them. Unfortunately using sequential identifiers is a bad idea, and if you don't think about your identifiers up front then fixing things later can be very time consuming. Here's most of what you need to know about identifiers.

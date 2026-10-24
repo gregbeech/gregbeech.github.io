@@ -4,7 +4,6 @@ title: Tail recursion, fold, and more
 date: 2019-03-30
 tags: [Scala, Functional Programming]
 author: gregbeech
-comments: true
 ---
 
 People new to functional languages often struggle a bit with the concept of recursion, and in particular tail recursion. In this post we'll look at both recursive and tail recursive functions using the substitution model to show their effect on the stack. We'll also walk through deriving `fold`, `map`, and other functions from first principles because it fairly naturally follows on from this.

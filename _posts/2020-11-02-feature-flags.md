@@ -4,7 +4,6 @@ title: Feature flags
 date: 2020-11-02
 tags: [Deployment]
 author: gregbeech
-comments: true
 ---
 
 Introducing feature flags helps to separate release from deployment, and allow changes to be partially rolled out on a percentage basis and/or to target groups of users. It cannot completely separate these two things as some changes such as database migrations are all or nothing. However, it can significantly reduce the risk of deployments.

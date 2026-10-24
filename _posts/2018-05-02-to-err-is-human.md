@@ -4,7 +4,6 @@ title: To Err is Human (Scala Central)
 date: 2018-05-02
 tags: [Scala, Types, Talks]
 author: gregbeech
-comments: true
 ---
 
 In an ideal world everything would just work fine all the time. However, the real world is rarely like that which means we need to handle failures. Different programming languages have different approaches to modelling failure, but even with Scala there are numerous differerent ways of doing so. This talk takes a look at the various types of errors and exceptions you'll need to deal with and suggests ways to model them.

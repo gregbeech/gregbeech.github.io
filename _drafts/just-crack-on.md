@@ -4,7 +4,6 @@ title: Just crack on
 date: 2026-10-24
 tags: [AI, Teams, Agile]
 author: gregbeech
-comments: true
 ---
 
 I've written a few posts about methodologies in the past, about keeping things light and fast. At Jitty, we're taking these ideas to the extreme. We don't have standups, sprints, estimates, a roadmap, or a backlog. We don't don't wait on human code reviews, and we don't have a staging environment. For the most part, we don't even have tickets.

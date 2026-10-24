@@ -4,7 +4,6 @@ title: Exit staging left
 date: 2024-12-22
 tags: [Deployment, Testing]
 author: gregbeech
-comments: true
 ---
 
 It's received wisdom in the startup world that you need to have a staging environment to test things out before going to production. In some cases, maybe even multiple staging environments with different names like preproduction or demo or QA, with different rules about how mature code has to be to go on there. However, I don't believe staging environments are worth the time, effort, and cost to keep running, so let's talk about why you should just deploy straight to production.

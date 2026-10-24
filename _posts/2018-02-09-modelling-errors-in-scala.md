@@ -4,7 +4,6 @@ title: Modelling errors in Scala
 date: 2018-02-09
 tags: [Scala, Types, Functional Programming]
 author: gregbeech
-comments: true
 ---
 
 With functions that can fail, people tend to think there are two possible options, success or failure. This is what's modelled by Scala's `Try[A]` and `Future[A]` types, as well as plain old `try`/`catch`. However things aren't quite as simple as they might first appear. Let's go down the rabbit hole.

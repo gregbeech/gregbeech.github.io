@@ -4,7 +4,6 @@ title: Modelling composite types
 date: 2020-02-22
 tags: [Types, Functional Programming, Languages]
 author: gregbeech
-comments: true
 ---
 
 A composite type is one that can have different possible types of value, for example contact info might be either a phone number or an email address. Other common names for this---depending on programming language and context---are sum types, tagged unions, disjoint unions, discriminated unions, coproducts, or variant types (not the same as the old COM concept).

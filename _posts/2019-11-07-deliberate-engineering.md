@@ -4,7 +4,6 @@ title: Deliberate engineering
 date: 2019-11-07
 tags: [Teams]
 author: gregbeech
-comments: true
 ---
 
 When building a software project with a given scope there are three main constraints you can trade off: good, fast, and cheap. This is commonly known as the project management triangle. Focusing on one will have an effect on the others. For example, trying to do things cheap will adversely affect good and fast.

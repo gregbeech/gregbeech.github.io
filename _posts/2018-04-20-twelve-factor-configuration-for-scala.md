@@ -4,7 +4,6 @@ title: Twelve-factor configuration for Scala
 date: 2018-04-20
 tags: [Scala, Architecture]
 author: gregbeech
-comments: true
 ---
 
 The [twelve-factor methodology](https://12factor.net/) is a pretty solid approach to deploying applications that can run locally and in multiple cloud environments, as well as being able to scale out on demand. We've used this approach at Deliveroo since time immemorial (about three years ago), at least in part because with Rails it Just Works<sup>TM</sup>. With our more recent use of Scala and the ubiquitous [Typesafe Config library](https://github.com/lightbend/config) it's actually rather harder. After many attempts I finally found an approach I'm happy with.

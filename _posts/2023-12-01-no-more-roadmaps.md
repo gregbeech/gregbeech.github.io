@@ -4,7 +4,6 @@ title: No more roadmaps
 date: 2023-12-01
 tags: [Planning, Agile]
 author: gregbeech
-comments: true
 ---
 
 Product managers spend aeons creating and rearranging them. Delivery managers obsess over their dates and dependencies. People in “the business” plan financials, campaigns, and more around them. But engineers---the people tasked with actually delivering them---mostly moan about them. The engineers are closest to being right, because roadmaps are little more than detrimental fantasy.

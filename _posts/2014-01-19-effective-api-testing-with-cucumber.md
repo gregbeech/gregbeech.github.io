@@ -4,7 +4,6 @@ title: Effective API testing with Cucumber
 date: 2014-01-19
 tags: [APIs, Testing, Ruby]
 author: gregbeech
-comments: true
 ---
 
 At [blinkbox books](http://www.blinkboxbooks.com) we're making extensive use of Cucumber to capture business requirements and ensure that the code fulfils them. If you're getting started with Cucumber, a lot of the good practices for writing Gherkin specifications and effectively automating them is captured by [The Cucumber Book](https://pragprog.com/book/hwcuc/the-cucumber-book) which is, like most of the Pragmatic Bookshelf, a very good book indeed.

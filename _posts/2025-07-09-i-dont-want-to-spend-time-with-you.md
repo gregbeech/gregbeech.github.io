@@ -4,7 +4,6 @@ title: "I don't want to spend time with you"
 date: 2025-07-09
 tags: [Teams, Remote Work]
 author: gregbeech
-comments: true
 ---
 
 I've been meaning to write something about why I'll likely never go back to an in-office role, and why hybrid working is unworkable, but I've been struggling to find the right angle. A company approached me recently and while checking the role description---just out of curiosity, not because I had any real interest---I saw wording along the lines of "we like spending as much time with our colleagues as possible so we want you to commit to at least three days a week in the office" and there's the angle, because I don't want to spend as much time with my colleagues as possible. 

@@ -4,7 +4,6 @@ title: The engineering career triangle
 date: 2020-01-19
 tags: [Careers]
 author: gregbeech
-comments: true
 ---
 
 Engineering career progression is often described as a 'ladder' or 'track', where you can also switch into a parallel management track. However, this doesn't adequately illustrate where the tech lead role sits, or why the staff+ engineer levels have at least as much in common with management as they do with coding. To be able to explain this we need to separate the concepts of management and leadership. The result is the engineering career triangle.

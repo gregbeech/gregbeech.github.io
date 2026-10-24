@@ -4,7 +4,6 @@ title: AI-Driven Development (AIDD)
 date: 2026-10-08
 tags: [AI]
 author: gregbeech
-comments: true
 ---
 
 I haven't written code by hand in months, and I've never felt busier. That might sound like a contradiction, but it's the key to understanding where software engineering is headed. If you've been using coding agents seriously, you've probably noticed the shift too. The question isn't whether manual coding is on its way out, but what the job turns into once it's gone.

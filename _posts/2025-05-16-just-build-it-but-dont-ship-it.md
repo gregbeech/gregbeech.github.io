@@ -4,7 +4,6 @@ title: Just build it! (but don't ship it)
 date: 2025-05-16
 tags: [Deployment, Planning, Agile]
 author: gregbeech
-comments: true
 ---
 
 How much time have you spent arguing whether you should build something or not, while you've been sitting there thinking "I could have built it in the time we've spent arguing about this"? Probably more than you'd like to admit. I know I have. The problem is you're having the wrong argument. The question isn’t whether you should build it; it’s whether you should ship it.

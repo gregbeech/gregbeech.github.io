@@ -4,7 +4,6 @@ title: Go's Glass Ceiling
 date: 2018-05-25
 tags: [Languages, Careers, Go]
 author: gregbeech
-comments: true
 ---
 
 Go is becoming increasingly popular and I find it troubling. It's taken me quite a while to work out why that is, and quite a few drafts to try and express it in a way that gets my point across in what I hope is a fair and balanced way. This is not a "Go is bad" post. That's been done to death and I don't want to rehash it. I also have no intention of denigrating people who like Go; doing so would be self-defeating given it's them this post is really aimed at. This is a post about reaching your potential.

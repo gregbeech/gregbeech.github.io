@@ -4,7 +4,6 @@ title: Writing a ring buffer in Scala
 date: 2018-06-05
 tags: [Scala, Types, Functional Programming]
 author: gregbeech
-comments: true
 ---
 
 People coming from dynamic languages like Ruby or primitive languages like Go tend to miss the point of Scala. They tend to think in terms of mutability and often aren't familiar with data structures beyond lists and hashes, with types and side effects being seen as fairly unimportant considerations. To try and illustrate the different way you need to think when writing Scala I'm going to write a ring buffer, as I've seen a few people around the office implementing them as a learning exercise.

@@ -4,7 +4,6 @@ title: Akka HTTP entity validation
 date: 2018-08-12
 tags: [Scala, APIs]
 author: gregbeech
-comments: true
 ---
 
 Validation is something that every API developer has to deal with, but causes a surprising amount of confusion. Should the validation be done in the controller, the model, or a service class? Is the value of an attribute being invalid part of the request validation or business logic validation? By changing the way we think about validation the answers to these questions drop out, along with a nice implementation for Akka HTTP.

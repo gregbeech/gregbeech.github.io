@@ -4,7 +4,6 @@ title: "RESTful API Design: The Fundamentals"
 date: 2013-05-21
 tags: [APIs, REST]
 author: gregbeech
-comments: true
 ---
 
 I've spent quite a lot of time over the last few years thinking about, designing and building RESTful APIs. Far more time than I expected, given that they have a reputation for being very simple. They're not. In fact, I'd go so far as to say that RESTful APIs are harder to design, harder to build, and (depending on your language of choice) harder to consume than just about any other style of web API.

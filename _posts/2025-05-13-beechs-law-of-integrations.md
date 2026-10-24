@@ -4,7 +4,6 @@ title: Beech's Law of Integrations
 date: 2025-05-13
 tags: [Planning]
 author: gregbeech
-comments: true
 ---
 
 I've spent a lot of the last two-plus decades integrating systems, whether that was the goal of the project itself, or just a necessary part of a larger project. Integrations always take longer than you think, even when you take into account [Hofstadter's Law](https://en.wikipedia.org/wiki/Hofstadter%27s_law). However, in this time I've observed the amount of additional time they take is surprisingly predictable, leading to Beech's Law:

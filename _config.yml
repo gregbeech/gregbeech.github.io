@@ -30,7 +30,7 @@ social:
 
 analytics:
   google:
-    id:
+    id: G-4ZGVQ4W3NP
 
 theme_mode:
 
@@ -39,11 +39,6 @@ avatar: /assets/img/gregbeech.jpg
 social_preview_image:
 
 toc: true
-
-comments:
-  provider: disqus
-  disqus:
-    shortname: gregbeech
 
 pwa:
   enabled: true
@@ -74,14 +69,9 @@ defaults:
       type: posts
     values:
       layout: post
-      comments: true
       toc: true
       # Keep the date-based URLs from the previous theme so existing links still work.
       permalink: /:year/:month/:day/:title/
-  - scope:
-      path: _drafts
-    values:
-      comments: false
   - scope:
       path: ""
       type: tabs

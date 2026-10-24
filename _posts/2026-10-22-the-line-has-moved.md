@@ -4,7 +4,6 @@ title: The line has moved
 date: 2026-10-22
 tags: [AI, Teams]
 author: gregbeech
-comments: true
 ---
 
 A few weeks ago, Rich, who looks after growth for us, opened his first pull request against our codebase. He's almost up to his hundredth. They range from SEO, our main growth driver, to new UI features and performance improvements, and it isn't trivial stuff. Several have involved database migrations, background jobs, or changes to our Stripe integration. The work is well thought through and high quality. If I didn't know better, I'd assume the analysis and implementation came from an experienced engineer.

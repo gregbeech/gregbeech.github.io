@@ -4,7 +4,6 @@ title: Evolution of an interview process
 date: 2018-03-30
 tags: [Hiring]
 author: gregbeech
-comments: true
 ---
 
 When I interviewed for Deliveroo a little over three years ago it was a tiny company so the 'process' was just a series of chats with a senior engineer, the CTO, and the CEO. All held in coffee shops because the single-room office had no free space. This approach is typical for early stage startups, and it actually seems to work reasonably well because we managed to hire some great engineers, many of whom still work at Deliveroo. But it's not really a scalable way to grow a team.

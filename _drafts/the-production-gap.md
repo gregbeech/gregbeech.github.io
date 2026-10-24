@@ -4,7 +4,6 @@ title: The production gap
 date: 2026-10-24
 tags: [AI, Ruby]
 author: gregbeech
-comments: true
 ---
 
 The new web crawler at [Jitty](https://jitty.com/) started life as something our CEO vibe coded with Claude. He's a former product manager, so he knows more about engineering than most CEOs, but he isn't an engineer. What he did have was the problem: we didn't have enough listing coverage, and he was determined to find a way to fix it.

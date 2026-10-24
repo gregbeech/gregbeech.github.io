@@ -4,7 +4,6 @@ title: Deriving domain-driven design
 date: 2021-12-03
 tags: [Architecture, Talks]
 author: gregbeech
-comments: true
 ---
 
 If you thought about it for long enough, you would invent domain-driven design. This is a talk I gave at DevLab '21 about deriving domain-driven design from first principles to demonstrate that it's an intrinsic property of well architected systems.

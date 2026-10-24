@@ -4,7 +4,6 @@ title: "\"Hire\" doesn't mean hire"
 date: 2026-08-21
 tags: [Hiring]
 author: gregbeech
-comments: true
 ---
 
 I'm currently in the process of [hiring engineers at Jitty](https://careers.jitty.com) because we [actually need people](/2023/10/12/dont-hire/). That got me thinking about the hiring process and all the mistakes I've made over the years, including making the wrong decisions to hire people. There are myriad failures in every hiring process, even the good ones, but the biggest failure of all is interpreting "hire" feedback from an interview as meaning you should hire someone.

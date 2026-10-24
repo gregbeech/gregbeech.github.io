@@ -4,7 +4,6 @@ title: Akka HTTP client pooling and parallelism
 date: 2018-04-08
 tags: [Scala, Performance]
 author: gregbeech
-comments: true
 ---
 
 Akka HTTP's client uses connection pooling, either implicitly when you use the `singleRequest` method, or explicitly when using `cachedHostConnectionPool` or `superPool`. The number of requests that can be made in parallel and how backpressure works is governed by the `max-connections` and `max-open-requests` settings, but these have some slightly surprising behaviour which isn't quite what the documentation suggests. This post demonstrates how these APIs work and discusses when to use each of them.
