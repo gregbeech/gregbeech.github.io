@@ -33,8 +33,6 @@ A polite one request every couple of seconds per site becomes a hundred or more 
 
 The fix is to work out which sites share an origin, and rate limit at that level as well as per site. Nobody publishes that, so we have to infer it. DNS records (A, AAAA, CNAME and PTR) give strong signals, TLS certificate fingerprints and serial numbers provide corroborating evidence, and header probing can help to fill in the gaps. Put together, they let us say with reasonable confidence that these hundreds of domains are really one set of servers.
 
-If origins, PTR records and certificate serials mean nothing to you, that's rather the point of this post. Engineering is a domain too.
-
 ## Some requests are more equal than others
 
 A search results page is expensive to serve. A single listing is cheaper. An image is cheaper still. A flat requests-per-second limit treats them all the same, which means you're either too aggressive with searches or too timid with everything else.
@@ -136,4 +134,4 @@ The production crawler was written by agents too, every line of it, and they did
 
 What it was never going to do was ask that question in the first place. Knowing that shared hosting turns politeness into a denial of service, that a crawler is an SSRF vector, that a certificate might count as evidence at all: that's the engineering. The agents made the answers cheap, but the questions still had to come from somewhere.
 
-From the outside, the production system looks just like the proof of concept. Crawls run, and listings arrive. The work that makes it safe to do at scale doesn't show, so the gap is hard to see from outside engineering. Both were built with the same tools, and what separates them is the engineering. It's an essential discipline, and will be for a long time yet.
+Both systems were built with the same tools, and from the outside they look the same. Crawls run, and listings arrive. What separates them is the hands the tools were in, and the differences are hard to see, let alone understand, unless you know what to look for. Engineering is a domain too, and it'll remain an essential one for a long time yet.
