@@ -13,7 +13,5 @@ bundle exec foreman start
 
 ## Theme customisations
 
-- `_layouts/tag.html` shows an optional introduction from `_data/tag_descriptions.yml` on tag pages.
 - `_data/locales/en.yml` sets the copyright notice to "All rights reserved".
-- `_includes/favicons.html` and `assets/img/favicons/site.webmanifest` match the available icons.
-- `assets/css/jekyll-theme-chirpy.scss` holds custom styles.
+- `assets/img/favicons/` replaces the theme's icons with a "GB" icon set.
