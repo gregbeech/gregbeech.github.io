@@ -53,7 +53,7 @@ Sites can ask for a slower rate with a `Crawl-delay` in `robots.txt`, but it was
 
 Every listing has a gallery, and every image is another request. Where those images come from changes how you should treat them, and there are four main cases.
 
-1. Served from the same origin as the site. These request count against the origin's limit alongside the pages, using an appropriate token cost.
+1. Served from the same origin as the site. These requests count against the origin's limit alongside the pages, using an appropriate cost.
 2. Served from a CDN with a read-through cache. The CDN serves what it has, and only goes back to the origin on a cache miss. Treating these like same-origin media is safe, but the better approach is to track cache misses and limit those separately from total requests, because only the misses actually cost the origin anything.
 3. Served from an object store like S3. These can take far more traffic, but not unlimited. S3 scales its limits per key prefix, which you can't see from outside, but the bucket is a good proxy. Many sites share the same object store, so if you rate limit by host alone, you throttle everyone together and can't get through the crawl. You need to key the limit on the bucket as well.
 4. Served from an image service. These resize and convert images on the fly, often for a huge number of sites at once. They can act either like a CDN or an object store, and it may vary by customer, or even by the image itself, not just by the service. Fortunately we can detect which case we're in pretty reliably, and limit it accordingly.
@@ -86,9 +86,9 @@ It isn't only Ruby code. libvips, the library we use to resize and convert image
 
 This is the part that surprises people outside engineering. The design is sound and the code does what it says, but it still doesn't work, because of how Ruby runs on real machines. A correct design is where the engineering starts, not where it ends.
 
-There are ways to fight it. Page crawls and image downloads hog the lock in different ways, one parsing HTML and the other processing images, so we can run them in separate processes, each with its own GVL, rather than letting them compete for the same one.  We can also tune how long a booking's timeslot lasts, trading precision for tolerance. We've tuned Ruby's own thread timeslice, which is how long a thread can run before it's made to hand the lock over, so a waiting thread gets its turn sooner.
+There are ways to fight it. Page crawls and image downloads hog the lock in different ways, one parsing HTML and the other processing images, so we can run them in separate processes, each with its own GVL, rather than letting them compete for the same one. We can also tune how long a booking's timeslot lasts, trading precision for tolerance. We've tuned Ruby's own thread timeslice, which is how long a thread can run before it's made to hand the lock over, so a waiting thread gets its turn sooner.
 
-The obvious next step is more processes with fewer threads in each, but our crawl processes also run chromium and some pretrained transformer models, so each one has a fair chunk of CPU and memory allocated, which makes processes expensive compared to the threads inside them. Moving those out to allow lots of small, single-threaded crawl processes is a bigger architectural shuffle.
+The obvious next step is more processes with fewer threads in each, but our crawl processes also run Chromium and some pretrained transformer models, so each one has a fair chunk of CPU and memory allocated, which makes processes expensive compared to the threads inside them. Moving those out to allow lots of small, single-threaded crawl processes is a bigger architectural shuffle.
 
 The real fix would be Ractors, Ruby's newer model for running code in parallel, which aren't bound by a single lock. But Rails relies on too much shared global state to run inside them yet, though there's active work underway to change that.
 
@@ -100,7 +100,7 @@ None of this is any use if you can't tell whether it's working. A crawler that's
 
 So there are metrics for everything: request rates and response codes per site and origin, latencies, and throughput. There's anomaly detection on top, so we get alerted when something drifts rather than when it breaks. The rate limiter has its own metrics too, which is how we can see the GVL problem at all. The rebooking rate shows exactly how often threads are missing their slots. It should be a couple of percent at most, and it's about an order of magnitude higher than that.
 
-Some questions can't be answered with metrics at all, because the cardinality is too high. Fortunately Grafana won't hit you with an unexpected bill for that unlike _some_ metrics platforms, it'll just be painfully inefficient. To know what's happening in detail, the records need to be shipped to some kind of columnar analytics store where they can be sliced however we need it.
+Some questions can't be answered with metrics at all, because the cardinality is too high. Which of thousands of sites slowed down after a particular change? To answer that, the records need to be shipped to some kind of columnar analytics store where they can be sliced however we need.
 
 ## Who do you trust?
 
@@ -130,12 +130,10 @@ None of this is rate limiting, but it's the same kind of problem because it's in
 
 So that's the gap, and it's only part of fetching. I haven't touched on automatically redacting the API keys that sites embed in their pages, like Google Maps keys, of which there are dozens of varieties, or stripping out personal data. Let alone the rest of robots.txt, retries, scheduling, storage, or any of the other parts of a production crawler.
 
-The proof of concept answered the question that mattered most at the time, whether the approach we took could work at all. It could, and without it we might still be arguing about whether to try. That's real value, and it came from someone owning a problem and getting agents to build a solution, rather than waiting for engineering to get round to it.
+The proof of concept answered the question that mattered most at the time, whether the approach could work at all. It could, and without it we might still be arguing about whether to try. That's real value, and it came from someone owning a problem and getting agents to build a solution, rather than waiting for engineering to get round to it.
 
 The production crawler was written by agents too, every line of it, and they did a bunch of the research as well. When I wanted to know whether TLS certificates could tell us which hosts share servers, an agent dug through real-world patterns and came back with the answer, that it was good corroborating evidence but not reliable enough to place a host on its own.
 
-What it was never going to do was ask that question in the first place. Knowing that shared hosting turns politeness into a denial of service, that a crawler is an SSRF vector, that a certificate might count as evidence at all, is the engineering. The agents made the answers cheap, but the questions still had to come from somewhere.
+What it was never going to do was ask that question in the first place. Knowing that shared hosting turns politeness into a denial of service, that a crawler is an SSRF vector, that a certificate might count as evidence at all: that's the engineering. The agents made the answers cheap, but the questions still had to come from somewhere.
 
-When it all comes together, nothing appears very different between the proof of concent and the production system. Crawls still run, and listings still arrive.
-
-That's why the gap can be so hard to see from outside engineering. The difference is everything you'll never notice, dealing with problems you didn't even know existed. For me, it's what makes engineering interesting.
+From the outside, the production system looks just like the proof of concept. Crawls run, and listings arrive. The work that makes it safe to do at scale doesn't show, so the gap is hard to see from outside engineering. Both were built with the same tools, and what separates them is the engineering. It's an essential discipline, and will be for a long time yet.
