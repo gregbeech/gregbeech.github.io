@@ -10,7 +10,7 @@ The new web crawler at [Jitty](https://jitty.com/) started life as something our
 
 Most engineers would bristle at that, and plenty would take it personally. I don't. A CEO's job is to own the company's biggest problems, and this was him owning it in the way that made most sense to him. It worked out too, because the approach he prototyped is the one we built on.
 
-One of the things he asked, which many non-engineers struggle to understand, is what the gap is between a proof of concept and a production-grade solution. Why can't you just take the PoC and stick it in production? I wrote a quick answer in Slack, and this is the longer version. I'm going to focus on one seemingly tiny detail, which is how fast a crawler should be allowed to go.
+One of the things he asked, which many non-engineers struggle to understand, is what the gap is between a proof of concept and a production-grade solution. Why can't you just take the proof of concept and stick it in production? I wrote a quick answer in Slack, and this is the longer version. I'm going to focus on one seemingly tiny detail, which is how fast a crawler should be allowed to go.
 
 In [my last post]({% post_url 2026-10-22-the-line-has-moved %}), I argued that engineers increasingly own the things that don't show up in any single change, like performance, architecture, and reliability. This is what that looks like in practice.
 
@@ -30,7 +30,7 @@ Many estate agents don't build or run their own website. They use a platform, an
 
 A polite one request every couple of seconds per site becomes a hundred or more requests per second to one company's servers. That's uncomfortably close to a denial-of-service attack, and exactly the harm we don't want to do.
 
-The fix is to work out which sites share an origin, and rate limit at that level as well as per site. Nobody publishes that, so we have to infer it. DNS records (A, AAAA, CNAME, and PTR) give strong signals, TLS certificate fingerprints and serial numbers provide corroborating evidence, and header probing can help to fill in the gaps. Put together, they let us say with reasonable confidence that these hundreds of domains are really one set of servers.
+The fix is to work out which sites share an origin, and rate limit at that level as well as per site. Nobody publishes that, so we have to infer it. DNS records (A, AAAA, CNAME, and PTR) give by far the strongest signals. When they're indeterminate, for example when there are no CNAME or PTR records, header probing can fill in the gaps. TLS certificate fingerprints and serial numbers are only good for corroborating either of them. Put together, they let us say with reasonable confidence that these hundreds of domains are really one set of servers.
 
 ## Some requests are more equal than others
 
@@ -38,30 +38,32 @@ A search results page is expensive to serve. A single listing is cheaper. An ima
 
 The usual answer is a leaky bucket. Each request adds its cost to the bucket, the bucket drains at a fixed rate, say two units per second, and a request can only go once there's room for it. Cost a search page at four, a listing at two, and an image at one, for example, and the same bucket allows one search every couple of seconds, one listing a second, two images a second, or any mix of them.
 
-We actually use a modified version of GCRA, the generic cell rate algorithm. It gives the same behaviour as a leaky bucket, but needs only a single timestamp per key, which is the time the next request is due. That makes it cheap to implement atomically in Postgres, with one row update per booking, which matters when many processes across many machines share the same limits.
-
-Our modification adds bounded slack. A thread books a timeslot, and it has to make its request within that slot. If it misses, it loses the slot and has to book again. Without that, if lots of threads are unblocked but don't run straight away, they can all end up firing at once. Averaged over a minute the rate looks fine, but the peak hits the site as a burst, which is exactly what the limit was there to stop. Forcing each request into its own slot means it can only drift from its schedule by the width of the slot, so requests can't bunch up. We call this floor integrity, because the limit is a floor on how closely requests can be spaced, not just a target for the average.
-
-Sites can ask for a slower rate with a `Crawl-delay` in `robots.txt`, but it was left out when `robots.txt` was finally standardised as [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309) in 2022, so it's unclear whether it means the gap between the start of each request or the gap between one request finishing and the next starting. GCRA schedules when requests start, and has no idea when they'll finish, so we chose the former interpretation for purely practical reasons.
-
-## Media requests
-
-Every listing has a gallery, and every image is another request. Where those images come from changes how you should treat them, and there are four main cases.
+Images aren't all equal either, because where they come from changes how you should treat them. There are four main cases.
 
 1. Served from the same origin as the site. These requests count against the origin's limit alongside the pages, using an appropriate cost.
 2. Served from a CDN with a read-through cache. The CDN serves what it has, and only goes back to the origin on a cache miss. Treating these like same-origin media is safe, but the better approach is to track cache misses and limit those separately from total requests, because only the misses actually cost the origin anything. Most CDNs say whether a request was a hit or a miss in a response header such as `X-Cache` or `CF-Cache-Status`, so the misses are easy enough to count.
 3. Served from an object store like S3. These can take far more traffic, but not unlimited. S3 scales its limits per key prefix, which you can't see from outside, but the bucket is a good proxy. Many sites share the same object store, so if you rate limit by host alone, you throttle everyone together and can't get through the crawl. You need to key the limit on the bucket as well.
 4. Served from an image service. These resize and convert images on the fly, often for a huge number of sites at once. They can act either like a CDN or an object store, and it can vary by customer or even by image. Fortunately we can detect which case we're in pretty reliably, and limit it accordingly.
 
-Object stores can absorb short bursts, so we give them a large burst tolerance and let them use their capacity in bursts, like a token bucket, while everything else gets very little and keeps to a steady rate. That's the only real difference between a token bucket and a leaky bucket, which are mathematically equivalent, and in GCRA it's a single parameter.
+## Booking slots
+
+Rather than a plain leaky bucket, we use a modified version of GCRA, the generic cell rate algorithm. It gives the same behaviour as a leaky bucket, but needs only a single timestamp per key, which is the time the next request is due. That makes it cheap to implement atomically in Postgres, with one row update per booking, which matters when many processes across many machines share the same limits.
+
+Our modification adds bounded slack. A thread books a timeslot, and it has to make its request within that slot. If it misses, it loses the slot and has to book again. Without that, if lots of threads are unblocked but don't run straight away, they can all end up firing at once. Averaged over a minute the rate looks fine, but the peak hits the site as a burst, which is exactly what the limit was there to stop. Forcing each request into its own slot means it can only drift from its schedule by the width of the slot, so requests can't bunch up. We call this floor integrity, because the limit is a floor on how closely requests can be spaced, not just a target for the average.
+
+Object stores are the exception, because they can absorb short bursts. We give them a large burst tolerance, like a token bucket, while everything else gets very little and keeps to a steady rate. That's the only real difference between a token bucket and a leaky bucket, which are mathematically equivalent, and in GCRA it's a single parameter.
+
+Sites can ask for a slower rate with a `Crawl-delay` in `robots.txt`, but it was left out when `robots.txt` was finally standardised as [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309) in 2022, so it's unclear whether it means the gap between the start of each request or the gap between one request finishing and the next starting. GCRA schedules when requests start, and has no idea when they'll finish, so we chose the former interpretation for purely practical reasons.
 
 ## Canonicalisation
 
-Keying on an object store's bucket sounds simple, but even extracting it from the URL is fiddly. S3's newer syntax puts the bucket name in the hostname, but the older style with the bucket in the path still works, and both come with regional variants, so the same bucket can arrive in several shapes. Other object stores have similar quirks.
+A limit only works if everything that should share it ends up with the same key, and the same host can be written in many different ways. Hostnames are case-insensitive, so `Jitty.com` and `jitty.com` are the same. A trailing dot makes a name fully qualified, but `jitty.com.` is still `jitty.com`. Internationalised domain names have to be converted to punycode, so `tŷ.example` and `xn--t-foa.example` end up as one key. Ports get dropped, because `jitty.com:443` is still the same machine.
 
-That's one case of a wider problem: every key you rate limit on has to be canonicalised first, because the same host can be written in many different ways. Hostnames are case-insensitive, so `Jitty.com` and `jitty.com` are the same. A trailing dot makes a name fully qualified, but `jitty.com.` is still `jitty.com`. Internationalised domain names have to be converted to punycode, so `tŷ.example` and `xn--t-foa.example` end up as one key. Ports get dropped, because `jitty.com:443` is still the same machine.
+IP addresses aren't straightforward either, because they have several valid forms. `8.8.8.8` is also `134744072`, and `2001:db8::1` and `2001:0db8:0:0:0:0:0:1` are the same address.
 
-IP addresses aren't straightforward either, because they have several valid forms. `8.8.8.8` is also `134744072`, and `2001:db8::1` and `2001:0db8:0:0:0:0:0:1` are the same address. Miss any of these and one origin quietly becomes two or more, each with its own limit, and you're sending traffic at a higher rate than you think you are.
+Object stores are fiddlier still, because even extracting the bucket from the URL takes care. S3's newer syntax puts the bucket name in the hostname, but the older style with the bucket in the path still works, and both come with regional variants, so the same bucket can arrive in several shapes. Other object stores have similar quirks.
+
+Miss any of these and one origin quietly becomes two or more, each with its own limit, and you're sending traffic at a higher rate than you think you are.
 
 ## Backing off
 
@@ -95,7 +97,7 @@ None of this is any use if you can't tell whether it's working. A crawler that's
 
 So there are metrics for everything: request rates and response codes per site and origin, latencies, and throughput. There's anomaly detection on top, so we get alerted when something drifts rather than when it breaks. The rate limiter has its own metrics too, which is how we can see the GVL problem at all. The rebooking rate shows exactly how often threads are missing their slots. It should be a couple of percent at most, and it's around 20--25%.
 
-Some questions can't be answered with metrics at all, because the cardinality is too high. Which of thousands of sites slowed down after a particular change? To answer that, the records need to go into a columnar analytics store where they can be sliced however we need. We haven't done that yet. We already use BigQuery, but I'd like this to be closer to real time, so I'm considering ClickHouse.
+Some questions can't be answered with metrics at all, because the cardinality is too high. Which of thousands of sites slowed down after a particular change? To answer that, the request records need to go into a columnar analytics store where they can be sliced however we need. We haven't done that yet. We already use BigQuery, but I'd like this to be closer to real time, so I'm considering ClickHouse.
 
 ## Server-side request forgery
 
@@ -125,8 +127,8 @@ None of this is rate limiting, but it's the same kind of problem because it's in
 
 So that's the gap, and it's only part of fetching. I haven't touched on automatically redacting the API keys that sites embed in their pages, like Google Maps keys, of which there are dozens of varieties, or stripping out personal data. Let alone the rest of `robots.txt`, retries, scheduling, storage, or any of the other parts of a production crawler.
 
-The proof of concept answered the question that mattered most at the time, whether the approach could work at all. It could, and without it we might still be arguing about whether to try. That's real value, and it came from someone owning a problem and getting agents to build a solution, rather than waiting for engineering to get round to it.
+The proof of concept answered the question that mattered most at the time, whether the approach could work at all. It could, and without it we might still be arguing about whether to try. That's real value, and it came from someone owning a problem and getting agents to build a solution, rather than waiting for engineering to get round to it. To be fair, nobody asked the agents for a production-grade crawler.
 
 The production crawler was written by agents too, every line of it, and they did a bunch of the research as well. When I wanted to know whether TLS certificates could tell us which hosts share servers, an agent dug through real-world patterns and came back with the answer, that it was good corroborating evidence but not reliable enough to place a host on its own.
 
-To be fair, nobody asked for the proof of concept to be production grade. Ask an agent for a production-grade crawler today and it'll probably give you per-site rate limits, honour `robots.txt`, and block the obvious private address ranges, because those are well documented. What it won't do is realise that hundreds of sites might share one set of servers, wonder whether a certificate could be evidence of that, or spot that libvips holding the GVL could make a correct rate limiter misfire. Knowing which questions to ask is the part that doesn't come with the tools, and it's still the engineer's job.
+Ask an agent for a production-grade crawler today and it'll probably give you per-site rate limits, honour `robots.txt`, and block most of the private address ranges, because those are well documented, though it'll quite possibly miss obvious ones like loopback and link-local. What it won't do is realise that hundreds of sites might share one set of servers, work out that response headers can tell you which ones do when DNS can't, or spot that libvips holding the GVL could make a correct rate limiter misfire. Knowing which questions to ask is the part that doesn't come with the tools, and it's still the engineer's job.
