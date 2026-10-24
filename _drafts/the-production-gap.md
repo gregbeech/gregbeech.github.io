@@ -41,11 +41,9 @@ The usual answer is a leaky bucket. Each request adds its cost to the bucket, th
 
 We actually use a modified version of GCRA, the generic cell rate algorithm. It gives the same behaviour as a leaky bucket, but needs only a single timestamp per key: the time the next request is due. That makes it cheap to implement atomically in Postgres, with one row update per booking, which matters when many processes across many machines share the same limits.
 
-Our modification adds bounded slack. A thread books a timeslot, and it has to make its request within that slot. If it misses, it loses the slot and has to book again. Without that, a slow or stalled thread could hold a booking indefinitely, and the schedule would stop reflecting what's really being sent.
+Our modification adds bounded slack. A thread books a timeslot, and it has to make its request within that slot. If it misses, it loses the slot and has to book again. Without that, if lots of threads are unblocked but don't run straight away, they can all end up firing at once. Averaged over a minute the rate looks fine, but the peak hits the site as a burst, which is exactly what the limit was there to stop. Forcing each request into its own slot means it can only drift from its schedule by the width of the slot, so requests can't bunch up. We call this floor integrity: the limit is a floor on how closely requests can be spaced, not just a target for the average.
 
-It also prevents a more subtle problem. If lots of threads book slots but don't use them straight away, they can all end up firing at once. Averaged over a minute the rate looks fine, but the peak hits the site as a burst, which is exactly what the limit was there to stop. Forcing each request into its own slot means it can only drift from its schedule by the width of the slot, so requests can't bunch up. We call this floor integrity: the limit is a floor on how closely requests can be spaced, not just a target for the average.
-
-Sites can ask for a slower rate with a `Crawl-delay` in `robots.txt`, but it was never formally standardised, so it's unclear whether it means the gap between the start of each request or the gap between one request finishing and the next starting. GCRA schedules when requests start, and has no idea when they'll finish, so we chose that meaning for purely practical reasons.
+Sites can ask for a slower rate with a `Crawl-delay` in `robots.txt`, but it was never formally standardised, so it's unclear whether it means the gap between the start of each request or the gap between one request finishing and the next starting. GCRA schedules when requests start, and has no idea when they'll finish, so we chose the former interpretation for purely practical reasons.
 
 ## Media requests aren't equal either
 
@@ -132,6 +130,6 @@ The proof of concept answered the question that mattered most at the time, wheth
 
 The production crawler was written by agents too, every line of it, and they did a bunch of the research as well. When I wanted to know whether TLS certificates could tell us which hosts share servers, an agent dug through real-world patterns and came back with the answer, that it was good corroborating evidence but not reliable enough to place a host on its own.
 
-What it was never going to do was ask that question in the first place. Knowing that shared hosting turns politeness into a denial of service, that a crawler is an SSRF vector, that a certificate might count as evidence at all: that's the engineering. The agents made the answers cheap, but the questions still had to come from somewhere.
+What it was never going to do was ask that question in the first place. Knowing that shared hosting turns politeness into a denial of service, that a crawler is an SSRF vector, that a certificate might count as evidence at all. That's the engineering.
 
 Both systems were built with the same tools, and from the outside they look the same. Crawls run, and listings arrive. What separates them is the hands the tools were in, and the differences are hard to see, let alone understand, unless you know what to look for. Engineering is a domain too, and it'll remain an essential one for a long time yet.
