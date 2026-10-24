@@ -6,53 +6,44 @@ description: >
   CV of Greg Beech.
 ---
 
-I’m an experienced engineer and engineering leader, with a track record of incepting and delivering projects that have company-wide impact. I've spent the last twenty years or so working in high growth startups, from Series A through G.
+I'm an experienced engineering leader and engineer, with a track record of incepting and delivering projects that have company-wide impact. I've spent the last twenty years or so working in high-growth startups, from pre-seed through series G.
 
-The type of role I enjoy is hands-on technical implementation and leadership rather than pure people management. This could either be in an early stage startup or in a more mature company with complex problems to solve, though my preference is for the former.
+## [Jitty](https://jitty.com/)
 
-## Jitty
+CTO, Jul 2026--Present
 
-CTO, Jul 2026 -- Present
+Founding Engineer, Jan 2024--Jul 2026
 
-Founding Engineer, Jan 2024 -- Jul 2026
+## [Zego](https://www.zego.com/)
 
-## Zego
+Chief Engineer, Jul 2022--Nov 2023
 
-Chief Engineer, Jul 2022 -- Nov 2023
+Principal Engineer, Apr 2021--Jun 2022
 
+Staff Engineer, Jan 2020--Mar 2021
 
-Principal Engineer, Apr 2021 -- Jun 2022
+## [Deliveroo](https://deliveroo.co.uk/)
 
+Principal Engineer, Apr 2017--Dec 2019
 
-Staff Engineer, Jan 2020 -- Mar 2021
-
-## Deliveroo
-
-Principal Engineer, Apr 2017 -- Dec 2019
-
-
-Staff Engineer, Mar 2015 -- Apr 2017
+Staff Engineer, Mar 2015--Apr 2017
 
 ## blinkbox
 
-Head of Platform Development, books, Jan 2013 -- Mar 2015
+Head of Platform Development, books, Jan 2013--Mar 2015
 
+Principal Development Engineer Lead, movies, May 2011--Dec 2012
 
-Principal Development Engineer Lead, movies, May 2011 -- Dec 2012
-
-
-Senior Development Engineer Lead, movies, Aug 2007 -- Apr 2011
+Senior Development Engineer Lead, movies, Aug 2007--Apr 2011
 
 ## Older Roles
 
-Senior Consultant, Netstore, Aug 2006 -- Aug 2007
+Senior Consultant, Netstore, Aug 2006--Aug 2007
 
+Senior Developer, Charteris, Feb 2005--Aug 2006
 
-Senior Developer, Charteris, Feb 2005 -- Aug 2006
-
-
-Software Development Engineer in Test, Microsoft, Sep 2001 -- Jan 2005
+Software Development Engineer in Test, Microsoft, Sep 2001--Jan 2005
 
 ## University of Nottingham
 
-Chemical Engineering MEng (Hons) First Class, 1997 -- 2001
+Chemical Engineering MEng (Hons) First Class, Sep 1997--Sep 2001
