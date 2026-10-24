@@ -2,7 +2,7 @@
 layout: post
 title: Securing Deliveroo (CodeMotion Milan)
 date: 2017-11-11
-tags: deliveroo security talks
+tags: [Security, Talks]
 author: gregbeech
 comments: true
 ---

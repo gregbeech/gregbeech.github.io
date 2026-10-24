@@ -2,7 +2,7 @@
 layout: post
 title: Deriving domain-driven design
 date: 2021-12-03
-tags: [ddd, talks]
+tags: [Architecture, Talks]
 author: gregbeech
 comments: true
 ---

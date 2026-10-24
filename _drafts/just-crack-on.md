@@ -2,7 +2,7 @@
 layout: post
 title: Just crack on
 date: 2026-10-24
-tags: [software engineering, ai, teams]
+tags: [AI, Teams, Agile]
 author: gregbeech
 comments: true
 ---

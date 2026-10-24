@@ -2,7 +2,7 @@
 layout: post
 title: Deliberate engineering
 date: 2019-11-07
-tags: [team health, software quality, deliberate engineering]
+tags: [Teams]
 author: gregbeech
 comments: true
 ---

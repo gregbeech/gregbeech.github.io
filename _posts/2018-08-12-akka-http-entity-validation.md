@@ -2,7 +2,7 @@
 layout: post
 title: Akka HTTP entity validation
 date: 2018-08-12
-tags: scala akka http
+tags: [Scala, APIs]
 author: gregbeech
 comments: true
 ---

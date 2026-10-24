@@ -2,7 +2,7 @@
 layout: post
 title: Tail recursion, fold, and more
 date: 2019-03-30
-tags: fp scala scala-101
+tags: [Scala, Functional Programming]
 author: gregbeech
 comments: true
 ---

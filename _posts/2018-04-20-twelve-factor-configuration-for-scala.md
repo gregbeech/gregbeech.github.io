@@ -2,7 +2,7 @@
 layout: post
 title: Twelve-factor configuration for Scala
 date: 2018-04-20
-tags: 12factor configuration scala scala-101
+tags: [Scala, Architecture]
 author: gregbeech
 comments: true
 ---

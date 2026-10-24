@@ -2,7 +2,7 @@
 layout: post
 title: Evolution of an interview process
 date: 2018-03-30
-tags: deliveroo interviews
+tags: [Hiring]
 author: gregbeech
 comments: true
 ---

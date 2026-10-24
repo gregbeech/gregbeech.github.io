@@ -2,7 +2,7 @@
 layout: post
 title: "\"Hire\" doesn't mean hire"
 date: 2026-08-21
-tags: [hiring, jobs]
+tags: [Hiring]
 author: gregbeech
 comments: true
 ---

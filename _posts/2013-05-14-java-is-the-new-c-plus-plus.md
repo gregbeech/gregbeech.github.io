@@ -2,7 +2,7 @@
 layout: post
 title: Java is the new C++
 date: 2013-05-14
-tags: java languages rants scala
+tags: [Languages, Scala]
 author: gregbeech
 comments: true
 ---

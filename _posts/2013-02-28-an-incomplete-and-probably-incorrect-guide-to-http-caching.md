@@ -2,7 +2,7 @@
 layout: post
 title: An incomplete and probably incorrect guide to HTTP caching
 date: 2013-02-28
-tags: caching http rest
+tags: [APIs, REST, Performance]
 author: gregbeech
 comments: true
 ---

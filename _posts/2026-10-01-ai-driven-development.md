@@ -2,7 +2,7 @@
 layout: post
 title: AI-Driven Development (AIDD)
 date: 2026-10-08
-tags: [ai, software engineering]
+tags: [AI]
 author: gregbeech
 comments: true
 ---

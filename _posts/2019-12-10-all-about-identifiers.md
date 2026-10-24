@@ -2,7 +2,7 @@
 layout: post
 title: All about identifiers
 date: 2019-12-10
-tags: [identifiers, system design, gdpr]
+tags: [Architecture, Security]
 author: gregbeech
 comments: true
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: Modelling composite types
 date: 2020-02-22
-tags: [domain modelling, functional programming, object orientation]
+tags: [Types, Functional Programming, Languages]
 author: gregbeech
 comments: true
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: Just build it! (but don't ship it)
 date: 2025-05-16
-tags: [decision making, deployment, velocity]
+tags: [Deployment, Planning, Agile]
 author: gregbeech
 comments: true
 ---

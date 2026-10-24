@@ -43,3 +43,7 @@ build/
 .metals/
 
 *.code-workspace
+
+# Jekyll cache
+.jekyll-cache
+.jekyll-metadata

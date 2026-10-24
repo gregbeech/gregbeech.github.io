@@ -2,7 +2,7 @@
 layout: post
 title: To Err is Human (Scala Central)
 date: 2018-05-02
-tags: errors talks scala
+tags: [Scala, Types, Talks]
 author: gregbeech
 comments: true
 ---

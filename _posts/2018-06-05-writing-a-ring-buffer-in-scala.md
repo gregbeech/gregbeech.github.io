@@ -2,7 +2,7 @@
 layout: post
 title: Writing a ring buffer in Scala
 date: 2018-06-05
-tags: learning scala scala-101 types
+tags: [Scala, Types, Functional Programming]
 author: gregbeech
 comments: true
 ---

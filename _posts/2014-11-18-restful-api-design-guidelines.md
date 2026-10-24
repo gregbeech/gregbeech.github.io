@@ -2,7 +2,7 @@
 layout: post
 title: RESTful API design guidelines
 date: 2015-01-28
-tags: rest http guidelines
+tags: [APIs, REST]
 author: gregbeech
 comments: true
 ---

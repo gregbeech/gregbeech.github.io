@@ -2,7 +2,7 @@
 layout: post
 title: Reducing sensitive information leakage
 date: 2015-01-28
-tags: security scala pii
+tags: [Security, Scala]
 author: gregbeech
 comments: true
 ---

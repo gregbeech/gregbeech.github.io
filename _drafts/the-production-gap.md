@@ -2,7 +2,7 @@
 layout: post
 title: The production gap
 date: 2026-10-24
-tags: [ai, software engineering]
+tags: [AI, Ruby]
 author: gregbeech
 comments: true
 ---

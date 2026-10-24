@@ -2,7 +2,7 @@
 layout: post
 title: Go's Glass Ceiling
 date: 2018-05-25
-tags: career languages go
+tags: [Languages, Careers, Go]
 author: gregbeech
 comments: true
 ---

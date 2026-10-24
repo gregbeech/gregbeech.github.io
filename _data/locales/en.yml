@@ -1,0 +1,15 @@
+# Overrides for the theme's English locale. Jekyll merges this with the theme's copy,
+# so only the keys that differ need to be here.
+copyright:
+  # Shown at the bottom of each post
+  license:
+    template: © Greg Beech. All rights reserved.
+
+  # Displayed in the footer
+  brief: All rights reserved.
+  verbose: >-
+    © 2013-2026 Greg Beech. All rights reserved.
+
+# Chirpy only reads tab page <title>s from here, so custom tabs need an entry.
+tabs:
+  cv: CV

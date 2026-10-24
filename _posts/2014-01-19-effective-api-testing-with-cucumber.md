@@ -2,7 +2,7 @@
 layout: post
 title: Effective API testing with Cucumber
 date: 2014-01-19
-tags: cucumber gherkin testing
+tags: [APIs, Testing, Ruby]
 author: gregbeech
 comments: true
 ---

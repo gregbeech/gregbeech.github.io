@@ -2,7 +2,7 @@
 layout: post
 title: Strengthen your types
 date: 2021-06-28
-tags: [languages, types, scala]
+tags: [Types, Languages, Scala]
 author: gregbeech
 comments: true
 ---

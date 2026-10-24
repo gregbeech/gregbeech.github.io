@@ -2,7 +2,7 @@
 layout: post
 title: The line has moved
 date: 2026-10-22
-tags: [ai, software engineering]
+tags: [AI, Teams]
 author: gregbeech
 comments: true
 ---
