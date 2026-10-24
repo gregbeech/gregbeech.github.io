@@ -113,7 +113,7 @@ That's by no means everything worth saying about hypertext, and we haven't even 
 
 ## Caching
 
-Caching is an intrinsic part of REST, and an intrinsic part of the HTTP protocol, so needs to be treated as a first class citizen when designing a RESTful API; doing so also allows you to make significant performance gains. The [rules for caching in HTTP are extremely complex](/blog/an-incomplete-and-probably-incorrect-guide-to-http-caching) but it's worth covering the general principles here.
+Caching is an intrinsic part of REST, and an intrinsic part of the HTTP protocol, so needs to be treated as a first class citizen when designing a RESTful API; doing so also allows you to make significant performance gains. The [rules for caching in HTTP are extremely complex]({% post_url 2013-02-28-an-incomplete-and-probably-incorrect-guide-to-http-caching %}) but it's worth covering the general principles here.
 
 The two main factors that contribute to how cacheable a response is are:
 

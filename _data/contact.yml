@@ -1,0 +1,25 @@
+# Contact links shown at the bottom of the sidebar.
+# Icons from <https://fontawesome.com/>
+
+- type: github
+  icon: "fab fa-github"
+
+- type: linkedin
+  icon: "fab fa-linkedin"
+  url: "https://www.linkedin.com/in/gregbeech"
+
+- type: stack-overflow
+  icon: "fab fa-stack-overflow"
+  url: "https://stackoverflow.com/users/13552/greg-beech"
+
+- type: instagram
+  icon: "fab fa-instagram"
+  url: "https://www.instagram.com/gsbeech"
+
+- type: email
+  icon: "fas fa-envelope"
+  noblank: true
+
+- type: rss
+  icon: "fas fa-rss"
+  noblank: true

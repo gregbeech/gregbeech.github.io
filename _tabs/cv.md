@@ -1,10 +1,9 @@
 ---
-layout: page
 title: CV
+icon: fas fa-file-alt
+order: 3
 description: >
   CV of Greg Beech.
-hide_description: true
-menu: true
 ---
 
 I’m an experienced engineer and engineering leader, with a track record of incepting and delivering projects that have company-wide impact. I've spent the last twenty years or so working in high growth startups, from Series A through G.
