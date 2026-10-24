@@ -2,7 +2,7 @@
 layout: post
 title: The problem with ETags in RESTful APIs
 date: 2015-04-04
-tags: http caching concurrency
+tags: [APIs, REST]
 author: gregbeech
 comments: true
 ---

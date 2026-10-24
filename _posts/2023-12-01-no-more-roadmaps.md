@@ -2,7 +2,7 @@
 layout: post
 title: No more roadmaps
 date: 2023-12-01
-tags: [roadmaps, planning, agile]
+tags: [Planning, Agile]
 author: gregbeech
 comments: true
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: Exit staging left
 date: 2024-12-22
-tags: [software engineering, deployment, testing, velocity]
+tags: [Deployment, Testing]
 author: gregbeech
 comments: true
 ---

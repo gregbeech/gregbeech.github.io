@@ -2,7 +2,7 @@
 layout: post
 title: Optimising session key storage in Redis
 date: 2016-10-07
-tags: deliveroo performance redis
+tags: [Performance]
 author: gregbeech
 comments: true
 ---

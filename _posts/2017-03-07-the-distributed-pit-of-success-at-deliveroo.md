@@ -2,7 +2,7 @@
 layout: post
 title: The distributed pit of success at Deliveroo (QCon London)
 date: 2017-03-07
-tags: ddd deliveroo talks
+tags: [Architecture, Talks]
 author: gregbeech
 comments: true
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: The engineering career triangle
 date: 2020-01-19
-tags: [career progression, engineering levels]
+tags: [Careers]
 author: gregbeech
 comments: true
 ---

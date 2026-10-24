@@ -2,7 +2,7 @@
 layout: post
 title: "RESTful API Design: The Fundamentals"
 date: 2013-05-21
-tags: caching guidelines http rest
+tags: [APIs, REST]
 author: gregbeech
 comments: true
 ---

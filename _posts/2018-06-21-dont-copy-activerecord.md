@@ -2,7 +2,7 @@
 layout: post
 title: Don't copy ActiveRecord
 date: 2018-06-21
-tags: engineering-101 go repositories ruby
+tags: [Architecture, Go, Ruby]
 author: gregbeech
 comments: true
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: What I look for in a CV
 date: 2013-07-12
-tags: cv hiring resume
+tags: [Hiring, Careers]
 author: gregbeech
 comments: true
 ---

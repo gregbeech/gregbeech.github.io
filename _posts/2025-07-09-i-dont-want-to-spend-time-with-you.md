@@ -2,7 +2,7 @@
 layout: post
 title: "I don't want to spend time with you"
 date: 2025-07-09
-tags: [remote work, relationships]
+tags: [Teams, Remote Work]
 author: gregbeech
 comments: true
 ---
