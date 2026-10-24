@@ -46,7 +46,7 @@ The bar for that is lower than it sounds. Deploy isn't release, so everything we
 
 The real risk lives in the changes a flag can't contain. Migrations. Anything that writes or transforms data. Batch jobs that run whether a flag is on or not. Performance problems, like a precompute job that quietly hammers the database. These are often irreversible, and they're exactly the system-level things a non-engineer can't see.
 
-So rather than a blanket gate, the principle becomes human sign-off for changes you can't switch off. Anything fully behind a flag could merge on the same terms as an engineer's work. Anything irreversible needs an engineer. It's the same reasoning that lets us [run without a staging environment](https://www.gregbeech.com/2024/12/22/exit-staging-left/). It's not that there's no risk; it's that specific practices for the genuinely dangerous changes beat a checkpoint on everything.
+So rather than a blanket gate, the principle becomes human sign-off for changes you can't switch off. Anything fully behind a flag could merge on the same terms as an engineer's work. Anything irreversible needs an engineer. It's the same reasoning that lets us [run without a staging environment]({% post_url 2024-12-22-exit-staging-left %}). It's not that there's no risk; it's that specific practices for the genuinely dangerous changes beat a checkpoint on everything.
 
 We're not there yet on our main repository. It's older, isn't as well set up for agents as our newer ones, and doesn't have a proper code review skill, so for now the gate stays.
 
@@ -58,7 +58,7 @@ Even then, it makes me a bit nervous.
 
 ## Engineering is a domain too
 
-In [my last post](https://www.gregbeech.com/2026/10/08/ai-driven-development/) I argued that writing code is the easy bit between the hard bits. Rich has the hard bits for his domain. He understands SEO far better than any of our engineers, and as he points out, that business context makes him a better fit than an engineer for some pull requests. What he was missing was the easy bit, and agents have filled that in.
+In [my last post]({% post_url 2026-10-08-ai-driven-development %}) I argued that writing code is the easy bit between the hard bits. Rich has the hard bits for his domain. He understands SEO far better than any of our engineers, and as he points out, that business context makes him a better fit than an engineer for some pull requests. What he was missing was the easy bit, and agents have filled that in.
 
 What agents can't fill in is everything that makes his changes safe to ship. The comprehensive testing strategy, the CI pipeline, the preflight checks, the feature flags and release practices, the instinct that a new precompute job is going to hurt the database: all of it comes from engineers, and from where he sits, it's invisible. Rich says as much himself. There's a lot of technical context he doesn't have, which is why engineers are still necessary. Those guardrails are also why the models seem to need so little setup.
 
@@ -72,6 +72,6 @@ That's particularly uncomfortable for junior engineers, because the traditional 
 
 So the line between engineering and everything else hasn't disappeared. It's moved. Domain experts increasingly own the changes in their domain. Engineers increasingly own the things that don't show up in any single change: performance, architecture, reliability, and the guardrails that let everyone else work safely. And as Rich says in his post, he's been having something of an existential crisis about it too. It's not only engineers who are wondering what their job looks like in a year.
 
-It moves the bottleneck, too. Rich makes the point himself: "Building stuff was never really the main issue. Building the right stuff was." When anyone can ship, it's easy to build faster than you can learn from users. I've argued before that you should [just build it, but not ship it](https://www.gregbeech.com/2025/05/16/just-build-it-but-dont-ship-it/), and that's truer now than ever. Building is cheap enough for anyone; the discipline is being brutally honest about what deserves to reach users.
+It moves the bottleneck, too. Rich makes the point himself: "Building stuff was never really the main issue. Building the right stuff was." When anyone can ship, it's easy to build faster than you can learn from users. I've argued before that you should [just build it, but not ship it]({% post_url 2025-05-16-just-build-it-but-dont-ship-it %}), and that's truer now than ever. Building is cheap enough for anyone; the discipline is being brutally honest about what deserves to reach users.
 
 None of that is a reason to stop people building, just a reason to be deliberate about who can merge what. The rule applies to everyone, engineer or not: you can merge without sign-off when you can carry the pager for what you've merged. What engineers are for now is making that a bar other people can actually clear.

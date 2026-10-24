@@ -1,6 +1,6 @@
 ---
 layout: post
-title: AI-Driven Development (AIDD)
+title: AI-driven development (AIDD)
 date: 2026-10-08
 tags: [AI]
 author: gregbeech

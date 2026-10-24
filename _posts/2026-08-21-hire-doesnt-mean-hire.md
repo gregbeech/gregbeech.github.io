@@ -6,7 +6,7 @@ tags: [Hiring]
 author: gregbeech
 ---
 
-I'm currently in the process of [hiring engineers at Jitty](https://careers.jitty.com) because we [actually need people](/2023/10/12/dont-hire/). That got me thinking about the hiring process and all the mistakes I've made over the years, including making the wrong decisions to hire people. There are myriad failures in every hiring process, even the good ones, but the biggest failure of all is interpreting "hire" feedback from an interview as meaning you should hire someone.
+I'm currently in the process of [hiring engineers at Jitty](https://careers.jitty.com) because we [actually need people]({% post_url 2023-10-12-dont-hire %}). That got me thinking about the hiring process and all the mistakes I've made over the years, including making the wrong decisions to hire people. There are myriad failures in every hiring process, even the good ones, but the biggest failure of all is interpreting "hire" feedback from an interview as meaning you should hire someone.
 
 For the most part in interviews you'll be asked to give feedback on the candidate, but regardless of all the feedback it'll usually boil down to a choice of one of these ratings:
 

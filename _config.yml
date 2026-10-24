@@ -97,6 +97,7 @@ exclude:
   - docs
   - tools
   - README.md
+  - AGENTS.md
   - LICENSE
   - Procfile
   - vendor

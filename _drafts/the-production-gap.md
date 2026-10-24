@@ -12,7 +12,7 @@ Most engineers would bristle at that, and plenty would take it personally. I don
 
 One of the things he asked, which many non-engineers struggle to understand, is what the gap is between a proof of concept and a production-grade solution. Why can't you just take the PoC and stick it in production? I wrote a quick answer in Slack, and this is the longer version. I'm going to focus on one seemingly tiny detail, which is how fast a crawler should be allowed to go.
 
-In [my last post](/2026/10/22/the-line-has-moved/), I argued that engineers increasingly own the things that don't show up in any single change, like performance, architecture, and reliability. This is what that looks like in practice.
+In [my last post]({% post_url 2026-10-22-the-line-has-moved %}), I argued that engineers increasingly own the things that don't show up in any single change, like performance, architecture, and reliability. This is what that looks like in practice.
 
 ## Everything has a cost
 

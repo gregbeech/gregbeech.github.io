@@ -12,13 +12,13 @@ Just build it!
 
 But---for heaven's sake---don't ship it to anybody outside your team.
 
-If you’ve been arguing for more than a small portion of the time it’d take to just build the thing, it means your docs, designs, or prototypes aren’t sufficient to build conviction one way or the other. You’re already [using feature flags](/2020/11/02/feature-flags/) to safely try things in production so, instead of going in circles, hack together a quick-and-dirty real version and actually try it.
+If you’ve been arguing for more than a small portion of the time it’d take to just build the thing, it means your docs, designs, or prototypes aren’t sufficient to build conviction one way or the other. You’re already [using feature flags]({% post_url 2020-11-02-feature-flags %}) to safely try things in production so, instead of going in circles, hack together a quick-and-dirty real version and actually try it.
 
 Documents are great. Prototypes are even better. But for some features, particularly ones that depend on interactions or results, there’s nothing like using the real thing with real production data to see if it actually passes [the eye test](https://bleacherreport.com/articles/144924-the-eye-test). The idea that half the team dismissed might be a gamechanger, and the slick design someone is convinced by could turn out to be a damp squib.
 
 At [Jitty](https://jitty.com/) we spent _ages_ debating whether natural language search was worth implementing. Various arguments about whether it could be done well, whether it'd be a better user experience, and whether the data we'd collect about what people really want would be worth it. It kept coming up again and again over the course of months, and it never quite made it in, but never quite made it out. So one hack day I just implemented it and pushed it into production for the team.
 
-It was crusty and rough round the edges and got a whole bunch of stuff wrong, but it got a whole bunch of stuff right too, and the idea that seemed kinda "meh" became an obvious thing we needed to ship once you interacted with it. So we built improved versions for ourselves at least daily---[straight into production](/2024/12/22/exit-staging-left/)---until it was good enough to ship to real users.
+It was crusty and rough round the edges and got a whole bunch of stuff wrong, but it got a whole bunch of stuff right too, and the idea that seemed kinda "meh" became an obvious thing we needed to ship once you interacted with it. So we built improved versions for ourselves at least daily---[straight into production]({% post_url 2024-12-22-exit-staging-left %})---until it was good enough to ship to real users.
 
 We talked about embeddings a lot too. Same deal, it kept coming up again and again for months. Until one afternoon [Coops](https://coops.dev/) hacked together a terribly ugly prototype in the admin site with a bunch of vectors in a GCS bucket, and we were all blown away by the results and the fun we were having with it. Why hadn't we just done this months ago? A few days later we had a version on the main site, just for us, and when that was good enough for real users we shipped it to them too.
 
