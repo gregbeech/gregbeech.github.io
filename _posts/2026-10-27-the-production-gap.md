@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The production gap
-date: 2026-10-24
+date: 2026-10-27
 tags: [AI, Ruby, Security, Performance]
 author: gregbeech
 ---
@@ -30,7 +30,7 @@ Many estate agents don't build or run their own website. They use a platform, an
 
 A polite one request every couple of seconds per site becomes a hundred or more requests per second to one company's servers. That's uncomfortably close to a denial-of-service attack, and exactly the harm we don't want to do.
 
-The fix is to work out which sites share an origin, and rate limit at that level as well as per site. Nobody publishes that, so we have to infer it. DNS records (A, AAAA, CNAME, and PTR) give by far the strongest signals. When they're indeterminate, for example when there are no CNAME or PTR records, header probing can fill in the gaps. TLS certificate fingerprints and serial numbers are only good for corroborating either of them. Put together, they let us say with reasonable confidence that these hundreds of domains are really one set of servers.
+The fix is to work out which sites share an origin, and rate limit at that level as well as per site. Nobody publishes that, so we have to infer it. DNS records (A, AAAA, CNAME, and PTR) give by far the strongest signals. When they're indeterminate, for example when there are no CNAME or PTR records, header probing can fill in the gaps. TLS certificate fingerprints and serial numbers are useful for corroborating either of them. Put together, they let us say with reasonable confidence that these hundreds of domains are really one set of servers.
 
 ## Some requests are more equal than others
 
@@ -131,4 +131,4 @@ The proof of concept answered the question that mattered most at the time, wheth
 
 The production crawler was written by agents too, every line of it, and they did a bunch of the research as well. When I wanted to know whether TLS certificates could tell us which hosts share servers, an agent dug through real-world patterns and came back with the answer, that it was good corroborating evidence but not reliable enough to place a host on its own.
 
-Ask an agent for a production-grade crawler today and it'll probably give you per-site rate limits, honour `robots.txt`, and block most of the private address ranges, because those are well documented, though it seems to miss obvious ones like loopback and link-local. What it won't do is realise that hundreds of sites might share one set of servers, work out that response headers can tell you which ones do when DNS can't, or spot that libvips holding the GVL could make a correct rate limiter misfire. Knowing which questions to ask is the part that doesn't come with the tools, and it's still the engineer's job.
+Ask an agent for a production-grade crawler today and it'll probably give you per-site rate limits, honour `robots.txt`, and block most of the private address ranges, because those are well documented. What it won't do is realise that hundreds of sites might share one set of servers, work out that response headers can tell you which ones do when DNS can't, or spot that libvips holding the GVL could make a correct rate limiter misfire. Knowing which questions to ask is the part that doesn't come with the tools, and it's still the engineer's job.
